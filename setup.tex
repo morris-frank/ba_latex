@@ -1,0 +1,74 @@
+% !TEX root = my-thesis.tex
+
+
+% **************************************************
+% Files' Character Encoding
+% **************************************************
+\PassOptionsToPackage{utf8}{inputenc}
+\usepackage{inputenc}
+
+
+% **************************************************
+% Information and Commands for Reuse
+% **************************************************
+\newcommand{\thesisTitle}{One-shot recognition for art historic images}
+\newcommand{\thesisName}{Maurice Frank}
+\newcommand{\thesisSubject}{Documentation}
+\newcommand{\thesisDate}{May 17, 2017}
+\newcommand{\thesisVersion}{v1.0}
+
+\newcommand{\thesisFirstReviewer}{Björn Ommer}
+\newcommand{\thesisFirstReviewerUniversity}{\protect{University of Heidelberg}}
+\newcommand{\thesisFirstReviewerDepartment}{Department of Mathematics and Computer Science}
+
+\newcommand{\thesisSecondReviewer}{John Doe}
+\newcommand{\thesisSecondReviewerUniversity}{\protect{University of Heidelberg}}
+\newcommand{\thesisSecondReviewerDepartment}{Department of Mathematics and Computer Science}
+
+\newcommand{\thesisFirstSupervisor}{Miguel Angel Bautista}
+
+\newcommand{\thesisUniversity}{\protect{University of Heidelberg}}
+\newcommand{\thesisUniversityDepartment}{Department of Mathematics and Computer Science}
+\newcommand{\thesisUniversityInstitute}{Heidelberg Collaboratory for Image Processing}
+\newcommand{\thesisUniversityGroup}{Computer Vision Research Group}
+\newcommand{\thesisUniversityCity}{Heidelberg}
+\newcommand{\thesisUniversityStreetAddress}{Berliner Str. 43}
+\newcommand{\thesisUniversityPostalCode}{69120}
+
+
+% **************************************************
+% Debug LaTeX Information
+% **************************************************
+%\listfiles
+
+
+% **************************************************
+% Load and Configure Packages
+% **************************************************
+\usepackage[english]{babel} % babel system, adjust the language of the content
+\PassOptionsToPackage{% setup clean thesis style
+    figuresep=colon,%
+    sansserif=false,%
+    hangfigurecaption=false,%
+    hangsection=true,%
+    hangsubsection=true,%
+    colorize=full,%
+    colortheme=bluemagenta,%
+    bibsys=biber,%
+    bibfile=bib-refs,%
+    bibstyle=alphabetic,%
+    wrapfooter=false,%
+}{cleanthesis}
+\usepackage{cleanthesis}
+
+\hypersetup{% setup the hyperref-package options
+    pdftitle={\thesisTitle},    %   - title (PDF meta)
+    pdfsubject={\thesisSubject},%   - subject (PDF meta)
+    pdfauthor={\thesisName},    %   - author (PDF meta)
+    plainpages=false,           %   -
+    colorlinks=false,           %   - colorize links?
+    pdfborder={0 0 0},          %   -
+    breaklinks=true,            %   - allow line break inside links
+    bookmarksnumbered=true,     %
+    bookmarksopen=true          %
+}
