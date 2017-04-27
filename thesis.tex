@@ -7,13 +7,13 @@
     openright,              % doublepage cleaning ends up right side
     parskip=full,           % spacing value / method for paragraphs
     chapterprefix=true,     % prefix for chapter marks
-    11pt,                   % font size
+    12pt,                   % font size
     headings=normal,        % size of headings
     bibliography=totoc,     % include bib in toc
     listof=totoc,           % include listof entries in toc
     titlepage=on,           % own page for each title page
     captions=tableabove,    % display table captions above the float env
-    draft=false,            % value for draft version
+    draft=false            % value for draft version
 ]{scrreprt}%
 
 
@@ -59,10 +59,10 @@
 \setcounter{page}{1}			% set page counter
 \pagestyle{maincontentstyle} 	% fancy header and footer
 
-% \input{chapters/chapter-introduction}   % INCLUDE: introduction
+\input{chapters/chapter-introduction}   % INCLUDE: introduction
 % \input{chapters/chapter-related-work}   % INCLUDE: related work
 % \input{chapters/chapter-system}         % INCLUDE: system
-% \input{chapters/chapter-concepts}       % INCLUDE: concepts
+\input{chapters/chapter-concepts}       % INCLUDE: concepts
 % \input{chapters/chapter-conclusion}     % INCLUDE: conclusion
 
 % --------------------------
@@ -72,6 +72,9 @@
 % \input{chapters/chapter-appendix}       % INCLUDE: appendix
 %
 {%
+\printglossaries
+\cleardoublepage
+
 \setstretch{1.1}
 \renewcommand{\bibfont}{\normalfont\small}
 \setlength{\biblabelsep}{0pt}

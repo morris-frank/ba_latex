@@ -53,9 +53,9 @@
     hangsection=true,%
     hangsubsection=true,%
     colorize=full,%
-    colortheme=bluemagenta,%
+    colortheme=redyellow,%
     bibsys=biber,%
-    bibfile=bib-refs,%
+    bibfile=assets/references,%
     bibstyle=alphabetic,%
     wrapfooter=false,%
 }{cleanthesis}
@@ -72,3 +72,9 @@
     bookmarksnumbered=true,     %
     bookmarksopen=true          %
 }
+
+\usepackage[xindy, toc]{glossaries}
+\makeglossaries
+\input{assets/glossary}
+
+\input{lib/commands.tex}
