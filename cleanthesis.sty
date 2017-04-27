@@ -74,7 +74,7 @@
 
 % OPTION colortheme
 % --> values = bluemagenta|bluegreen
-\define@choicekey*[ct]{cthesis}{colortheme}[\val\themenr]{bluemagenta,bluegreen}[bluemagenta]{\def\cthesis@colortheme{\themenr}}
+\define@choicekey*[ct]{cthesis}{colortheme}[\val\themenr]{bluemagenta,bluegreen,redyellow}[bluemagenta]{\def\cthesis@colortheme{\themenr}}
 \setkeys[ct]{cthesis}{colortheme=bluemagenta}
 
 % OPTION bibsys
@@ -188,6 +188,11 @@
 	\cthesissetcolor{cmyk}{.61, .47, .03, 0}{.48, .05, .91, 0}%
 }
 
+% sets the blue-green color theme (blue/green)
+\def\cthesissetcolorredyellow{%
+	\cthesissetcolor{cmyk}{0, .74, .84, 13}{.48, .05, .91, 0}%
+}
+
 % defines general colors
 \definecolor{ctcolorblack}{gray}{0}
 \definecolor{ctcolorgray}{gray}{.5}
@@ -200,6 +205,9 @@
 \or
 	% case 1 (colortheme == bluegreen)
 	\cthesissetcolorbluegreen
+\or
+	% case 1 (colortheme == redyellow)
+	\cthesissetcolorredyellow
 \else
 	% all other cases
 	\cthesissetcolorbluemagenta
@@ -698,6 +706,3 @@
 %
 % Clean signs around word origins in definitions
 %\newcommand{\cthesisorigin}[1]{\textsf{\textlangle}#1\textsf{\textrangle}}
-
-
-
