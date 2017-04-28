@@ -309,8 +309,8 @@
 \bibliography{\cthesis@bibfile}
 \DefineBibliographyStrings{ngerman}{%
 	andothers = {{et\,al\adddot}}, % 'et al.' instead of 'u.a.'
-	backrefpage = {{zitiert auf Seite}},%
-	backrefpages = {{zitiert auf den Seiten}},%
+	backrefpage = {{zitiert auf Page}},%
+	backrefpages = {{zitiert auf den Pages}},%
 }
 
 % **************************************************
@@ -451,47 +451,47 @@
 %
 % ref commands, e.g. for images, tables and text labels
 % --------------------------------------------------
-% RESULT = (siehe Tab. 12.4)
-\newcommand{\tabref}[1]{(siehe Tab.~\ref{#1})}
+% RESULT = (see Tab. 12.4)
+\newcommand{\tabref}[1]{(see Tab.~\ref{#1})}
 %
-% RESULT = (siehe Tab. 12.4)
-\newcommand{\tableref}[1]{(siehe Tab.~\ref{#1} Seite~\pageref{#1})}
-%
-% --------------------------------------------------
-% RESULT = (siehe 3.4)
-\newcommand{\tref}[1]{(siehe \ref{#1})}
-%
-% RESULT = Abschnitt 3.4
-\newcommand{\treft}[1]{Abschnitt~\ref{#1}}
-%
-% RESULT = (siehe 3.4, Seite 12)
-\newcommand{\textref}[1]{(siehe \ref{#1}, Seite~\pageref{#1})}
-%
-% RESULT = Abschnitt 3.4 (siehe Seite 12)
-\newcommand{\textreft}[1]{Abschnitt~\ref{#1} (siehe Seite~\pageref{#1})}
+% RESULT = (see Tab. 12.4)
+\newcommand{\tableref}[1]{(see Tab.~\ref{#1} Page~\pageref{#1})}
 %
 % --------------------------------------------------
-% RESULT = (siehe Abb. 10.4)
-\newcommand{\fref}[1]{(siehe Abb.~\ref{#1})}
+% RESULT = (see 3.4)
+\newcommand{\tref}[1]{(see \ref{#1})}
 %
-% RESULT = (siehe Abb. 10.4 b)
-\newcommand{\frefadd}[2]{(siehe Abb.~\ref{#1}~#2)}
+% RESULT = Section 3.4
+\newcommand{\treft}[1]{Section~\ref{#1}}
 %
-% RESULT = (siehe Abb. 10.4, Seite 12)
-\newcommand{\figref}[1]{(siehe Abb.~\ref{#1}, Seite~\pageref{#1})}
+% RESULT = (see 3.4, Page 12)
+\newcommand{\textref}[1]{(see \ref{#1}, Page~\pageref{#1})}
 %
-% RESULT = (siehe Abb. 10.4 b, Seite 12)
-\newcommand{\figrefadd}[2]{(siehe Abb.~\ref{#1}~#2, Seite~\pageref{#1})}
-%
-% RESULT = Abbildung 10.4
-\newcommand{\figreft}[1]{Abbildung~\ref{#1}}
-%
-% RESULT = Abbildung 10.4 b
-\newcommand{\figrefaddt}[2]{Abbildung~\ref{#1}~#2}
+% RESULT = Section 3.4 (see Page 12)
+\newcommand{\textreft}[1]{Section~\ref{#1} (see Page~\pageref{#1})}
 %
 % --------------------------------------------------
-% RESULT = (siehe Seite 12)
-\newcommand{\seepage}[1]{(siehe Seite~\pageref{#1})}
+% RESULT = (see Fig. 10.4)
+\newcommand{\fref}[1]{(see Fig.~\ref{#1})}
+%
+% RESULT = (see Fig. 10.4 b)
+\newcommand{\frefadd}[2]{(see Fig.~\ref{#1}~#2)}
+%
+% RESULT = (see Fig. 10.4, Page 12)
+\newcommand{\figref}[1]{(see Fig.~\ref{#1}, Page~\pageref{#1})}
+%
+% RESULT = (see Fig. 10.4 b, Page 12)
+\newcommand{\figrefadd}[2]{(see Fig.~\ref{#1}~#2, Page~\pageref{#1})}
+%
+% RESULT = Figure 10.4
+\newcommand{\figreft}[1]{Figure~\ref{#1}}
+%
+% RESULT = Figure 10.4 b
+\newcommand{\figrefaddt}[2]{Figure~\ref{#1}~#2}
+%
+% --------------------------------------------------
+% RESULT = (see Page 12)
+\newcommand{\seepage}[1]{(see Page~\pageref{#1})}
 
 
 % **************************************************

@@ -1,0 +1,46 @@
+% !TEX root = ../my-thesis.tex
+%
+\chapter{Concepts}
+\label{sec:concepts}
+
+\cleanchapterquote{Q: What's the difference between machine learning and statistics?\\A: ConvNets}{Bored Yann LeCun}{via Twitter}
+
+\section{Machine learning}
+\label{sec:concepts:ml}
+
+\section{Neural Networks}
+\label{sec:concepts:nn}
+
+\subsection{Convolutions} % (fold)
+\label{sub:conepts:nn:conv}
+
+\subsection{Activation Functions} % (fold)
+\label{sub:conepts:nn:activations}
+
+\subsection{Regularization} % (fold)
+\label{sub:conepts:nn:regularization}
+
+\subsection{BatchNorm} % (fold)
+\label{sub:conepts:nn:batchnorm}
+Batch normalization \citep{ioffe_batch_2015} is a method the ease the computation of gradient decent in backpropagation. Inside a deep neural network emerges the problem of internal covariate shift. Each deeper layer of the network depends on the outputs from its previous layer. The first layer learns on top of the data input but the second layer learns from the output of the first layers features and the third layer depends on the second one and so on. In training all these features change through backpropagation and so the the distribution of all activations change and the deeper the layer the longer the chain of evolving distributions in front of it is.\\
+If the features in training shift over time the gradient decent becomes harder as each layer has to follow this covariate shift of its successor. Batch norm helps to avoid this difficulty by normalizing mini batches of inputs. The layer is added after a convolutional layer (or any other linear layer) and collects a batch of inputs $B = \{x_1, x_2, x_3, \dots, x_n\}$ for this layers inputs. Then it calculates the mean $\mu_B$ and the variance $\sigma_B^2$ for this mini batch. Normalizing all the values from that batch  with $$\hat{x_i} = \frac{x_i - \mu_b}{\sqrt{\sigma_B^2 + \epsilon}}$$ ($\epsilon$ is added to avoid divisions by zero) delivers the outputs $\{\hat{x_1},\dots,\hat{x_n}\}$.\\
+To use the batch norm parameters in testing time we compute a moving average over the means and variances of the batches while testing. The forward pass uses these to normalize the test inputs.
+
+\section{Fully Convolutional Networks}
+\label{sec:concepts:fcn}
+
+\subsection{Deconvolution} % (fold)
+\label{sub:conepts:fcn:deconv}
+Deconvolution or often called transposed convolution, first used by \citet{zeiler_deconvolutional_2010}, introduces a new operation for neural networks. It works by swapping the forward and backward pass of a convolution \citep{dumoulin_guide_2016}. With a normal convolution the sum of the pairwise multiplication of the kernel and the values inside the receptive field of the kernel are computed. The convolution of a kernel with a full image can be formulated as normal matrix multiplication as it was done in the Caffe library \citep{jia2014caffe}. Transposed convolution already indicates that the forward pass is just the multiplication with the transposed  of this matrix. If we take for example a 1-dimensional signal $X$ with size 5 and apply a transposed convolution with a kernel $K$ sized 4. Now every $x\in X$ is multiplied with $K$ resulting in respectively 4 values. How large the new signal $Y$ depends on the stride of the deconvolution. With stride 1 a kernel for a $x$ covers 3 of 4 pixels of $Y$ the previous kernel covered and $Y$ is 6 large. With stride 2 the kernels are overlapping their half size and $Y$ is 8 large.
+
+For images the output size of a deconvolutional (deconv) layer is calculated with the inverse formula for the output size of a convolutional layer. The stride defines the upsampling factor of this layer, the kernel size the ratio of 'overlapiness' and the padding is set accordingly.
+
+\subsection{Fully convolutional network} % (fold)
+\label{sub:conepts:fcn:fcn}
+Proposed by \citet{long_fully_2015} \glspl{fcn} are a specific architecture of CNNs. Fully convolutional states that the network consists only of convolutional layers. As these are translation invariant the networks can take arbitrarily sized inputs and produce a coarse output.\\
+The original authors use this architecture for semantic segmentation which means to assign each pixel in an image a semantic label (dog, person, tree, etc.). They build their network from classic semantic object classifiers like VGG-16 \citep{simonyan_very_2014}. These take fixed sized images as inputs and produce a single label thereby classifying the whole image. Typically these networks produce high level features through a series of convolutional layers and classify them with a single or a series of fully connected layers (inner product of the inputs). To label an image pixel-wise with such an architecture we would have to forward the neighborhood of each pixel through the network which would introduce an \bigO{w * h} time complexity ($w$ and $h$ being the width and the height of the image).\\
+The fully connected layers can be directly converted to convolutional ones.
+ These networks (as e.g. ) take full images as input then apply multiple convolutions and in the end classify the whole image with multiple fully connected layers which returns a class prediction vector over the trained classes. Viewing these fully connected layers as convolutions with kernels spanning the whole size of the layers input transforms them in convolutional layers and therefore the whole network into a \gls{fcn}. As the output of this network now will be a small grid of predictions the classification results have to be upsampled to the size of the input which can be done within the network by using deconv layers. Now we have a network which can predict and segment pixelwise in arbitrarily sized inputs and is end-to-end trainable.
+
+\section{Residual Networks}
+\label{sec:concepts:resnet}
