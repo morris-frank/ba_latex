@@ -31,8 +31,35 @@ To use the batch norm parameters in testing time we compute a moving average ove
 
 \subsection{Deconvolution} % (fold)
 \label{sub:conepts:fcn:deconv}
-Deconvolution or often called transposed convolution, first used by \citet{zeiler_deconvolutional_2010}, introduces a new operation for neural networks. It works by swapping the forward and backward pass of a convolution \citep{dumoulin_guide_2016}. With a normal convolution the sum of the pairwise multiplication of the kernel and the values inside the receptive field of the kernel are computed. The convolution of a kernel with a full image can be formulated as normal matrix multiplication as it was done in the Caffe library \citep{jia2014caffe}. Transposed convolution already indicates that the forward pass is just the multiplication with the transposed  of this matrix. If we take for example a 1-dimensional signal $X$ with size 5 and apply a transposed convolution with a kernel $K$ sized 4. Now every $x\in X$ is multiplied with $K$ resulting in respectively 4 values. How large the new signal $Y$ depends on the stride of the deconvolution. With stride 1 a kernel for a $x$ covers 3 of 4 pixels of $Y$ the previous kernel covered and $Y$ is 6 large. With stride 2 the kernels are overlapping their half size and $Y$ is 8 large.
+Deconvolution or often called transposed convolution, first used by \citet{zeiler_deconvolutional_2010}, introduces a new operation for neural networks.
 
+\begin{figure}[h]
+    \centering
+    \begin{tikzpicture}[font=\footnotesize\sffamily]
+        \fill[black!20!white] (1,3) rectangle (2,3.5);
+        \fill[black!20!white] (6,3) rectangle (7,3.5);
+
+        \foreach \x/\y in {0/0, 1/0.5, 2/1, 3/1.5, 4/2}
+        {
+            \fill[black!20!white] (\x + 1, 2.0 - \y) rectangle (\x + 3, 2.5 - \y);
+            \node[above right] at (\x + 1.0, 2 - \y) {1};
+            \node[above right] at (\x + 1.5, 2 - \y) {2};
+            \node[above right] at (\x + 2.0, 2 - \y) {3};
+            \node[above right] at (\x + 2.5, 2 - \y) {4};
+        }
+
+        \draw[step=0.5cm,gray,very thin] (0,0) grid (0.5,2.5);
+        \draw[step=0.5cm,gray,very thin] (0.99,2.99) grid (7,3.5);
+        \draw[step=0.5cm,gray,very thin] (0.99,0) grid (7,2.5);
+        \draw [->] (2.25,3.25) -- (2.25,2);
+        \draw [->] (2.75,3.25) -- (2.75,2);
+        \draw [->] (3.25,3.25) -- (3.25,2);
+        \draw [->] (3.75,3.25) -- (3.75,2);
+        \draw [->] (1.9,1.75) -- (0.5,1.75);
+    \end{tikzpicture}
+    \caption{Convolution with stride 2 in 1D \citep{shi_is_2016}}
+    \label{fig:1d_deconv}
+\end{figure}
 For images the output size of a deconvolutional (deconv) layer is calculated with the inverse formula for the output size of a convolutional layer. The stride defines the upsampling factor of this layer, the kernel size the ratio of 'overlapiness' and the padding is set accordingly.
 
 \subsection{Fully convolutional network} % (fold)
@@ -44,3 +71,4 @@ The fully connected layers can be directly converted to convolutional ones.
 
 \section{Residual Networks}
 \label{sec:concepts:resnet}
+After the succes of AlexNet \citep{krizhevsky_imagenet_2012}
