@@ -39,13 +39,18 @@ Deconvolution or often called transposed convolution, first used by \citet{zeile
         \fill[black!20!white] (1,3) rectangle (2,3.5);
         \fill[black!20!white] (6,3) rectangle (7,3.5);
 
-        \foreach \x/\y in {0/0, 1/0.5, 2/1, 3/1.5, 4/2}
+        \foreach \x/\y in {1/2, 2/1.5, 3/1, 4/0.5, 5/0}
+            \fill[green!20!white] (\x, \y) rectangle (\x + 2, \y + 0.5);
+
+        \fill[black!20!white] (1,2) rectangle (2,2.5);
+        \fill[black!20!white] (6,0) rectangle (7,0.5);
+
+        \foreach \x/\y in {1/2, 2/1.5, 3/1, 4/0.5, 5/0}
         {
-            \fill[black!20!white] (\x + 1, 2.0 - \y) rectangle (\x + 3, 2.5 - \y);
-            \node[above right] at (\x + 1.0, 2 - \y) {1};
-            \node[above right] at (\x + 1.5, 2 - \y) {2};
-            \node[above right] at (\x + 2.0, 2 - \y) {3};
-            \node[above right] at (\x + 2.5, 2 - \y) {4};
+            \node[above right] at (\x + 0.0, \y) {1};
+            \node[above right] at (\x + 0.5, \y) {2};
+            \node[above right] at (\x + 1.0, \y) {3};
+            \node[above right] at (\x + 1.5, \y) {4};
         }
 
         \draw[step=0.5cm,gray,very thin] (0,0) grid (0.5,2.5);
@@ -58,7 +63,39 @@ Deconvolution or often called transposed convolution, first used by \citet{zeile
         \draw [->] (1.9,1.75) -- (0.5,1.75);
     \end{tikzpicture}
     \caption{Convolution with stride 2 in 1D \citep{shi_is_2016}}
-    \label{fig:1d_deconv}
+    \label{fig:1d_strided_conv}
+\end{figure}
+
+\begin{figure}
+    \centering
+    \begin{tikzpicture}[font=\footnotesize\sffamily]
+        \fill[black!20!white] (0,5) rectangle (0.5,6);
+        \fill[black!20!white] (0,0) rectangle (0.5,1);
+
+        \foreach \y/\x in {4/1, 3/1.5, 2/2, 1/2.5, 0/3}
+            \fill[green!20!white] (\x, \y) rectangle (\x + 0.5, \y + 2);
+
+        \fill[black!20!white] (1,5) rectangle (1.5,6);
+        \fill[black!20!white] (3,0) rectangle (3.5,1);
+
+        \foreach \y/\x in {4/1, 3/1.5, 2/2, 1/2.5, 0/3}
+        {
+            \node[above right] at (\x, \y + 1.5) {1};
+            \node[above right] at (\x, \y + 1.0) {2};
+            \node[above right] at (\x, \y + 0.5) {3};
+            \node[above right] at (\x, \y) {4};
+        }
+
+        \draw[step=0.5cm,gray,very thin] (0.99,6.49) grid (3.5,7);
+        \draw[step=0.5cm,gray,very thin] (0,0) grid (0.5,6);
+        \draw[step=0.5cm,gray,very thin] (0.99,0) grid (3.5,6);
+        \draw [->] (1.25,6.75) -- (1.25,5);
+        \draw [->] (1.75,6.75) -- (1.75,5);
+        \draw [->] (1,4.75) -- (0.5,4.75);
+        \draw [->] (1,4.25) -- (0.5,4.25);
+    \end{tikzpicture}
+    \caption{Deconvolution with stride 2 in 1D \citep{shi_is_2016}}
+    \label{fig:1d_strided_deconv}
 \end{figure}
 For images the output size of a deconvolutional (deconv) layer is calculated with the inverse formula for the output size of a convolutional layer. The stride defines the upsampling factor of this layer, the kernel size the ratio of 'overlapiness' and the padding is set accordingly.
 
