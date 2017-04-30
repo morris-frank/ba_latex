@@ -23,8 +23,8 @@
 \subsection{BatchNorm} % (fold)
 \label{sub:conepts:nn:batchnorm}
 Batch normalization \citep{ioffe_batch_2015} is a method the ease the computation of gradient decent in backpropagation. Inside a deep neural network emerges the problem of internal covariate shift. Each deeper layer of the network depends on the outputs from its previous layer. The first layer learns on top of the data input but the second layer learns from the output of the first layers features and the third layer depends on the second one and so on. In training all these features change through backpropagation and so the the distribution of all activations change and the deeper the layer the longer the chain of evolving distributions in front of it is.\\
-If the features in training shift over time the gradient decent becomes harder as each layer has to follow this covariate shift of its successor. Batch norm helps to avoid this difficulty by normalizing mini batches of inputs. The layer is added after a convolutional layer (or any other linear layer) and collects a batch of inputs $B = \{x_1, x_2, x_3, \dots, x_n\}$ for this layers inputs. Then it calculates the mean $\mu_B$ and the variance $\sigma_B^2$ for this mini batch. Normalizing all the values from that batch  with $$\hat{x_i} = \frac{x_i - \mu_b}{\sqrt{\sigma_B^2 + \epsilon}}$$ ($\epsilon$ is added to avoid divisions by zero) delivers the outputs $\{\hat{x_1},\dots,\hat{x_n}\}$.\\
-To use the batch norm parameters in testing time we compute a moving average over the means and variances of the batches while testing. The forward pass uses these to normalize the test inputs.
+If the features in training shift over time the gradient decent becomes harder as each layer has to follow this covariate shift of its successor. Batch norm helps to avoid this difficulty by normalizing mini batches of inputs. The layer is added after a convolutional layer (or any other linear layer) and collects a batch of inputs $B = \{x_1, x_2, x_3, \dots, x_n\}$ for this layers inputs. Then it calculates the mean $\mu_B$ and the variance $\sigma_B^2$ for this mini batch. Normalizing all the values from that batch  with $$\hat{x_i} = \frac{x_i - \mu_b}{\sqrt{\sigma_B^2 + \epsilon}}$$ ($\epsilon$ is added to avoid divisions by zero) yields the output $\{\hat{x_1},\dots,\hat{x_n}\}$.\\
+To use the batch norm parameters in testing time we compute a moving average over the means and variances of the batches while testing. The forward pass uses these averages to normalize the test inputs.
 
 \section{Fully Convolutional Networks}
 \label{sec:concepts:fcn}
@@ -35,6 +35,7 @@ Deconvolution or often called transposed convolution, first used by \citet{zeile
 
 \begin{figure}[h]
     \centering
+    \begin{tabular}{cc}
     \begin{tikzpicture}[font=\footnotesize\sffamily]
         \fill[black!20!white] (1,3) rectangle (2,3.5);
         \fill[black!20!white] (6,3) rectangle (7,3.5);
@@ -61,13 +62,7 @@ Deconvolution or often called transposed convolution, first used by \citet{zeile
         \draw [->] (3.25,3.25) -- (3.25,2);
         \draw [->] (3.75,3.25) -- (3.75,2);
         \draw [->] (1.9,1.75) -- (0.5,1.75);
-    \end{tikzpicture}
-    \caption{Convolution with stride 2 in 1D \citep{shi_is_2016}}
-    \label{fig:1d_strided_conv}
-\end{figure}
-
-\begin{figure}
-    \centering
+    \end{tikzpicture} &
     \begin{tikzpicture}[font=\footnotesize\sffamily]
         \fill[black!20!white] (0,5) rectangle (0.5,6);
         \fill[black!20!white] (0,0) rectangle (0.5,1);
@@ -93,10 +88,13 @@ Deconvolution or often called transposed convolution, first used by \citet{zeile
         \draw [->] (1.75,6.75) -- (1.75,5);
         \draw [->] (1,4.75) -- (0.5,4.75);
         \draw [->] (1,4.25) -- (0.5,4.25);
-    \end{tikzpicture}
-    \caption{Deconvolution with stride 2 in 1D \citep{shi_is_2016}}
-    \label{fig:1d_strided_deconv}
+    \end{tikzpicture} \\[6pt]
+    (a) Convolution & (b) Deconvolution
+    \end{tabular}
+    \caption{Convolution with stride 2 in 1D \citep{shi_is_2016}}
+    \label{fig:1d_strided_conv}
 \end{figure}
+
 For images the output size of a deconvolutional (deconv) layer is calculated with the inverse formula for the output size of a convolutional layer. The stride defines the upsampling factor of this layer, the kernel size the ratio of 'overlapiness' and the padding is set accordingly.
 
 \subsection{Fully convolutional network} % (fold)
@@ -108,4 +106,28 @@ The fully connected layers can be directly converted to convolutional ones.
 
 \section{Residual Networks}
 \label{sec:concepts:resnet}
-After the succes of AlexNet \citep{krizhevsky_imagenet_2012}
+After the succes of AlexNet \citep{krizhevsky_imagenet_2012} and with the possibilities of fast GPU computing neural networks got deeper and bigger.
+The VGG-16 by \citet{simonyan_very_2014} has 442.5 million trainable parameters for its 16 layers. The more parameters a network has the harder the training becomes.
+Since the last years multiple new network architectures were developed that achieve higher accuracy with less parameters and therefore shorter inference time \citep{canziani_analysis_2016}. One of those architectures are \gls{resnet} by \citet{he_deep_2016} with which they won the COCO  \citep{lin_microsoft_2014} and the ImageNet \citep{russakovsky_imagenet_2014} object detection challenges in 2015.
+
+A \gls{conv} layer in a standard feed forward network learns a mapping $\mathcal{H}(x)$ from its input $x$. When training the network we reach the point at which the accuracy saturates. At this point the layers which are further trained should approximate a identity mapping of their inputs as the optimum has already been reached. In practice with deep networks new layers at some point in training rapidly mode away from the identity they should learn and degrade the training error after it already saturated. Thus making these networks deeper will worsen their results \citep{he_convolutional_2015}.
+
+The main idea of \glspl{resnet} is pretty simple. They are build from many small identical blocks of which one example is shown in \figreft{fig:resblock}. Instead of having blocks that have to learn the mapping $\mathcal{H}(x)$ we introduce blocks that learn the \textit{residual} $\mathcal{F}(x) = \mathcal{H}(x) - x$ of this mapping. For that we add skip connections between the input and the output of these blocks so that the input can be added to the residual that is the output of the \gls{conv} layers. Learning the residual instead of the actually mapping has the advantage that if new \gls{conv} layers are added and stay unlearned the whole residual block yields the identity mapping.
+
+\begin{figure}
+    \centering
+    \begin{tikzpicture}[font=\footnotesize\sffamily]
+        \path (0, 5) node[above](x0) {input x}
+              (0, 3.5) node[fill=green!20, draw](x1) {\gls{conv} block}
+              (0, 2) node[fill=green!20, draw](x2) {\gls{conv} block}
+              (0, 1) node[circle,draw](x3) {+}
+              (0, 0) node[](x4) {};
+        \draw[->] (x0) -- (x1);
+        \draw[->] (x1) -- node[right] {\gls{relu}} (x2);
+        \draw[->] (x2) -- (x3);
+        \draw[->] (x3) -- node[right] {\gls{relu}} (x4);
+        \draw[->] (0, 4.5) .. controls +(right:3cm) and +(right:3cm) .. node[sloped, above] {identity x} (x3);
+    \end{tikzpicture}
+    \caption{}
+    \label{fig:resblock}
+\end{figure}
