@@ -1,4 +1,4 @@
-% !TEX root = ../my-thesis.tex
+% !TEX root = ../thesis.tex
 %
 \chapter{Pipeline}
 \label{sec:pipeline}
@@ -32,9 +32,13 @@ A lot of images produce probability maps that are sparsely filled. We want to pe
 \label{sec:pipeline:eval:density}
 For each forwarded image we generate a set of boxes to calculate the score densities for. At three scales we take boxes of the same aspect ratio as the input image and calculate the slices that would be the result of sliding the window over the image. Also we save the area of all rectangles.\\
 Density is calculated by summing up all the probabilities from the score map inside the current window and dividing this sum by the area of the window. To achieve that as efficiently as possible we use the integral image of our score map. By summing up all values from the top-left corner to the bottom-right corner of an image we get its integral. A value of the integral then is the sum of all values inside the rectangle of this point and the top-left corner:
-$$I_{int}(x, y) = \sum_{\substack{x' \le x\\ y' \le y}} I(x', y')$$
+\begin{equation}
+    I_{int}(x, y) = \sum_{\substack{x' \le x\\ y' \le y}} I(x', y')
+\end{equation}
 The sum inside any rectangle can then computed efficiently with:
-$$\sum_{\substack{x_0 < x \le x_1\\ y_0 < y \le y_1}} = I_{int}(x_1, y_1) + I_{int}(x_0, y_0) - I_{int}(x_1, y_0) - I_{int}(x_0, y_1)$$
+\begin{equation}
+    \sum_{\substack{x_0 < x \le x_1\\ y_0 < y \le y_1}} = I_{int}(x_1, y_1) + I_{int}(x_0, y_0) - I_{int}(x_1, y_0) - I_{int}(x_0, y_1)
+\end{equation}
 
 \subsection{Non maximum suppression}
 \label{sec:pipeline:eval:nms}

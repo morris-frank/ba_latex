@@ -1,0 +1,34 @@
+\newcommand{\resblock}[2]{$
+    \begin{bmatrix}
+        \text{1$\times$1, #2}\\[-.1em]
+        \text{3$\times$3, #2}\\[-.1em]
+        \text{1$\times$1, #1}
+    \end{bmatrix}
+$}
+\begin{figure}
+    \begin{tikzpicture}[font=\footnotesize, node distance=0.3cm]
+        {[start chain]
+           \node[on chain,draw,text width=1.5cm] (conv1) {$7\times7$, 64\newline stride 2};
+           \node[on chain,draw,join=by {->},text width=2.7cm] (pool) {$3\times3$ max pool\newline  stride 2};
+
+           \node[on chain,draw,join=by {->}] (RB1) {\resblock{256}{64}};
+           \node[below=0.8cm] at (RB1) {$\times$ 3};
+           \node[above=1cm,draw,minimum width=2cm] at (RB1) {$56\times56$};
+
+           \node[on chain,draw,join=by {->}] (RB2) {\resblock{512}{128}};
+           \node[below=0.8cm] at (RB2) {$\times$ 4};
+           \node[above=1cm,draw,minimum width=2cm] at (RB2) {$28\times28$};
+
+           \node[on chain,draw,join=by {->}] (RB3) {\resblock{1024}{256}};
+           \node[below=0.8cm] at (RB3) {$\times$ 6};
+           \node[above=1cm,draw,minimum width=2cm] at (RB3) {$14\times14$};
+
+           \node[on chain,draw,join=by {->}] (RB4) {\resblock{2048}{512}};
+           \node[below=0.8cm] at (RB4) {$\times$ 3};
+           \node[above=1cm,draw,minimum width=2cm] at (RB4) {$7\times7$};
+        }
+    \end{tikzpicture}
+    \caption{Each bottleneck block has three \gls{conv} layers with their kernel sizes and channel count denoted in the graph. Beneath each block is the recurrence written and above are the output sizes for these blocks.
+ }
+    \label{fig:resnet50}
+\end{figure}
