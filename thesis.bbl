@@ -1,0 +1,685 @@
+% $ biblatex auxiliary file $
+% $ biblatex bbl format version 2.8 $
+% Do not modify the above lines!
+%
+% This is an auxiliary file used by the 'biblatex' package.
+% This file may safely be deleted. It will be recreated by
+% biber as required.
+%
+\begingroup
+\makeatletter
+\@ifundefined{ver@biblatex.sty}
+  {\@latex@error
+     {Missing 'biblatex' package}
+     {The bibliography requires the 'biblatex' package.}
+      \aftergroup\endinput}
+  {}
+\endgroup
+
+
+\refsection{0}
+  \sortlist[entry]{anyt/global/}
+    \entry{canziani_analysis_2016}{article}{}
+      \name{author}{3}{}{%
+        {{hash=4dfab1b46e6c0309fa9ca5b58e48d5d4}{%
+           family={Canziani},
+           familyi={C\bibinitperiod},
+           given={Alfredo},
+           giveni={A\bibinitperiod}}}%
+        {{hash=56bf0b340039cf8594436a624ff548a9}{%
+           family={Paszke},
+           familyi={P\bibinitperiod},
+           given={Adam},
+           giveni={A\bibinitperiod}}}%
+        {{hash=96b0dcd4d0a250489e8ec9d2a971496e}{%
+           family={Culurciello},
+           familyi={C\bibinitperiod},
+           given={Eugenio},
+           giveni={E\bibinitperiod}}}%
+      }
+      \strng{namehash}{6b3249233219ae76e3cfbe4ad8f659a2}
+      \strng{fullhash}{5931de39f32516ada926e10dbe743451}
+      \strng{authornamehash}{6b3249233219ae76e3cfbe4ad8f659a2}
+      \strng{authorfullhash}{5931de39f32516ada926e10dbe743451}
+      \field{labelalpha}{CPC16}
+      \field{sortinit}{C}
+      \field{sortinithash}{59f25d509f3381b07695554a9f35ecb2}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{abstract}{Since the emergence of Deep Neural Networks (DNNs) as a prominent technique in the field of computer vision, the ImageNet classification challenge has played a major role in advancing the state-of-the-art. While accuracy figures have steadily increased, the resource utilisation of winning models has not been properly taken into account. In this work, we present a comprehensive analysis of important metrics in practical applications: accuracy, memory footprint, parameters, operations count, inference time and power consumption. Key findings are: (1) power consumption is independent of batch size and architecture; (2) accuracy and inference time are in a hyperbolic relationship; (3) energy constraint is an upper bound on the maximum achievable accuracy and model complexity; (4) the number of operations is a reliable estimate of the inference time. We believe our analysis provides a compelling set of information that helps design and engineer efficient DNNs.}
+      \field{eprintclass}{cs}
+      \field{eprinttype}{arxiv}
+      \field{journaltitle}{arXiv:1605.07678 [cs]}
+      \field{month}{5}
+      \field{title}{An {{Analysis}} of {{Deep Neural Network Models}} for {{Practical Applications}}}
+      \field{urlday}{29}
+      \field{urlmonth}{4}
+      \field{urlyear}{2017}
+      \field{year}{2016}
+      \field{urldateera}{ce}
+      \verb{eprint}
+      \verb 1605.07678
+      \endverb
+      \verb{file}
+      \verb arXiv\:1605.07678 PDF:/home/morris/var/zotero/storage/MANZ5KZE/Canziani et al. - 2016 - An Analysis of Deep Neural Network Models for Prac.pdf:application/pdf;arXiv.org Snapshot:/home/morris/var/zotero/storage/C9RG9FGP/1605.html:text/html
+      \endverb
+      \keyw{Computer Science - Computer Vision and Pattern Recognition}
+    \endentry
+    \entry{felzenszwalb_discriminatively_2008}{inproceedings}{}
+      \name{author}{3}{}{%
+        {{hash=f8e940daed9ada1964928a51563b2d59}{%
+           family={Felzenszwalb},
+           familyi={F\bibinitperiod},
+           given={Pedro\bibnamedelima F.},
+           giveni={P\bibinitperiod\bibinitdelim F\bibinitperiod}}}%
+        {{hash=9afd018724bb6de3abf20bad84957853}{%
+           family={McAllester},
+           familyi={M\bibinitperiod},
+           given={David\bibnamedelima A.},
+           giveni={D\bibinitperiod\bibinitdelim A\bibinitperiod}}}%
+        {{hash=aedcd3831845183e070aef16857d83ea}{%
+           family={Ramanan},
+           familyi={R\bibinitperiod},
+           given={Deva},
+           giveni={D\bibinitperiod}}}%
+      }
+      \list{publisher}{1}{%
+        {IEEE Computer Society}%
+      }
+      \strng{namehash}{c8b121fe04a9e1e53d4022892d4bff76}
+      \strng{fullhash}{97d4707b3c334cfafd6e009478290c17}
+      \strng{authornamehash}{c8b121fe04a9e1e53d4022892d4bff76}
+      \strng{authorfullhash}{97d4707b3c334cfafd6e009478290c17}
+      \field{labelalpha}{FMR08}
+      \field{sortinit}{F}
+      \field{sortinithash}{c6a7d9913bbd7b20ea954441c0460b78}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{booktitle}{2008 {{IEEE Computer Society Conference}} on {{Computer Vision}} and {{Pattern Recognition}} ({{CVPR}} 2008), 24-26 {{June}} 2008, {{Anchorage}}, {{Alaska}}, {{USA}}}
+      \field{isbn}{978-1-4244-2242-5}
+      \field{title}{A Discriminatively Trained, Multiscale, Deformable Part Model}
+      \field{year}{2008}
+      \verb{doi}
+      \verb 10.1109/CVPR.2008.4587597
+      \endverb
+    \endentry
+    \entry{he_deep_2016}{inproceedings}{}
+      \name{author}{8}{}{%
+        {{hash=6b4b60e909e78633945f3f9c9dc83e01}{%
+           family={He},
+           familyi={H\bibinitperiod},
+           given={Kaiming},
+           giveni={K\bibinitperiod}}}%
+        {{hash=5e72bc22dbcf0984c6d113d280e36990}{%
+           family={Zhang},
+           familyi={Z\bibinitperiod},
+           given={Xiangyu},
+           giveni={X\bibinitperiod}}}%
+        {{hash=bb295293acacd54387339079ebbe4ead}{%
+           family={Ren},
+           familyi={R\bibinitperiod},
+           given={Shaoqing},
+           giveni={S\bibinitperiod}}}%
+        {{hash=f85751488058842b5777c7b4074077b5}{%
+           family={Sun},
+           familyi={S\bibinitperiod},
+           given={Jian},
+           giveni={J\bibinitperiod}}}%
+        {{hash=5e543256c480ac577d30f76f9120eb74}{%
+           family={{undefined}},
+           familyi={u\bibinitperiod}}}%
+        {{hash=5e543256c480ac577d30f76f9120eb74}{%
+           family={{undefined}},
+           familyi={u\bibinitperiod}}}%
+        {{hash=5e543256c480ac577d30f76f9120eb74}{%
+           family={{undefined}},
+           familyi={u\bibinitperiod}}}%
+        {{hash=5e543256c480ac577d30f76f9120eb74}{%
+           family={{undefined}},
+           familyi={u\bibinitperiod}}}%
+      }
+      \list{location}{1}{%
+        {Los Alamitos, CA, USA}%
+      }
+      \list{publisher}{1}{%
+        {IEEE Computer Society}%
+      }
+      \strng{namehash}{6edb98fe38401d2fe4a026f5ce6e8451}
+      \strng{fullhash}{71632ab5b7cccf95c949836e08442968}
+      \strng{authornamehash}{6edb98fe38401d2fe4a026f5ce6e8451}
+      \strng{authorfullhash}{71632ab5b7cccf95c949836e08442968}
+      \field{labelalpha}{He+16}
+      \field{sortinit}{H}
+      \field{sortinithash}{82012198d5dfa657b8c4a168793268a6}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{abstract}{Deeper neural networks are more difficult to train. We present a residual learning framework to ease the training of networks that are substantially deeper than those used previously. We explicitly reformulate the layers as learning residual functions with reference to the layer inputs, instead of learning unreferenced functions. We provide comprehensive empirical evidence showing that these residual networks are easier to optimize, and can gain accuracy from considerably increased depth. On the ImageNet dataset we evaluate residual nets with a depth of up to 152 layers—{}8\texttimes{} deeper than VGG nets [40] but still having lower complexity. An ensemble of these residual nets achieves 3.57\% error on the ImageNet test set. This result won the 1st place on the ILSVRC 2015 classification task. We also present analysis on CIFAR-10 with 100 and 1000 layers. The depth of representations is of central importance for many visual recognition tasks. Solely due to our extremely deep representations, we obtain a 28\% relative improvement on the COCO object detection dataset. Deep residual nets are foundations of our submissions to ILSVRC \& COCO 2015 competitions1, where we also won the 1st places on the tasks of ImageNet detection, ImageNet localization, COCO detection, and COCO segmentation.}
+      \field{booktitle}{2016 {{IEEE Conference}} on {{Computer Vision}} and {{Pattern Recognition}} ({{CVPR}})}
+      \field{isbn}{978-1-4673-8851-1}
+      \field{title}{Deep {{Residual Learning}} for {{Image Recognition}}}
+      \field{year}{2016}
+      \field{pages}{770\bibrangedash 778}
+      \range{pages}{9}
+      \verb{doi}
+      \verb 10.1109/CVPR.2016.90
+      \endverb
+      \verb{file}
+      \verb 1512.03385v1.pdf:/home/morris/var/zotero/storage/HKC6VPRX/1512.03385v1.pdf:application/pdf;Snapshot:/home/morris/var/zotero/storage/P4J2GI9J/8851a770-abs.html:text/html
+      \endverb
+      \keyw{Complexity theory,Degradation,Image recognition,Image segmentation,Neural networks,Training,Visualization}
+    \endentry
+    \entry{he_convolutional_2015}{inproceedings}{}
+      \name{author}{2}{}{%
+        {{hash=6b4b60e909e78633945f3f9c9dc83e01}{%
+           family={He},
+           familyi={H\bibinitperiod},
+           given={Kaiming},
+           giveni={K\bibinitperiod}}}%
+        {{hash=f85751488058842b5777c7b4074077b5}{%
+           family={Sun},
+           familyi={S\bibinitperiod},
+           given={Jian},
+           giveni={J\bibinitperiod}}}%
+      }
+      \list{publisher}{1}{%
+        {IEEE Computer Society}%
+      }
+      \strng{namehash}{80ebc1d393aabe4965c193267189b464}
+      \strng{fullhash}{80ebc1d393aabe4965c193267189b464}
+      \strng{authornamehash}{80ebc1d393aabe4965c193267189b464}
+      \strng{authorfullhash}{80ebc1d393aabe4965c193267189b464}
+      \field{labelalpha}{HS15}
+      \field{sortinit}{H}
+      \field{sortinithash}{82012198d5dfa657b8c4a168793268a6}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{booktitle}{{{IEEE Conference}} on {{Computer Vision}} and {{Pattern Recognition}}, {{CVPR}} 2015, {{Boston}}, {{MA}}, {{USA}}, {{June}} 7-12, 2015}
+      \field{isbn}{978-1-4673-6964-0}
+      \field{title}{Convolutional Neural Networks at Constrained Time Cost}
+      \field{year}{2015}
+      \field{pages}{5353\bibrangedash 5360}
+      \range{pages}{8}
+      \verb{doi}
+      \verb 10.1109/CVPR.2015.7299173
+      \endverb
+      \verb{file}
+      \verb He_Convolutional_Neural_Networks_2015_CVPR_paper.pdf:/home/morris/var/zotero/storage/2GXR7GM3/He_Convolutional_Neural_Networks_2015_CVPR_paper.pdf:application/pdf
+      \endverb
+    \endentry
+    \entry{ioffe_batch_2015}{article}{}
+      \name{author}{2}{}{%
+        {{hash=5543e82359e26b035efc009cb3efff9d}{%
+           family={Ioffe},
+           familyi={I\bibinitperiod},
+           given={Sergey},
+           giveni={S\bibinitperiod}}}%
+        {{hash=ed568d9c3bb059e6bf22899fbf170f86}{%
+           family={Szegedy},
+           familyi={S\bibinitperiod},
+           given={Christian},
+           giveni={C\bibinitperiod}}}%
+      }
+      \strng{namehash}{7e8dee717d54c2984b1c6bd3f3c0561f}
+      \strng{fullhash}{7e8dee717d54c2984b1c6bd3f3c0561f}
+      \strng{authornamehash}{7e8dee717d54c2984b1c6bd3f3c0561f}
+      \strng{authorfullhash}{7e8dee717d54c2984b1c6bd3f3c0561f}
+      \field{labelalpha}{IS15}
+      \field{sortinit}{I}
+      \field{sortinithash}{25e99d37ba90f7c4fb20baf4e310faf3}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{shorttitle}
+      \field{abstract}{Training Deep Neural Networks is complicated by the fact that the distribution of each layer's inputs changes during training, as the parameters of the previous layers change. This slows down the training by requiring lower learning rates and careful parameter initialization, and makes it notoriously hard to train models with saturating nonlinearities. We refer to this phenomenon as internal covariate shift, and address the problem by normalizing layer inputs. Our method draws its strength from making normalization a part of the model architecture and performing the normalization for each training mini-batch. Batch Normalization allows us to use much higher learning rates and be less careful about initialization. It also acts as a regularizer, in some cases eliminating the need for Dropout. Applied to a state-of-the-art image classification model, Batch Normalization achieves the same accuracy with 14 times fewer training steps, and beats the original model by a significant margin. Using an ensemble of batch-normalized networks, we improve upon the best published result on ImageNet classification: reaching 4.9\% top-5 validation error (and 4.8\% test error), exceeding the accuracy of human raters.}
+      \field{eprintclass}{cs}
+      \field{eprinttype}{arxiv}
+      \field{journaltitle}{arXiv:1502.03167 [cs]}
+      \field{month}{2}
+      \field{shorttitle}{Batch {{Normalization}}}
+      \field{title}{Batch {{Normalization}}: {{Accelerating Deep Network Training}} by {{Reducing Internal Covariate Shift}}}
+      \field{urlday}{27}
+      \field{urlmonth}{4}
+      \field{urlyear}{2017}
+      \field{year}{2015}
+      \field{urldateera}{ce}
+      \verb{eprint}
+      \verb 1502.03167
+      \endverb
+      \verb{file}
+      \verb arXiv\:1502.03167 PDF:/home/morris/var/zotero/storage/I8DENI7D/Ioffe und Szegedy - 2015 - Batch Normalization Accelerating Deep Network Tra.pdf:application/pdf;arXiv.org Snapshot:/home/morris/var/zotero/storage/7JPDRI8Q/1502.html:text/html
+      \endverb
+      \keyw{Computer Science - Learning}
+    \endentry
+    \entry{krizhevsky_imagenet_2012}{incollection}{}
+      \name{author}{3}{}{%
+        {{hash=c5e3a676e2ac1164b3afcd539c131fc9}{%
+           family={Krizhevsky},
+           familyi={K\bibinitperiod},
+           given={Alex},
+           giveni={A\bibinitperiod}}}%
+        {{hash=8d569d1d5b8b5a7836017a98b430f959}{%
+           family={Sutskever},
+           familyi={S\bibinitperiod},
+           given={Ilya},
+           giveni={I\bibinitperiod}}}%
+        {{hash=5aeb1de9b6c6f00a078230c628e6f41c}{%
+           family={Hinton},
+           familyi={H\bibinitperiod},
+           given={Geoffrey\bibnamedelima E},
+           giveni={G\bibinitperiod\bibinitdelim E\bibinitperiod}}}%
+      }
+      \name{editor}{4}{}{%
+        {{hash=b4ac0d7da3c70152eb8651dd27648d63}{%
+           family={Pereira},
+           familyi={P\bibinitperiod},
+           given={F.},
+           giveni={F\bibinitperiod}}}%
+        {{hash=b70004bbac2b5517c4c32fc5cfe070be}{%
+           family={Burges},
+           familyi={B\bibinitperiod},
+           given={C.\bibnamedelimi J.\bibnamedelimi C.},
+           giveni={C\bibinitperiod\bibinitdelim J\bibinitperiod\bibinitdelim C\bibinitperiod}}}%
+        {{hash=27b0ff756cf36911b4cd7d704bfca7a4}{%
+           family={Bottou},
+           familyi={B\bibinitperiod},
+           given={L.},
+           giveni={L\bibinitperiod}}}%
+        {{hash=2cffb24bf1e4e0056d694659663c471c}{%
+           family={Weinberger},
+           familyi={W\bibinitperiod},
+           given={K.\bibnamedelimi Q.},
+           giveni={K\bibinitperiod\bibinitdelim Q\bibinitperiod}}}%
+      }
+      \list{publisher}{1}{%
+        {Curran Associates, Inc.}%
+      }
+      \strng{namehash}{dd291871bfa8ee64447232f1cca429aa}
+      \strng{fullhash}{3ab31bf58af50e5ea6fa561177bf01a9}
+      \strng{authornamehash}{dd291871bfa8ee64447232f1cca429aa}
+      \strng{authorfullhash}{3ab31bf58af50e5ea6fa561177bf01a9}
+      \strng{editornamehash}{35f2d9810b557344b79a22360e54a26d}
+      \strng{editorfullhash}{c340ffe894b913b7a4a745c8f7f2a92d}
+      \field{labelalpha}{KSH12}
+      \field{sortinit}{K}
+      \field{sortinithash}{a7d5b3aec5a0890aae7baf85a209abfc}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{booktitle}{Advances in {{Neural Information Processing Systems}} 25}
+      \field{title}{{{ImageNet Classification}} with {{Deep Convolutional Neural Networks}}}
+      \field{urlday}{19}
+      \field{urlmonth}{12}
+      \field{urlyear}{2016}
+      \field{year}{2012}
+      \field{urldateera}{ce}
+      \field{pages}{1097\bibrangedash 1105}
+      \range{pages}{9}
+      \verb{file}
+      \verb NIPS Full Text PDF:/home/morris/var/zotero/storage/I4KBNW24/Krizhevsky et al. - 2012 - ImageNet Classification with Deep Convolutional Ne.pdf:application/pdf;NIPS Snapshort:/home/morris/var/zotero/storage/WCEH5ZPA/4824-imagenet-classification-with-deep-convolutional-neural-networks.html:text/html
+      \endverb
+    \endentry
+    \entry{lin_microsoft_2014}{article}{}
+      \name{author}{10}{}{%
+        {{hash=08f925fe4692d130a1d7cb7d94483351}{%
+           family={Lin},
+           familyi={L\bibinitperiod},
+           given={Tsung-Yi},
+           giveni={T\bibinithyphendelim Y\bibinitperiod}}}%
+        {{hash=d980bc6930f008a0fb5fa667785f2309}{%
+           family={Maire},
+           familyi={M\bibinitperiod},
+           given={Michael},
+           giveni={M\bibinitperiod}}}%
+        {{hash=044d1db5259b74e4975282f599d8e767}{%
+           family={Belongie},
+           familyi={B\bibinitperiod},
+           given={Serge},
+           giveni={S\bibinitperiod}}}%
+        {{hash=a5d50cf5c085cd3a323d68588dcb89c8}{%
+           family={Bourdev},
+           familyi={B\bibinitperiod},
+           given={Lubomir},
+           giveni={L\bibinitperiod}}}%
+        {{hash=bd5dadbe57bedc5957c19a3154c4d424}{%
+           family={Girshick},
+           familyi={G\bibinitperiod},
+           given={Ross},
+           giveni={R\bibinitperiod}}}%
+        {{hash=797fc3624ba315db58eef7279ace5bf3}{%
+           family={Hays},
+           familyi={H\bibinitperiod},
+           given={James},
+           giveni={J\bibinitperiod}}}%
+        {{hash=e52876f830a8a20786ff3e4d7dd6f083}{%
+           family={Perona},
+           familyi={P\bibinitperiod},
+           given={Pietro},
+           giveni={P\bibinitperiod}}}%
+        {{hash=aedcd3831845183e070aef16857d83ea}{%
+           family={Ramanan},
+           familyi={R\bibinitperiod},
+           given={Deva},
+           giveni={D\bibinitperiod}}}%
+        {{hash=4749e91c0b2618fc42478fccbd430ff9}{%
+           family={Zitnick},
+           familyi={Z\bibinitperiod},
+           given={C.\bibnamedelimi Lawrence},
+           giveni={C\bibinitperiod\bibinitdelim L\bibinitperiod}}}%
+        {{hash=ecd149fdcb3e0503881d49e545744c3d}{%
+           family={Dollár},
+           familyi={D\bibinitperiod},
+           given={Piotr},
+           giveni={P\bibinitperiod}}}%
+      }
+      \strng{namehash}{3b7e00bc88d7aca4d4d5ddb8c252e36c}
+      \strng{fullhash}{f4a63f0ec08a1825630e76ba5a64ce0a}
+      \strng{authornamehash}{3b7e00bc88d7aca4d4d5ddb8c252e36c}
+      \strng{authorfullhash}{f4a63f0ec08a1825630e76ba5a64ce0a}
+      \field{labelalpha}{Lin+14}
+      \field{sortinit}{L}
+      \field{sortinithash}{872351f18d0f736066eda0bf18bfa4f7}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{shorttitle}
+      \field{abstract}{We present a new dataset with the goal of advancing the state-of-the-art in object recognition by placing the question of object recognition in the context of the broader question of scene understanding. This is achieved by gathering images of complex everyday scenes containing common objects in their natural context. Objects are labeled using per-instance segmentations to aid in precise object localization. Our dataset contains photos of 91 objects types that would be easily recognizable by a 4 year old. With a total of 2.5 million labeled instances in 328k images, the creation of our dataset drew upon extensive crowd worker involvement via novel user interfaces for category detection, instance spotting and instance segmentation. We present a detailed statistical analysis of the dataset in comparison to PASCAL, ImageNet, and SUN. Finally, we provide baseline performance analysis for bounding box and segmentation detection results using a Deformable Parts Model.}
+      \field{eprintclass}{cs}
+      \field{eprinttype}{arxiv}
+      \field{journaltitle}{arXiv:1405.0312 [cs]}
+      \field{month}{5}
+      \field{shorttitle}{Microsoft {{COCO}}}
+      \field{title}{Microsoft {{COCO}}: {{Common Objects}} in {{Context}}}
+      \field{urlday}{30}
+      \field{urlmonth}{4}
+      \field{urlyear}{2017}
+      \field{year}{2014}
+      \field{urldateera}{ce}
+      \verb{eprint}
+      \verb 1405.0312
+      \endverb
+      \verb{file}
+      \verb arXiv\:1405.0312 PDF:/home/morris/var/zotero/storage/APPFR5D9/Lin et al. - 2014 - Microsoft COCO Common Objects in Context.pdf:application/pdf;arXiv.org Snapshot:/home/morris/var/zotero/storage/6QZTHGUR/1405.html:text/html
+      \endverb
+      \keyw{Computer Science - Computer Vision and Pattern Recognition}
+    \endentry
+    \entry{long_fully_2015}{inproceedings}{}
+      \name{author}{3}{}{%
+        {{hash=17faae490b91366d25e0e2d774e7b6b1}{%
+           family={Long},
+           familyi={L\bibinitperiod},
+           given={Jonathan},
+           giveni={J\bibinitperiod}}}%
+        {{hash=4ce499f8943cac7cba0a73388d289a2e}{%
+           family={Shelhamer},
+           familyi={S\bibinitperiod},
+           given={Evan},
+           giveni={E\bibinitperiod}}}%
+        {{hash=90180e1a30742e0d15328bfe637c2ef4}{%
+           family={Darrell},
+           familyi={D\bibinitperiod},
+           given={Trevor},
+           giveni={T\bibinitperiod}}}%
+      }
+      \strng{namehash}{122a3e350fe71cc65fcdb244928566c0}
+      \strng{fullhash}{4f969c1eddab717aa873b0a90831c45a}
+      \strng{authornamehash}{122a3e350fe71cc65fcdb244928566c0}
+      \strng{authorfullhash}{4f969c1eddab717aa873b0a90831c45a}
+      \field{labelalpha}{LSD15}
+      \field{sortinit}{L}
+      \field{sortinithash}{872351f18d0f736066eda0bf18bfa4f7}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{title}{Fully {{Convolutional Networks}} for {{Semantic Segmentation}}}
+      \field{urlday}{9}
+      \field{urlmonth}{11}
+      \field{urlyear}{2016}
+      \field{year}{2015}
+      \field{urldateera}{ce}
+      \field{pages}{3431\bibrangedash 3440}
+      \range{pages}{10}
+      \verb{file}
+      \verb Full Text PDF:/home/morris/var/zotero/storage/P446Z8VB/Long et al. - 2015 - Fully Convolutional Networks for Semantic Segmenta.pdf:application/pdf;Snapshot:/home/morris/var/zotero/storage/FJU2A2W7/Long_Fully_Convolutional_Networks_2015_CVPR_paper.html:text/html
+      \endverb
+    \endentry
+    \entry{russakovsky_imagenet_2014}{article}{}
+      \name{author}{12}{}{%
+        {{hash=2a74ec28b731b015747e2af5f0b519e1}{%
+           family={Russakovsky},
+           familyi={R\bibinitperiod},
+           given={Olga},
+           giveni={O\bibinitperiod}}}%
+        {{hash=0ae7fdc13773f928525f673b05f37149}{%
+           family={Deng},
+           familyi={D\bibinitperiod},
+           given={Jia},
+           giveni={J\bibinitperiod}}}%
+        {{hash=18c26ddba8b9dd77f278213fd4e93ce4}{%
+           family={Su},
+           familyi={S\bibinitperiod},
+           given={Hao},
+           giveni={H\bibinitperiod}}}%
+        {{hash=bdb3759bbe6ab0618874848557abd459}{%
+           family={Krause},
+           familyi={K\bibinitperiod},
+           given={Jonathan},
+           giveni={J\bibinitperiod}}}%
+        {{hash=434c8ee62c507c93be09958bae942da5}{%
+           family={Satheesh},
+           familyi={S\bibinitperiod},
+           given={Sanjeev},
+           giveni={S\bibinitperiod}}}%
+        {{hash=e3f8564120f7528479a3ea1b507bd705}{%
+           family={Ma},
+           familyi={M\bibinitperiod},
+           given={Sean},
+           giveni={S\bibinitperiod}}}%
+        {{hash=6e8d947dd72de23b8500095b595e1e99}{%
+           family={Huang},
+           familyi={H\bibinitperiod},
+           given={Zhiheng},
+           giveni={Z\bibinitperiod}}}%
+        {{hash=e91a4c2044bccdbef249eabc886ff988}{%
+           family={Karpathy},
+           familyi={K\bibinitperiod},
+           given={Andrej},
+           giveni={A\bibinitperiod}}}%
+        {{hash=c8d6add84efe17681e0d4968ebf47fdc}{%
+           family={Khosla},
+           familyi={K\bibinitperiod},
+           given={Aditya},
+           giveni={A\bibinitperiod}}}%
+        {{hash=9c5821708eb9cc9bc6c92c66ada53892}{%
+           family={Bernstein},
+           familyi={B\bibinitperiod},
+           given={Michael},
+           giveni={M\bibinitperiod}}}%
+        {{hash=ad327617ae56ac5e0522568c50eed9c8}{%
+           family={Berg},
+           familyi={B\bibinitperiod},
+           given={Alexander\bibnamedelima C.},
+           giveni={A\bibinitperiod\bibinitdelim C\bibinitperiod}}}%
+        {{hash=cd00ce5bc45f687c432e52e0fa1a7aa6}{%
+           family={Fei-Fei},
+           familyi={F\bibinithyphendelim F\bibinitperiod},
+           given={Li},
+           giveni={L\bibinitperiod}}}%
+      }
+      \strng{namehash}{8ba3ccfdb2fef3e42589e7ae3b2c964a}
+      \strng{fullhash}{2f85dbf303db3e3e3c676bc2cec94d6a}
+      \strng{authornamehash}{8ba3ccfdb2fef3e42589e7ae3b2c964a}
+      \strng{authorfullhash}{2f85dbf303db3e3e3c676bc2cec94d6a}
+      \field{labelalpha}{Rus+14}
+      \field{sortinit}{R}
+      \field{sortinithash}{c7387613477035a752d935acfc3e3ea2}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{abstract}{The ImageNet Large Scale Visual Recognition Challenge is a benchmark in object category classification and detection on hundreds of object categories and millions of images. The challenge has been run annually from 2010 to present, attracting participation from more than fifty institutions. This paper describes the creation of this benchmark dataset and the advances in object recognition that have been possible as a result. We discuss the challenges of collecting large-scale ground truth annotation, highlight key breakthroughs in categorical object recognition, provide a detailed analysis of the current state of the field of large-scale image classification and object detection, and compare the state-of-the-art computer vision accuracy with human accuracy. We conclude with lessons learned in the five years of the challenge, and propose future directions and improvements.}
+      \field{eprintclass}{cs}
+      \field{eprinttype}{arxiv}
+      \field{journaltitle}{arXiv:1409.0575 [cs]}
+      \field{month}{9}
+      \field{title}{{{ImageNet Large Scale Visual Recognition Challenge}}}
+      \field{urlday}{30}
+      \field{urlmonth}{4}
+      \field{urlyear}{2017}
+      \field{year}{2014}
+      \field{urldateera}{ce}
+      \verb{eprint}
+      \verb 1409.0575
+      \endverb
+      \verb{file}
+      \verb arXiv\:1409.0575 PDF:/home/morris/var/zotero/storage/2TTF5AP8/Russakovsky et al. - 2014 - ImageNet Large Scale Visual Recognition Challenge.pdf:application/pdf;arXiv.org Snapshot:/home/morris/var/zotero/storage/BJI3BZ75/1409.html:text/html
+      \endverb
+      \keyw{Computer Science - Computer Vision and Pattern Recognition,I.4.8,I.5.2}
+    \endentry
+    \entry{shi_is_2016}{article}{}
+      \name{author}{7}{}{%
+        {{hash=59260dd2ba392e626647c9ee8f8c6b35}{%
+           family={Shi},
+           familyi={S\bibinitperiod},
+           given={Wenzhe},
+           giveni={W\bibinitperiod}}}%
+        {{hash=3b9836d6278f3cf5dc21ab6e8c010ecb}{%
+           family={Caballero},
+           familyi={C\bibinitperiod},
+           given={Jose},
+           giveni={J\bibinitperiod}}}%
+        {{hash=5314c7da92c0dd8f017ad76fc7a24e02}{%
+           family={Theis},
+           familyi={T\bibinitperiod},
+           given={Lucas},
+           giveni={L\bibinitperiod}}}%
+        {{hash=55245b2fad09f9c922d0006d08f5b7f0}{%
+           family={Huszar},
+           familyi={H\bibinitperiod},
+           given={Ferenc},
+           giveni={F\bibinitperiod}}}%
+        {{hash=b9d6efcdb8c05d59bf4b6c18cba1518c}{%
+           family={Aitken},
+           familyi={A\bibinitperiod},
+           given={Andrew},
+           giveni={A\bibinitperiod}}}%
+        {{hash=dee0b959a6d8e56154a0c6381ea357af}{%
+           family={Ledig},
+           familyi={L\bibinitperiod},
+           given={Christian},
+           giveni={C\bibinitperiod}}}%
+        {{hash=f9c196f615b0bde00b8ef1e7cfaa8055}{%
+           family={Wang},
+           familyi={W\bibinitperiod},
+           given={Zehan},
+           giveni={Z\bibinitperiod}}}%
+      }
+      \strng{namehash}{23b5fc10f29078f5c9e43604f180c01c}
+      \strng{fullhash}{74040788f6411220dd8853a3f6502221}
+      \strng{authornamehash}{23b5fc10f29078f5c9e43604f180c01c}
+      \strng{authorfullhash}{74040788f6411220dd8853a3f6502221}
+      \field{labelalpha}{Shi+16}
+      \field{sortinit}{S}
+      \field{sortinithash}{fd1e7c5ab79596b13dbbb67f8d70fb5a}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{abstract}{In this note, we want to focus on aspects related to two questions most people asked us at CVPR about the network we presented. Firstly, What is the relationship between our proposed layer and the deconvolution layer? And secondly, why are convolutions in low-resolution (LR) space a better choice? These are key questions we tried to answer in the paper, but we were not able to go into as much depth and clarity as we would have liked in the space allowance. To better answer these questions in this note, we first discuss the relationships between the deconvolution layer in the forms of the transposed convolution layer, the sub-pixel convolutional layer and our efficient sub-pixel convolutional layer. We will refer to our efficient sub-pixel convolutional layer as a convolutional layer in LR space to distinguish it from the common sub-pixel convolutional layer. We will then show that for a fixed computational budget and complexity, a network with convolutions exclusively in LR space has more representation power at the same speed than a network that first upsamples the input in high resolution space.}
+      \field{eprintclass}{cs}
+      \field{eprinttype}{arxiv}
+      \field{journaltitle}{arXiv:1609.07009 [cs]}
+      \field{month}{9}
+      \field{title}{Is the Deconvolution Layer the Same as a Convolutional Layer?}
+      \field{urlday}{25}
+      \field{urlmonth}{10}
+      \field{urlyear}{2016}
+      \field{year}{2016}
+      \field{urldateera}{ce}
+      \verb{eprint}
+      \verb 1609.07009
+      \endverb
+      \verb{file}
+      \verb arXiv\:1609.07009 PDF:/home/morris/var/zotero/storage/RKJXQTIV/Shi et al. - 2016 - Is the deconvolution layer the same as a convoluti.pdf:application/pdf;arXiv.org Snapshot:/home/morris/var/zotero/storage/C32XXCT5/1609.html:text/html
+      \endverb
+      \keyw{Computer Science - Computer Vision and Pattern Recognition}
+    \endentry
+    \entry{simonyan_very_2014}{article}{}
+      \name{author}{2}{}{%
+        {{hash=9d16b7284df92c9adaee86c37ab992df}{%
+           family={Simonyan},
+           familyi={S\bibinitperiod},
+           given={Karen},
+           giveni={K\bibinitperiod}}}%
+        {{hash=c72fc39e94030f67717052309266a44d}{%
+           family={Zisserman},
+           familyi={Z\bibinitperiod},
+           given={Andrew},
+           giveni={A\bibinitperiod}}}%
+      }
+      \strng{namehash}{25d2f3c4577a6632d37f0126cc781232}
+      \strng{fullhash}{25d2f3c4577a6632d37f0126cc781232}
+      \strng{authornamehash}{25d2f3c4577a6632d37f0126cc781232}
+      \strng{authorfullhash}{25d2f3c4577a6632d37f0126cc781232}
+      \field{labelalpha}{SZ14}
+      \field{sortinit}{S}
+      \field{sortinithash}{fd1e7c5ab79596b13dbbb67f8d70fb5a}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{abstract}{In this work we investigate the effect of the convolutional network depth on its accuracy in the large-scale image recognition setting. Our main contribution is a thorough evaluation of networks of increasing depth using an architecture with very small (3x3) convolution filters, which shows that a significant improvement on the prior-art configurations can be achieved by pushing the depth to 16-19 weight layers. These findings were the basis of our ImageNet Challenge 2014 submission, where our team secured the first and the second places in the localisation and classification tracks respectively. We also show that our representations generalise well to other datasets, where they achieve state-of-the-art results. We have made our two best-performing ConvNet models publicly available to facilitate further research on the use of deep visual representations in computer vision.}
+      \field{eprintclass}{cs}
+      \field{eprinttype}{arxiv}
+      \field{journaltitle}{arXiv:1409.1556 [cs]}
+      \field{month}{9}
+      \field{title}{Very {{Deep Convolutional Networks}} for {{Large}}-{{Scale Image Recognition}}}
+      \field{urlday}{18}
+      \field{urlmonth}{12}
+      \field{urlyear}{2016}
+      \field{year}{2014}
+      \field{urldateera}{ce}
+      \verb{eprint}
+      \verb 1409.1556
+      \endverb
+      \verb{file}
+      \verb arXiv\:1409.1556 PDF:/home/morris/var/zotero/storage/N55FGAHT/Simonyan und Zisserman - 2014 - Very Deep Convolutional Networks for Large-Scale I.pdf:application/pdf;arXiv.org Snapshot:/home/morris/var/zotero/storage/HI6GG63I/1409.html:text/html
+      \endverb
+      \keyw{Computer Science - Computer Vision and Pattern Recognition}
+    \endentry
+    \entry{zeiler_deconvolutional_2010}{inproceedings}{}
+      \name{author}{4}{}{%
+        {{hash=2e8f0042fa52e2976f90a025ddf6268c}{%
+           family={Zeiler},
+           familyi={Z\bibinitperiod},
+           given={Matthew\bibnamedelima D.},
+           giveni={M\bibinitperiod\bibinitdelim D\bibinitperiod}}}%
+        {{hash=6e4c62612fa904e2c1c6c00006ccc142}{%
+           family={Krishnan},
+           familyi={K\bibinitperiod},
+           given={Dilip},
+           giveni={D\bibinitperiod}}}%
+        {{hash=c333e1494fec93f7310fbaafa5702b1d}{%
+           family={Taylor},
+           familyi={T\bibinitperiod},
+           given={Graham\bibnamedelima W.},
+           giveni={G\bibinitperiod\bibinitdelim W\bibinitperiod}}}%
+        {{hash=db7462367cb5eb67fda477db69a8b26c}{%
+           family={Fergus},
+           familyi={F\bibinitperiod},
+           given={Robert},
+           giveni={R\bibinitperiod}}}%
+      }
+      \list{publisher}{1}{%
+        {IEEE Computer Society}%
+      }
+      \strng{namehash}{66a5c3baf58b6bba284028826ec409c1}
+      \strng{fullhash}{1814b81e13e25418e575489d26ed4300}
+      \strng{authornamehash}{66a5c3baf58b6bba284028826ec409c1}
+      \strng{authorfullhash}{1814b81e13e25418e575489d26ed4300}
+      \field{labelalpha}{Zei+10}
+      \field{sortinit}{Z}
+      \field{sortinithash}{fdda4caaa6b5fa63e0c081dcb159543a}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{booktitle}{The {{Twenty}}-{{Third IEEE Conference}} on {{Computer Vision}} and {{Pattern Recognition}}, {{CVPR}} 2010, {{San Francisco}}, {{CA}}, {{USA}}, 13-18 {{June}} 2010}
+      \field{isbn}{978-1-4244-6984-0}
+      \field{title}{Deconvolutional Networks}
+      \field{year}{2010}
+      \field{pages}{2528\bibrangedash 2535}
+      \range{pages}{8}
+      \verb{doi}
+      \verb 10.1109/CVPR.2010.5539957
+      \endverb
+    \endentry
+  \endsortlist
+\endrefsection
+\endinput
+
