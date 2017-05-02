@@ -53,14 +53,14 @@ For the normal $224\times224$ images nothing changed as the output of the first 
 \label{sec:concepts:resnet}
 After the succes of AlexNet \citep{krizhevsky_imagenet_2012} and with the possibilities of fast GPU computing neural networks got deeper and bigger.
 The VGG-16 by \citet{simonyan_very_2014} has 442.5 million trainable parameters for its 16 layers. The more parameters a network has the harder the training becomes.
-Since the last years multiple new network architectures were developed that achieve higher accuracy with less parameters and therefore shorter inference time \citep{canziani_analysis_2016}. One of those architectures are \gls{resnet} by \citet{he_deep_2016} with which they won the COCO  \citep{lin_microsoft_2014} and the ImageNet \citep{russakovsky_imagenet_2014} object detection challenges in 2015.
+Since the last years multiple new network architectures were developed that achieve higher accuracy with less parameters and therefore shorter inference time \citep{canziani_analysis_2016}. One of those architectures are \gls{resnet} by \citet{he_deep_2016} with which they won the COCO  \citet{lin_microsoft_2014-1} and the ImageNet \citet{russakovsky_imagenet_2015} object detection challenges in 2015.
 A \gls{conv} layer in a standard feed forward network learns a mapping $\mathcal{H}(x)$ from its input $x$. When training the network we reach the point at which the accuracy saturates. At this point the layers which are further trained should approximate a identity mapping of their inputs as the optimum has already been reached. In practice with deep networks new layers at some point in training rapidly mode away from the identity they should learn and degrade the training error after it already saturated. Thus making these networks deeper will worsen their results \citep{he_convolutional_2015}.
+\input{figures/resblock}
 
 The main idea of \glspl{resnet} is pretty simple. They are build from many small identical blocks of which one example is shown in \figreft{fig:resblock}. Instead of blocks that learn the mapping $\mathcal{H}(x)$ we introduce blocks that learn the \textit{residual} $\mathcal{F}(x) = \mathcal{H}(x) - x$ of this mapping. For that we add skip connections between the input and the output of these blocks so that the input can be added to the residual that is the output of the \gls{conv} layers. Learning the residual instead of the actually mapping has the advantage that if new \gls{conv} layers are added and stay unlearned the whole residual block still yields the identity mapping which will not lead to the degradation problem we see with normal deep networks.
 
 \subsection{Network design}
 \label{sec:concepts:resnet:design}
-\input{figures/resblock}
 Using the basic concept of residual blocks we build a successful architecture. First lets look at what the blocks can contain. The first example in \figreft{fig:resblock} uses just two \gls{conv} layers and a \gls{relu} to learn the residual. Therefore the block is described by:
 \begin{equation}
     \mathcal{F}(x) = W_2\sigma(W_1 x + b_1) + b_2

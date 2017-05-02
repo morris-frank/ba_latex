@@ -6,29 +6,37 @@
     \end{bmatrix}
 $}
 \begin{figure}
-    \begin{tikzpicture}[font=\footnotesize, node distance=0.3cm]
-        {[start chain]
-           \node[on chain,draw,text width=1.5cm] (conv1) {$7\times7$, 64\newline stride 2};
-           \node[on chain,draw,join=by {->},text width=2.7cm] (pool) {$3\times3$ max pool\newline  stride 2};
-
-           \node[on chain,draw,join=by {->}] (RB1) {\resblock{256}{64}};
+    \centering
+    \begin{tikzpicture}[font=\scriptsize]
+        {[start chain, node distance=0.3cm]
+           \node[fill=orange!20,on chain,draw] (RB1) at (2.3,0) {\resblock{256}{64}};
            \node[below=0.8cm] at (RB1) {$\times$ 3};
-           \node[above=1cm,draw,minimum width=2cm] at (RB1) {$56\times56$};
+           \node[fill=orange!20,above=1cm,draw,minimum width=2cm] at (RB1) {$56\times56$};
 
-           \node[on chain,draw,join=by {->}] (RB2) {\resblock{512}{128}};
+           \node[fill=green!20,on chain,draw,join=by {->}] (RB2) {\resblock{512}{128}};
            \node[below=0.8cm] at (RB2) {$\times$ 4};
-           \node[above=1cm,draw,minimum width=2cm] at (RB2) {$28\times28$};
+           \node[fill=green!20,above=1cm,draw,minimum width=2cm] at (RB2) {$28\times28$};
 
-           \node[on chain,draw,join=by {->}] (RB3) {\resblock{1024}{256}};
+           \node[fill=blue!20,on chain,draw,join=by {->}] (RB3) {\resblock{1024}{256}};
            \node[below=0.8cm] at (RB3) {$\times$ 6};
-           \node[above=1cm,draw,minimum width=2cm] at (RB3) {$14\times14$};
+           \node[fill=blue!20,above=1cm,draw,minimum width=2cm] at (RB3) {$14\times14$};
 
-           \node[on chain,draw,join=by {->}] (RB4) {\resblock{2048}{512}};
+           \node[fill=pink!20,on chain,draw,join=by {->}] (RB4) {\resblock{2048}{512}};
            \node[below=0.8cm] at (RB4) {$\times$ 3};
-           \node[above=1cm,draw,minimum width=2cm] at (RB4) {$7\times7$};
+           \node[fill=pink!20,above=1cm,draw,minimum width=2cm] at (RB4) {$7\times7$};
         }
+        \path (0,1.5) node[draw, text width=1.3cm, align=center] (conv1) {$7\times7$, 64\\ stride 2}
+              (0,0) node[draw, text width=1.3cm, align=center] (pool) {$3\times3$ max pool\\  stride 2};
+        \draw[->] (conv1) -- (pool);
+        \draw[->] (pool) -- (RB1);
+
+        \path (11.4,0) node[draw, text width=1.3cm, align=center] (avpool) {$7\times7$\\average pool}
+              (11.4,-1.3) node[draw, text width=1.3cm, align=center] (fc) {\gls{fc} layer};
+        \node[above=1cm,draw,text width=1.3cm,align=center] at (avpool) {$1\times1$};
+        \draw[->] (RB4) -- (avpool);
+        \draw[->] (avpool) -- (fc);
     \end{tikzpicture}
-    \caption{Each bottleneck block has three \gls{conv} layers with their kernel sizes and channel count denoted in the graph. Beneath each block is the recurrence written and above are the output sizes for these blocks.
+    \caption{\gls{resnet}50: Each bottleneck block has three \gls{conv} layers with their kernel sizes and channel count denoted in the graph. Beneath each block is the recurrence written and above are the output sizes for these blocks.
  }
     \label{fig:resnet50}
 \end{figure}
