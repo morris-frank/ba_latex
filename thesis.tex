@@ -4,7 +4,7 @@
 \documentclass[%
     paper=A4,               % paper size --> A4 is default in Germany
     twoside=true,           % onesite or twoside printing
-    openright,              % doublepage cleaning ends up right side
+    % openright,              % doublepage cleaning ends up right side
     parskip=full,           % spacing value / method for paragraphs
     chapterprefix=true,     % prefix for chapter marks
     12pt,                   % font size
@@ -31,8 +31,6 @@
 % --------------------------
 % rename document parts
 % --------------------------
-%\renewcaptionname{ngerman}{\figurename}{Abb.}
-%\renewcaptionname{ngerman}{\tablename}{Tab.}
 \renewcaptionname{english}{\figurename}{Fig.}
 \renewcaptionname{english}{\tablename}{Tab.}
 
@@ -48,7 +46,7 @@
 \input{chapters/abstract}		% INCLUDE: the abstracts (english and german)
 \cleardoublepage
 %
-\setcounter{tocdepth}{2}		% define depth of toc
+\setcounter{tocdepth}{3}		% define depth of toc
 \tableofcontents				% display table of contents
 \cleardoublepage
 
@@ -60,22 +58,19 @@
 \pagestyle{maincontentstyle} 	% fancy header and footer
 
 \input{chapters/chapter-introduction}   % INCLUDE: introduction
-% \input{chapters/chapter-related-work}   % INCLUDE: related work
 \input{chapters/chapter-concepts}       % INCLUDE: concepts
+\input{chapters/chapter-related-work}   % INCLUDE: related work
 \input{chapters/chapter-system}         % INCLUDE: system
 \input{chapters/chapter-results}         % INCLUDE: system
+\input{chapters/chapter-application}         % INCLUDE: system
 % \input{chapters/chapter-conclusion}     % INCLUDE: conclusion
 
 % --------------------------
 % Back matter
 % --------------------------
-\appendix\cleardoublepage
-% \input{chapters/chapter-appendix}       % INCLUDE: appendix
 %
-{%
 \printglossaries
-\cleardoublepage
-
+{%
 \setstretch{1.1}
 \renewcommand{\bibfont}{\normalfont\small}
 \setlength{\biblabelsep}{0pt}
@@ -83,16 +78,9 @@
 \printbibliography[nottype=online]
 \printbibliography[heading=subbibliography,title={Webpages},type=online,prefixnumbers={@}]
 }
-\cleardoublepage
 
-% \listoffigures
-% \cleardoublepage
-
-% \listoftables
-% \cleardoublepage
-
-% \input{chapters/colophon}
-\cleardoublepage
+\appendix
+\input{chapters/chapter-appendix}
 
 \input{chapters/declaration}
 \clearpage

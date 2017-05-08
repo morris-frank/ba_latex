@@ -7,19 +7,27 @@
 
 \section{Machine learning}
 \label{sec:concepts:ml}
+\blindtext[2]
 
 \section{Neural Networks}
 \label{sec:concepts:nn}
+\blindtext[2]
 
 \subsection{Convolutions} % (fold)
 \label{sub:conepts:nn:conv}
+\blindtext[2]
 
 \subsection{Activation Functions} % (fold)
 \label{sub:conepts:nn:activations}
 \gls{relu}
 
+\subsection{Pooling}
+\label{sub:concepts:nn:pooling}
+A typical building block for \glspl{cnn} is the triple of a \gls{conv} layer followed by a non-linear activation function followed by a pooling layer. The pooling layer takes its input from the previous layer and compresses spatially into into a smaller form. Different function can be applied to the data neighborhood from the input. Average pooling \citep{lecun_handwritten_1990} or max pooling \citep{zhou_computation_1988} are two of the most prominent ones.
+
 \subsection{Regularization} % (fold)
 \label{sub:conepts:nn:regularization}
+\blindtext[2]
 
 \subsection{BatchNorm} % (fold)
 \label{sub:conepts:nn:batchnorm}
@@ -33,6 +41,7 @@ To use the batch norm parameters in testing time we compute a moving average ove
 
 \section{Fully Convolutional Networks}
 \label{sec:concepts:fcn}
+Proposed by \citet{long_fully_2015} \glspl{fcn} are a specific architecture of CNNs. Fully convolutional states that the network consists only of convolutional layers. As these are translation invariant the networks can take arbitrarily sized inputs and produce a coarse output.
 
 \subsection{Deconvolution} % (fold)
 \label{sub:conepts:fcn:deconv}
@@ -42,11 +51,13 @@ For images the output size of a deconvolutional (deconv) layer is calculated wit
 
 \subsection{Fully convolutional network} % (fold)
 \label{sub:conepts:fcn:fcn}
-Proposed by \citet{long_fully_2015} \glspl{fcn} are a specific architecture of CNNs. Fully convolutional states that the network consists only of convolutional layers. As these are translation invariant the networks can take arbitrarily sized inputs and produce a coarse output.\\
-The original authors use this architecture for semantic segmentation which means to assign each pixel in an image a semantic label (dog, person, tree, etc.). They build their network from classic semantic object classifiers like VGG-16 \citep{simonyan_very_2014}. These take fixed sized images as inputs and produce a single label thereby classifying the whole image. Typically these networks produce high level features through a series of convolutional layers and classify them with a single or a series of fully connected layers (inner product of the inputs). To label an image pixel-wise with such an architecture we would have to forward the neighborhood of each pixel through the network which would introduce an \bigO{w * h} time complexity ($w$ and $h$ being the width and the height of the image).
+The original authors use this architecture for semantic segmentation which means to assign each pixel in an image a semantic label (\textit{dog, person, tree}, etc.). They build their network from classic semantic object classifiers like VGG-16 \citep{simonyan_very_2014}. These take fixed sized images as inputs and produce a single label thereby classifying the whole image. Typically these networks produce high level features through a series of convolutional layers and classify them with a single or a series of fully connected layers. To label an image pixel-wise with such an architecture we would have to forward the neighborhood of each pixel through the network which would introduce an \bigO{w * h} time complexity ($w$ and $h$ being the width and the height of the image).
 
-\subsubsection{Conversion of \gls{fc} layers}
-\gls{fc} layers can directly be converted into \gls{conv} layers which makes \glspl{fcn} immensely efficient. To understand this process let us examine the VGG-16 network. After the 13 \gls{conv} layers and 5 max-pooling layers we get an output from \texttt{pool5} with size $512\times7\times7$. Through pooling the original images ($224\times224$) got reduced to $7\times7$ images over 512 channels. These go though 3 \gls{fc} layers. The first \gls{fc} layer returns 4096 values. To convert this we replace it with a \gls{conv} layer with kernel size 7 and 4096 channels thus resulting also in $1\times1\times4096$ output volume. The weights from the \gls{fc} layer can be reshaped into the size of the \gls{conv} layer. The other to \gls{fc} layers with 4096 and 1000 outputs, respectively can directly be put into convolutions with kernel size 1.
+\subsection{Conversion of \gls{fc} layers}
+\label{sub:concepts:fcn:fc_conversion}
+\gls{fc} layers can directly be converted into \gls{conv} layers which makes \glspl{fcn} immensely efficient.\\
+To understand this process let us examine the VGG-16 network. After the 13 \gls{conv} layers and 5 max-pooling layers we get an output from \texttt{pool5} with size $512\times7\times7$. Through pooling the original images ($224\times224$) got reduced to $7\times7$ images over 512 channels. These go though 3 \gls{fc} layers. The first \gls{fc} layer returns 4096 values. We replace it with a \gls{conv} layer with kernel size 7 and 4096 channels thus resulting also in $1\times1\times4096$ output volume. The weights from the \gls{fc} layer can be reshaped into the size of the \gls{conv} layer. The other two \gls{fc} layers with 4096 and 1000 outputs, respectively can directly be put into convolutions with kernel size 1.
+
 For the normal $224\times224$ images nothing changed as the output of the first \gls{fc} layer is still the 4096 values but if we now increase the data size to e.g. the double $448\times448$ the advantage becomes apparent. The \texttt{pool5} will return $14\times14$ images and the new \gls{conv} layer will just slide over the bigger images returning $8\times8$ images. Lastly the other $1\times1$ convolutions do not change the size so that we get 64 predictions over the 1000 classes instead of one. These are the same as if we would have slided a window over the original image with an $8\times8$ grid but because the computations on the GPU are shared for the $7\times7$ kernels we heavily increased performance compared to the naïve solution.
 
 \section{Residual Networks}
@@ -70,3 +81,15 @@ The $W_i$ and $b_i$ denote the weights and biases for the two layers, respective
 Deeper networks will become in more complex. We want to limit the increase in complexity. This can be done with bottleneck blocks as the second example in \figreft{fig:resblock}. Here we use $1\times1$ \gls{conv} layers to first reduce the dimensionality of the input and to increase it again to the inputs dimension. The actual mapping convolution now has a smaller input dimension.
 \input{figures/resnet50}
 For this work we use the 50-layered \gls{resnet} as described in the original paper. Its architecture is shown in \figreft{fig:resnet50}.
+
+\section{Task definition}
+\label{sec:concepts:tasks}
+Although the posed task for this thesis is pretty clear from its formulation we want to quickly distinguish the similar but different image understanding tasks that are solved using these techniques.
+
+The first task that was tackled is \textit{image classification}. In image classification the data are images containing a single object that fills most of the image. Hence the task is to find the class of that singular object which thus describes the whole image. Since 2015 \glspl{cnn} can surpass the performance of humans doing classification \citep{he_delving_2015}.
+
+Next \textit{object localization} was addressed. Localization means that we still have only one relevant object per image but here the object fills only a part of the image. Instead of only predicting the class of this object the localizer also has to predict translation and scaling for each image.
+
+Harder to solve but also way more applicable is \textit{object detection}. Now we take complicated images containing a variable number of overlapping objects each of varying class. The detector identifies all objects he was trained for inside each image and predicts their boundaries.
+
+\textit{segmentation}

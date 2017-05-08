@@ -11,10 +11,10 @@
 % **************************************************
 % Information and Commands for Reuse
 % **************************************************
-\newcommand{\thesisTitle}{One-shot recognition for art historic images}
+\newcommand{\thesisTitle}{One-shot detection in art historic images}
 \newcommand{\thesisName}{Maurice Frank}
 \newcommand{\thesisSubject}{Documentation}
-\newcommand{\thesisDate}{May 17, 2017}
+\newcommand{\thesisDate}{May 19, 2017}
 \newcommand{\thesisVersion}{v1.0}
 
 \newcommand{\thesisFirstReviewer}{Björn Ommer}
@@ -60,6 +60,9 @@
     wrapfooter=false,%
 }{cleanthesis}
 \usepackage{cleanthesis}
+\usepackage{url}
+\setcounter{biburllcpenalty}{7000}
+\setcounter{biburlucpenalty}{8000}
 
 \hypersetup{% setup the hyperref-package options
     pdftitle={\thesisTitle},    %   - title (PDF meta)
@@ -79,9 +82,32 @@
 
 \usepackage{tikz}
 \usetikzlibrary{arrows,chains,matrix,positioning,scopes}
+\usepackage{pgf}
 
 \input{lib/commands.tex}
 
 \usepackage{multirow}
+\usepackage{tabulary}
 
 % \usepackage{showframe}
+
+\usepackage[separate-uncertainty=true,round-mode=places]{siunitx}
+\usepackage{xfrac}
+
+\newcommand{\code}[1]{\texttt{#1}}
+
+\AtEveryBibitem{% Clean up the bibtex rather than editing it
+ \clearlist{address}
+ \clearfield{date}
+ \clearfield{eprint}
+ \clearfield{isbn}
+ \clearfield{issn}
+ \clearlist{location}
+ \clearfield{month}
+ \clearfield{series}
+
+ \ifentrytype{book}{}{% Remove publisher and editor except for books
+  \clearlist{publisher}
+  \clearname{editor}
+ }
+}
