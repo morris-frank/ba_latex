@@ -7,13 +7,13 @@
     % openright,              % doublepage cleaning ends up right side
     parskip=full,           % spacing value / method for paragraphs
     chapterprefix=true,     % prefix for chapter marks
-    12pt,                   % font size
+    11pt,                   % font size
     headings=normal,        % size of headings
     bibliography=totoc,     % include bib in toc
     listof=totoc,           % include listof entries in toc
     titlepage=on,           % own page for each title page
     captions=tableabove,    % display table captions above the float env
-    draft=false            % value for draft version
+    draft=true            % value for draft version
 ]{scrreprt}%
 
 
@@ -46,7 +46,7 @@
 \input{chapters/abstract}		% INCLUDE: the abstracts (english and german)
 \cleardoublepage
 %
-\setcounter{tocdepth}{3}		% define depth of toc
+\setcounter{tocdepth}{2}		% define depth of toc
 \tableofcontents				% display table of contents
 \cleardoublepage
 

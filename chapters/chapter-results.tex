@@ -2,8 +2,8 @@
 %
 \chapter{Test results}
 \label{sec:results}
-Testing of the method is done on the PASCAL-Part dataset \citep{Chen_2014_CVPR} which provides part-based segmentation annotations for the PASCAL VOC 2010 challenge dataset \citep{pascal-voc-2010}. For the 20 object classes the dataset contains binary segmentation maps for parts of these objects.\\
-For testing the detection method we train a model with different number of images. From PASCAL-Part we pick sets of classes $c \subset C = \{\code{bird, person, train,}\dots\}$ and parts $p \subset P = \{\code{head, beak, lhand,}\dots\}$. We gather all images from VOC2010 which contain parts $p$ from the classes $c$. Then we extract all patches of these images around the selected parts. We call this set of image patches $I_{c,p}$, e.g. all images of beaks of birds. Then we pick a random subset of $k$ images from $I_{c,p}$ and train the network with this subset. We want to investigate the influence of $k$ on detection results.\\
+Testing of the method is done on the \textsc{Pascal}-Part dataset \citep{Chen_2014_CVPR} which provides part-based segmentation annotations for the \textsc{Pascal}-VOC 2010 challenge dataset \citep{pascal-voc-2010}. For the 20 object classes the dataset contains binary segmentation maps for parts of these objects.\\
+For testing the detection method we train a model with different number of images. From \textsc{Pascal}-Part we pick sets of classes $c \subset C = \{\code{bird, person, train,}\dots\}$ and parts $p \subset P = \{\code{head, beak, lhand,}\dots\}$. We gather all images from \textsc{Pascal}-VOC 2010 which contain parts $p$ from the classes $c$. Then we extract all patches of these images around the selected parts. We call this set of image patches $I_{c,p}$, e.g. all images of beaks of birds. Then we pick a random subset of $k$ images from $I_{c,p}$ and train the network with this subset. We want to investigate the influence of $k$ on detection results.\\
 
 \section{Repeated training and testing}
 \label{sec:results:repeat}
@@ -22,7 +22,7 @@ For $k\in\{1, 10, 25, 50, 100\}$ we get $p_s = \{\num{0.7},\num{0.85},\num{0.902
 \begin{table}
 	\begin{center}
             \begin{tabular}{c|*{4}{c}}
-                samples & 1 round & 2 rounds & 4 rounds & 10 rounds \\\hline
+                samples & 1 round & 2 rounds & 4 rounds & 10 rounds \\ \hline \rule{0pt}{3ex}
                 1   & 0.7    &  0.91   &  0.9163 &  0.9527 \\
                 10  & 0.8497 &  0.9774 &  0.9880 &  0.9986 \\
                 25  & 0.9022 &  0.9904 &  0.9965 &  0.9999  \\
@@ -42,6 +42,17 @@ From the estimations \tabref{tab:repeated_test_probs} we infer that it is suffic
 To compare out results we additionally solve the task with a baseline method. We build a simple object detector inspired by \citet{felzenszwalb_object_2010} using \gls{hog} features \citep{dalal_histograms_2005}.\\
 
 \subsection{\Gls{hog}}
+\begin{wrapfigure}{r}{0.45\textwidth}
+  \vspace{-25pt}
+  \begin{center}
+    \includegraphics[width=0.17\textwidth]{figures/hog_image.png}
+    \includegraphics[width=0.17\textwidth]{figures/hog_feature.png}
+  \end{center}
+  \vspace{-5pt}
+  \caption{A example of a patch and  the resulting \gls{hog} cells}
+  \vspace{-10pt}
+  \label{fig:hog}
+\end{wrapfigure}
 \gls{hog} features encode the shape of an object by assuming that its shape can be described by the distribution of edge directions. As the name already says we want to look at the gradients in the image at different orientations. We compute the horizontal and vertical gradients from the relative luminance of the original image using the standard weighted channel contributions. To get the spatial localization we split the image into small regions called cells. For each cell we compute the histogram which is just an 1-D vector containing the gradients over a fixed set of angles in that cell. Then we group these cells into larger overlapping blocks. The blocks are used to normalize the contained histogram vectors. This introduces better invariance to illumination and edge contrast. As the blocks are overlapping each cell will appear multiple times in the output but under different normalization. For normalization we use the L2-norm followed by clipping \citep{lowe_distinctive_2004}.
 
 \subsection{Training}
@@ -53,15 +64,12 @@ The testing pipeline should be as similar as possible to the novel method. To us
 
 \section{Detection results}
 \label{sec:results:results}
-\blindtext[2]
 \begin{figure}[p!]
     \centering
     \input{figures/build/auc_heatmap.pgf}
 	\caption{The heatmap of AUC values for different classes and different training set sizes}
     \label{fig:auc_heatmap}
 \end{figure}
-\blindtext[2]
 
 \section{Time performance evaluation}
 \label{sec:results:time}
-\blindtext[3]

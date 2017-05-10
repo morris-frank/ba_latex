@@ -3,9 +3,10 @@
 \chapter{Appendix}
 \label{sec:appendix}
 
-\section{Class and parts combinations}
+\section{\textsc{Pascal}-Part class-part combinations}
 \label{sec:appendix:combos}
 \begin{table}[h]
+	\label{tab:combos}
 	\centering
 	\begin{tabulary}{\textwidth}{LLL}
 		Tag & Classes & Parts \\ \hline
@@ -32,5 +33,37 @@
 		\code{train\_head} & Train & Head (motor coach) \\ %\hline
 		\code{train\_hfrontside} & Train & Head front side
 	\end{tabulary}
-	\label{tab:combos}
 \end{table}
+
+\clearpage
+\section{\textsc{Pascal}-Part test results}
+\label{sec:appendix:pr_roc}
+\begin{longtabu} to \textwidth {XX}
+    \includegraphics[width=0.47\textwidth]{figures/build/aeroplane_lwing_rwing_precs_recs.pdf} &
+    \includegraphics[width=0.47\textwidth]{figures/build/aeroplane_lwing_rwing_roc.pdf} \\
+    \includegraphics[width=0.47\textwidth]{figures/build/aeroplane_stern_precs_recs.pdf} &
+    \includegraphics[width=0.47\textwidth]{figures/build/aeroplane_stern_roc.pdf} \\
+    \includegraphics[width=0.47\textwidth]{figures/build/bird_head_precs_recs.pdf} &
+    \includegraphics[width=0.47\textwidth]{figures/build/bird_head_roc.pdf} \\
+    \includegraphics[width=0.47\textwidth]{figures/build/bird_tail_precs_recs.pdf} &
+    \includegraphics[width=0.47\textwidth]{figures/build/bird_tail_roc.pdf} \\
+    \includegraphics[width=0.47\textwidth]{figures/build/bottle_body_precs_recs.pdf} &
+    \includegraphics[width=0.47\textwidth]{figures/build/bottle_body_roc.pdf} \\
+    \includegraphics[width=0.47\textwidth]{figures/build/cow_sheep_lhorn_rhorn_precs_recs.pdf} &
+    \includegraphics[width=0.47\textwidth]{figures/build/cow_sheep_lhorn_rhorn_roc.pdf} \\
+    \includegraphics[width=0.47\textwidth]{figures/build/person_hair_precs_recs.pdf} &
+    \includegraphics[width=0.47\textwidth]{figures/build/person_hair_roc.pdf} \\
+    \includegraphics[width=0.47\textwidth]{figures/build/person_lfoot_rfoot_precs_recs.pdf} &
+    \includegraphics[width=0.47\textwidth]{figures/build/person_lfoot_rfoot_roc.pdf} \\
+    \includegraphics[width=0.47\textwidth]{figures/build/person_lhand_rhand_precs_recs.pdf} &
+    \includegraphics[width=0.47\textwidth]{figures/build/person_lhand_rhand_roc.pdf} \\
+    \includegraphics[width=0.47\textwidth]{figures/build/person_neck_precs_recs.pdf} &
+    \includegraphics[width=0.47\textwidth]{figures/build/person_neck_roc.pdf} \\
+    \includegraphics[width=0.47\textwidth]{figures/build/person_torso_precs_recs.pdf} &
+    \includegraphics[width=0.47\textwidth]{figures/build/person_torso_roc.pdf} \\
+    \includegraphics[width=0.47\textwidth]{figures/build/pottedplant_plant_precs_recs.pdf} &
+    \includegraphics[width=0.47\textwidth]{figures/build/pottedplant_plant_roc.pdf} \\
+    \includegraphics[width=0.47\textwidth]{figures/build/train_head_precs_recs.pdf} &
+    \includegraphics[width=0.47\textwidth]{figures/build/train_head_roc.pdf}
+	\label{tab:combos}
+\end{longtabu}

@@ -7,49 +7,45 @@
 
 \section{Machine learning}
 \label{sec:concepts:ml}
-\blindtext[2]
 
 \section{Task definition}
 \label{sec:concepts:tasks}
 Although the posed task for this thesis is pretty clear from its formulation we want to quickly distinguish the similar but different image understanding tasks that are solved using these techniques.
 
-The first task that was tackled is \textit{image classification}. In image classification the data are images containing a single object that fills most of the image. Hence the task is to find the class of that singular object which thus describes the whole image. Since 2015 \glspl{cnn} can surpass the performance of humans doing classification \citep{he_delving_2015}.
+The first task that was tackled is \textbf{image classification}. In image classification the data are images containing a single object that fills most of the image. Hence the task is to find the class of that singular object which thus describes the whole image. Since 2015 \glspl{cnn} can surpass the performance of humans doing classification \citep{he_delving_2015}.
 
-Next \textit{object localization} was addressed. Localization means that we still have only one relevant object per image but here the object fills only a part of the image. Instead of only predicting the class of this object the localizer also has to predict translation and scaling for each image.
+Next \textbf{object localization} was addressed. Localization means that we still have only one relevant object per image but here the object fills only a part of the image. Instead of only predicting the class of this object the localizer also has to predict translation and scaling for each image.
 
-Harder to solve but also way more applicable is \textit{object detection}. Now we take complicated images containing a variable number of overlapping objects each of varying class. The detector identifies all objects he was trained for inside each image and predicts their boundaries.
+Harder to solve but also way more applicable is \textbf{object detection}. Now we take complicated images containing a variable number of overlapping objects each of varying class. The detector identifies all objects he was trained for inside each image and predicts their boundaries.
 
-\textit{segmentation}
+Lastly we have \textbf{image segmentation}. Here we aim to not only identify multiple different object in a image but also to find their boundaries on the pixel level. As such each pixel of a found object in the image is labeled with its class id resulting in multiple binary masks each masking out one individual object.
 
 \section{Neural Networks}
 \label{sec:concepts:nn}
-\blindtext[2]
 
 \subsection{Convolutions} % (fold)
 \label{sub:conepts:nn:conv}
-\blindtext[2]
-
-\subsection{Activation Functions} % (fold)
-\label{sub:conepts:nn:activations}
-\gls{relu}
 
 \subsection{Pooling}
 \label{sub:concepts:nn:pooling}
 A typical building block for \glspl{cnn} is the triple of a \gls{conv} layer followed by a non-linear activation function followed by a pooling layer. The pooling layer takes its input from the previous layer and compresses spatially into into a smaller form. Different function can be applied to the data neighborhood from the input. Average pooling \citep{lecun_handwritten_1990} or max pooling \citep{zhou_computation_1988} are two of the most prominent ones.
 
+\subsection{Activation Functions} % (fold)
+\label{sub:conepts:nn:activations}
+\gls{relu}
+
 \subsection{Regularization} % (fold)
 \label{sub:conepts:nn:regularization}
-\blindtext[2]
 
-\subsection{BatchNorm} % (fold)
+\subsection{Batch Normalization} % (fold)
 \label{sub:conepts:nn:batchnorm}
 Batch normalization \citep{ioffe_batch_2015} is a method the ease the computation of gradient decent in backpropagation. Inside a deep neural network emerges the problem of internal covariate shift. Each deeper layer of the network depends on the outputs from its previous layer. The first layer learns on top of the data input but the second layer learns from the output of the first layers features and the third layer depends on the second one and so on. In training all these features change through backpropagation and the distribution of all activations change and the deeper the layer is the longer the chain of evolving distributions in front of it becomes.\\
-If the features in training shift over time the gradient decent becomes harder as each layer has to follow this covariate shift of its successor. Batch norm helps to avoid this difficulty by normalizing mini batches of inputs. The layer is added after a convolutional layer (or any other linear layer) and collects a batch of inputs $X = \{x_1, x_2, x_3, \dots, x_n\}$ for this layers inputs. Then it calculates the mean $\mu_X$ and the variance $\sigma_X^2$ for this mini batch. Normalizing all the values from that batch  with
+If the features in training shift over time the gradient decent becomes harder as each layer has to follow this covariate shift of its successor. BatchNorm helps to avoid this difficulty by normalizing mini batches of inputs. The layer is added after a convolutional layer (or any other linear layer) and collects a batch of inputs $X = \{x_1, x_2, x_3, \dots, x_n\}$ for this layers inputs. Then it calculates the mean $\mu_X$ and the variance $\sigma_X^2$ for this mini batch. Normalizing all the values from that batch  with
 \begin{equation}
     \hat{x_i} = \frac{x_i - \mu_X}{\sqrt{\sigma_X^2 + \epsilon}}
 \end{equation}
 ($\epsilon$ is added to avoid divisions by zero) yields the output $\{\hat{x_1},\dots,\hat{x_n}\}$.\\
-To use the batch norm parameters while testing we compute a moving average over the means and variances of the batches while training. The forward pass uses these averages to normalize the test inputs.
+To use the BatchNorm parameters while testing we compute a moving average over the means and variances of the batches while training. The forward pass uses these averages to normalize the test inputs.
 
 \section{Fully Convolutional Networks}
 \label{sec:concepts:fcn}
@@ -63,7 +59,7 @@ For images the output size of a deconvolutional (deconv) layer is calculated wit
 
 \subsection{Fully convolutional network} % (fold)
 \label{sub:conepts:fcn:fcn}
-The original authors use this architecture for semantic segmentation which means to assign each pixel in an image a semantic label (\textit{dog, person, tree}, etc.). They build their network from classic semantic object classifiers like VGG-16 \citep{simonyan_very_2014}. These take fixed sized images as inputs and produce a single label thereby classifying the whole image. Typically these networks produce high level features through a series of convolutional layers and classify them with a single or a series of fully connected layers. To label an image pixel-wise with such an architecture we would have to forward the neighborhood of each pixel through the network which would introduce an \bigO{w * h} time complexity ($w$ and $h$ being the width and the height of the image).
+The original authors use this architecture for image segmentation. They build their network from classic semantic object classifiers like VGG-16 \citep{simonyan_very_2014}. These take fixed sized images as inputs and produce a single label thereby classifying the whole image. Typically these networks produce high level features through a series of convolutional layers and classify them with a single or a series of \gls{fc} layers. To label an image pixel-wise with such an architecture we would have to forward the neighborhood of each pixel through the network which would introduce an \bigO{w * h} time complexity ($w$ and $h$ being the width and the height of the image).
 
 \subsection{Conversion of \gls{fc} layers}
 \label{sub:concepts:fcn:fc_conversion}
@@ -71,6 +67,10 @@ The original authors use this architecture for semantic segmentation which means
 To understand this process let us examine the VGG-16 network. After the 13 \gls{conv} layers and 5 max-pooling layers we get an output from \texttt{pool5} with size $512\times7\times7$. Through pooling the original images ($224\times224$) got reduced to $7\times7$ images over 512 channels. These go though 3 \gls{fc} layers. The first \gls{fc} layer returns 4096 values. We replace it with a \gls{conv} layer with kernel size 7 and 4096 channels thus resulting also in $1\times1\times4096$ output volume. The weights from the \gls{fc} layer can be reshaped into the size of the \gls{conv} layer. The other two \gls{fc} layers with 4096 and 1000 outputs, respectively can directly be put into convolutions with kernel size 1.
 
 For the normal $224\times224$ images nothing changed as the output of the first \gls{fc} layer is still the 4096 values but if we now increase the data size to e.g. the double $448\times448$ the advantage becomes apparent. The \texttt{pool5} will return $14\times14$ images and the new \gls{conv} layer will just slide over the bigger images returning $8\times8$ images. Lastly the other $1\times1$ convolutions do not change the size so that we get 64 predictions over the 1000 classes instead of one. These are the same as if we would have slided a window over the original image with an $8\times8$ grid but because the computations on the GPU are shared for the $7\times7$ kernels we heavily increased performance compared to the naïve solution.
+
+\subsection{Upsampling through Convolutions}
+\label{sub:concepts:fcn:upsampling}
+A \gls{fcn} as in \citep{long_fully_2015} outputs a small sparse score map. For an input image of $200\times 200$ pixels that could be something like $10\times 10$ values. Naturally we want a output map with the same size as the input. Firstly we can use feature maps from earlier layers with their own classifiers to reduce the stride of the resulting score map but the score map from deeper layers has still to be upsampled to the input size. Upsampling can be done directly within the network with convolutions. It is possible to use deconvolutions to upsample the inputs and filter them at the same time but this often introduces artifacts \citep{odena_deconvolution_2016} and to learn the upsampling instead of using directly bilinear kernels does not help much in performance \citep{shelhamer_fully_2016}. It seems successful to upsample the score maps with normal interpolation followed by normal convolutions \citep{dong_image_2016}.
 
 \section{Residual Networks}
 \label{sec:concepts:resnet}

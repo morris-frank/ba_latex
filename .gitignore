@@ -16,3 +16,6 @@
 *.glg
 *.gls
 *.xdy
+*.auxlock
+*.txt
+*.py

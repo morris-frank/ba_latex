@@ -92,6 +92,44 @@
       \field{title}{Keras: {{Deep}} Learning Library for Theano and Tensorflow}
       \field{year}{2015}
     \endentry
+    \entry{chen_visual-based_2015}{inproceedings}{}
+      \name{author}{2}{}{%
+        {{hash=f6bb1f7b72f85ac56e60cf16b623aef5}{%
+           family={Chen},
+           familyi={C\bibinitperiod},
+           given={Ju-Chin},
+           giveni={J\bibinithyphendelim C\bibinitperiod}}}%
+        {{hash=e9683b916db55fa295770047ffb37bab}{%
+           family={Liu},
+           familyi={L\bibinitperiod},
+           given={Chao-Feng},
+           giveni={C\bibinithyphendelim F\bibinitperiod}}}%
+      }
+      \list{publisher}{1}{%
+        {ACM}%
+      }
+      \strng{namehash}{ed42b027df28e908540179876c712e47}
+      \strng{fullhash}{ed42b027df28e908540179876c712e47}
+      \strng{authornamehash}{ed42b027df28e908540179876c712e47}
+      \strng{authorfullhash}{ed42b027df28e908540179876c712e47}
+      \field{labelalpha}{CL15}
+      \field{sortinit}{C}
+      \field{sortinithash}{59f25d509f3381b07695554a9f35ecb2}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{booktitle}{Proceedings of the {{ASE BigData}} \& {{SocialInformatics}} 2015}
+      \field{title}{Visual-Based Deep Learning for Clothing from Large Database}
+      \field{urlday}{9}
+      \field{urlmonth}{5}
+      \field{urlyear}{2017}
+      \field{year}{2015}
+      \field{urldateera}{ce}
+      \field{pages}{42}
+      \range{pages}{1}
+      \verb{file}
+      \verb Snapshot:/home/morris/var/zotero/storage/SFSMX4C2/citation.html:text/html
+      \endverb
+    \endentry
     \entry{canziani_analysis_2016}{article}{}
       \name{author}{3}{}{%
         {{hash=4dfab1b46e6c0309fa9ca5b58e48d5d4}{%
@@ -214,6 +252,53 @@
       \range{pages}{9}
       \verb{file}
       \verb NIPS Full Text PDF:/home/morris/var/zotero/storage/XQFMIJHA/dai et al. - 2016 - R-FCN Object Detection via Region-based Fully Con.pdf:application/pdf;NIPS Snapshort:/home/morris/var/zotero/storage/W725FVGV/6465-r-fcn-object-detection-via-region-based-fully-convolutional-networks.html:text/html
+      \endverb
+    \endentry
+    \entry{dong_image_2016}{article}{}
+      \name{author}{4}{}{%
+        {{hash=a1ac63be385fbe46bf5992a2b93355f1}{%
+           family={Dong},
+           familyi={D\bibinitperiod},
+           given={Chao},
+           giveni={C\bibinitperiod}}}%
+        {{hash=2d5156563537138d4e0e4a8aaa64df3e}{%
+           family={Loy},
+           familyi={L\bibinitperiod},
+           given={Chen\bibnamedelima Change},
+           giveni={C\bibinitperiod\bibinitdelim C\bibinitperiod}}}%
+        {{hash=6b4b60e909e78633945f3f9c9dc83e01}{%
+           family={He},
+           familyi={H\bibinitperiod},
+           given={Kaiming},
+           giveni={K\bibinitperiod}}}%
+        {{hash=7e09524e32e7b51c169850f848787677}{%
+           family={Tang},
+           familyi={T\bibinitperiod},
+           given={Xiaoou},
+           giveni={X\bibinitperiod}}}%
+      }
+      \strng{namehash}{a1c9251d8e66250cc20cdcec06683bd8}
+      \strng{fullhash}{400eebc903eb8d3579affbe98b49e909}
+      \strng{authornamehash}{a1c9251d8e66250cc20cdcec06683bd8}
+      \strng{authorfullhash}{400eebc903eb8d3579affbe98b49e909}
+      \field{labelalpha}{Don+16}
+      \field{sortinit}{D}
+      \field{sortinithash}{78f7c4753a2004675f316a80bdb31742}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{journaltitle}{IEEE Transactions on Pattern Analysis and Machine Intelligence}
+      \field{number}{2}
+      \field{title}{Image Super-Resolution Using Deep Convolutional Networks}
+      \field{urlday}{2}
+      \field{urlmonth}{5}
+      \field{urlyear}{2017}
+      \field{volume}{38}
+      \field{year}{2016}
+      \field{urldateera}{ce}
+      \field{pages}{295\bibrangedash 307}
+      \range{pages}{13}
+      \verb{file}
+      \verb [PDF] arxiv.org:/home/morris/var/zotero/storage/I7I9R6X8/Dong et al. - 2016 - Image super-resolution using deep convolutional ne.pdf:application/pdf;Snapshot:/home/morris/var/zotero/storage/JC4FNKU5/7115171.html:text/html
       \endverb
     \endentry
     \entry{dosovitskiy_discriminative_2014}{inproceedings}{}
@@ -999,7 +1084,7 @@
       \field{pages}{21\bibrangedash 37}
       \range{pages}{17}
       \verb{file}
-      \verb Snapshot:/home/morris/var/zotero/storage/3HG4B7D8/978-3-319-46448-0_2.html:text/html
+      \verb 1512.02325.pdf:/home/morris/var/zotero/storage/TCCFW8FE/1512.02325.pdf:application/pdf;Snapshot:/home/morris/var/zotero/storage/3HG4B7D8/978-3-319-46448-0_2.html:text/html
       \endverb
     \endentry
     \entry{lowe_distinctive_2004}{article}{}
@@ -1117,6 +1202,112 @@
       \verb [PDF] cmu.edu:/home/morris/var/zotero/storage/IV2UKWAN/Malisiewicz et al. - 2011 - Ensemble of exemplar-svms for object detection and.pdf:application/pdf;Snapshot:/home/morris/var/zotero/storage/577XX226/6126229.html:text/html
       \endverb
     \endentry
+    \entry{odena_deconvolution_2016}{article}{}
+      \name{author}{3}{}{%
+        {{hash=a04932af4057bbbbad95d73521f2d22b}{%
+           family={Odena},
+           familyi={O\bibinitperiod},
+           given={Augustus},
+           giveni={A\bibinitperiod}}}%
+        {{hash=1328d3ceef6add8461994fc364c664df}{%
+           family={Dumoulin},
+           familyi={D\bibinitperiod},
+           given={Vincent},
+           giveni={V\bibinitperiod}}}%
+        {{hash=78be47e08348476a254b1217fd9041ca}{%
+           family={Olah},
+           familyi={O\bibinitperiod},
+           given={Chris},
+           giveni={C\bibinitperiod}}}%
+      }
+      \strng{namehash}{cc5070deee87c12632dc009ee0d438dd}
+      \strng{fullhash}{f7f9b14bf38891984f22c4f684969d16}
+      \strng{authornamehash}{cc5070deee87c12632dc009ee0d438dd}
+      \strng{authorfullhash}{f7f9b14bf38891984f22c4f684969d16}
+      \field{labelalpha}{ODO16}
+      \field{sortinit}{O}
+      \field{sortinithash}{7803d2715d5e795e70382b084ab8d00e}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{abstract}{When we look very closely at images generated by neural networks, we often see a strange checkerboard pattern of artifacts.}
+      \field{journaltitle}{Distill}
+      \field{month}{9}
+      \field{title}{Deconvolution and {{Checkerboard Artifacts}}}
+      \field{urlday}{25}
+      \field{urlmonth}{10}
+      \field{urlyear}{2016}
+      \field{year}{2016}
+      \field{urldateera}{ce}
+      \verb{file}
+      \verb Snapshot:/home/morris/var/zotero/storage/U9QTFWA4/deconv-checkerboard.html:text/html
+      \endverb
+    \endentry
+    \entry{redmon_you_2016}{inproceedings}{}
+      \name{author}{8}{}{%
+        {{hash=99bced2e56a5253f3fe98a5f04e6d9b2}{%
+           family={Redmon},
+           familyi={R\bibinitperiod},
+           given={Joseph},
+           giveni={J\bibinitperiod}}}%
+        {{hash=05ca9f19da9ecbd2def4e5514f8043c8}{%
+           family={Divvala},
+           familyi={D\bibinitperiod},
+           given={Santosh},
+           giveni={S\bibinitperiod}}}%
+        {{hash=bd5dadbe57bedc5957c19a3154c4d424}{%
+           family={Girshick},
+           familyi={G\bibinitperiod},
+           given={Ross},
+           giveni={R\bibinitperiod}}}%
+        {{hash=396c6ddedb6f986906fc3e4994d19974}{%
+           family={Farhadi},
+           familyi={F\bibinitperiod},
+           given={Ali},
+           giveni={A\bibinitperiod}}}%
+        {{hash=5e543256c480ac577d30f76f9120eb74}{%
+           family={{undefined}},
+           familyi={u\bibinitperiod}}}%
+        {{hash=5e543256c480ac577d30f76f9120eb74}{%
+           family={{undefined}},
+           familyi={u\bibinitperiod}}}%
+        {{hash=5e543256c480ac577d30f76f9120eb74}{%
+           family={{undefined}},
+           familyi={u\bibinitperiod}}}%
+        {{hash=5e543256c480ac577d30f76f9120eb74}{%
+           family={{undefined}},
+           familyi={u\bibinitperiod}}}%
+      }
+      \list{location}{1}{%
+        {Los Alamitos, CA, USA}%
+      }
+      \list{publisher}{1}{%
+        {IEEE Computer Society}%
+      }
+      \strng{namehash}{e1203a0044715040adeb8c5079ee645a}
+      \strng{fullhash}{1c284fae846d2e8d4505bd6f16742309}
+      \strng{authornamehash}{e1203a0044715040adeb8c5079ee645a}
+      \strng{authorfullhash}{1c284fae846d2e8d4505bd6f16742309}
+      \field{labelalpha}{Red+16}
+      \field{sortinit}{R}
+      \field{sortinithash}{c7387613477035a752d935acfc3e3ea2}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{shorttitle}
+      \field{abstract}{We present YOLO, a new approach to object detection. Prior work on object detection repurposes classifiers to perform detection. Instead, we frame object detection as a regression problem to spatially separated bounding boxes and associated class probabilities. A single neural network predicts bounding boxes and class probabilities directly from full images in one evaluation. Since the whole detection pipeline is a single network, it can be optimized end-to-end directly on detection performance. Our unified architecture is extremely fast. Our base YOLO model processes images in real-time at 45 frames per second. A smaller version of the network, Fast YOLO, processes an astounding 155 frames per second while still achieving double the mAP of other real-time detectors. Compared to state-of-the-art detection systems, YOLO makes more localization errors but is less likely to predict false positives on background. Finally, YOLO learns very general representations of objects. It outperforms other detection methods, including DPM and R-CNN, when generalizing from natural images to other domains like artwork.}
+      \field{booktitle}{{{IEEE Conference}} on {{Computer Vision}} and {{Pattern Recognition}} ({{CVPR}})}
+      \field{isbn}{978-1-4673-8851-1}
+      \field{shorttitle}{You {{Only Look Once}}}
+      \field{title}{You {{Only Look Once}}: {{Unified}}, {{Real}}-{{Time Object Detection}}}
+      \field{year}{2016}
+      \field{pages}{779\bibrangedash 788}
+      \range{pages}{10}
+      \verb{doi}
+      \verb 10.1109/CVPR.2016.91
+      \endverb
+      \verb{file}
+      \verb 8851a779.pdf:/home/morris/var/zotero/storage/NF4UDXRQ/8851a779.pdf:application/pdf;Snapshot:/home/morris/var/zotero/storage/9SPVB324/8851a779-abs.html:text/html
+      \endverb
+      \keyw{Computer architecture,Microprocessors,Neural networks,Object detection,Pipelines,Real-time systems,Training}
+    \endentry
     \entry{ren_faster_2015}{inproceedings}{}
       \name{author}{4}{}{%
         {{hash=bb295293acacd54387339079ebbe4ead}{%
@@ -1194,48 +1385,6 @@
       \verb{file}
       \verb NIPS Full Text PDF:/home/morris/var/zotero/storage/GT39F57C/Ren et al. - 2015 - Faster R-CNN Towards Real-Time Object Detection w.pdf:application/pdf;NIPS Snapshort:/home/morris/var/zotero/storage/BNR7UIJX/5638-faster-r-cnn-towards-real-time-object-detection-with-region-proposal-networks.html:text/html
       \endverb
-    \endentry
-    \entry{redmon_yolo9000:_2016}{article}{}
-      \name{author}{2}{}{%
-        {{hash=99bced2e56a5253f3fe98a5f04e6d9b2}{%
-           family={Redmon},
-           familyi={R\bibinitperiod},
-           given={Joseph},
-           giveni={J\bibinitperiod}}}%
-        {{hash=396c6ddedb6f986906fc3e4994d19974}{%
-           family={Farhadi},
-           familyi={F\bibinitperiod},
-           given={Ali},
-           giveni={A\bibinitperiod}}}%
-      }
-      \strng{namehash}{e3b480c56f52be95ad68ce67e9708174}
-      \strng{fullhash}{e3b480c56f52be95ad68ce67e9708174}
-      \strng{authornamehash}{e3b480c56f52be95ad68ce67e9708174}
-      \strng{authorfullhash}{e3b480c56f52be95ad68ce67e9708174}
-      \field{labelalpha}{RF16}
-      \field{sortinit}{R}
-      \field{sortinithash}{c7387613477035a752d935acfc3e3ea2}
-      \field{labelnamesource}{author}
-      \field{labeltitlesource}{shorttitle}
-      \field{abstract}{We introduce YOLO9000, a state-of-the-art, real-time object detection system that can detect over 9000 object categories. First we propose various improvements to the YOLO detection method, both novel and drawn from prior work. The improved model, YOLOv2, is state-of-the-art on standard detection tasks like PASCAL VOC and COCO. At 67 FPS, YOLOv2 gets 76.8 mAP on VOC 2007. At 40 FPS, YOLOv2 gets 78.6 mAP, outperforming state-of-the-art methods like Faster RCNN with ResNet and SSD while still running significantly faster. Finally we propose a method to jointly train on object detection and classification. Using this method we train YOLO9000 simultaneously on the COCO detection dataset and the ImageNet classification dataset. Our joint training allows YOLO9000 to predict detections for object classes that don't have labelled detection data. We validate our approach on the ImageNet detection task. YOLO9000 gets 19.7 mAP on the ImageNet detection validation set despite only having detection data for 44 of the 200 classes. On the 156 classes not in COCO, YOLO9000 gets 16.0 mAP. But YOLO can detect more than just 200 classes; it predicts detections for more than 9000 different object categories. And it still runs in real-time.}
-      \field{eprintclass}{cs}
-      \field{eprinttype}{arxiv}
-      \field{journaltitle}{arXiv:1612.08242 [cs]}
-      \field{month}{12}
-      \field{shorttitle}{{{YOLO9000}}}
-      \field{title}{{{YOLO9000}}: {{Better}}, {{Faster}}, {{Stronger}}}
-      \field{urlday}{10}
-      \field{urlmonth}{1}
-      \field{urlyear}{2017}
-      \field{year}{2016}
-      \field{urldateera}{ce}
-      \verb{eprint}
-      \verb 1612.08242
-      \endverb
-      \verb{file}
-      \verb arXiv\:1612.08242 PDF:/home/morris/var/zotero/storage/9E65BIEN/Redmon und Farhadi - 2016 - YOLO9000 Better, Faster, Stronger.pdf:application/pdf;arXiv.org Snapshot:/home/morris/var/zotero/storage/CZRZXNC2/1612.html:text/html
-      \endverb
-      \keyw{Computer Science - Computer Vision and Pattern Recognition}
     \endentry
     \entry{russakovsky_imagenet_2015}{article}{}
       \name{author}{12}{}{%
@@ -1333,6 +1482,60 @@
       \verb Full Text PDF:/home/morris/var/zotero/storage/2NSK64FC/Russakovsky et al. - 2015 - ImageNet Large Scale Visual Recognition Challenge.pdf:application/pdf;Snapshot:/home/morris/var/zotero/storage/TS7NRBMZ/s11263-015-0816-y.html:text/html
       \endverb
     \endentry
+    \entry{sermanet_overfeat:_2013}{article}{}
+      \name{author}{6}{}{%
+        {{hash=15f5333df96deaf51c72d065bded37d8}{%
+           family={Sermanet},
+           familyi={S\bibinitperiod},
+           given={Pierre},
+           giveni={P\bibinitperiod}}}%
+        {{hash=19ac0399a087af1f10403369b2bf52b0}{%
+           family={Eigen},
+           familyi={E\bibinitperiod},
+           given={David},
+           giveni={D\bibinitperiod}}}%
+        {{hash=87f628db6da99dc0a2a20f276e51b3ac}{%
+           family={Zhang},
+           familyi={Z\bibinitperiod},
+           given={Xiang},
+           giveni={X\bibinitperiod}}}%
+        {{hash=b3fbcff36ec4b37aed7c56f67c21038b}{%
+           family={Mathieu},
+           familyi={M\bibinitperiod},
+           given={Michaël},
+           giveni={M\bibinitperiod}}}%
+        {{hash=a6784304d1cc890b2cb6c6c7f2f3fd76}{%
+           family={Fergus},
+           familyi={F\bibinitperiod},
+           given={Rob},
+           giveni={R\bibinitperiod}}}%
+        {{hash=6a1aa6b7eab12b931ca7c7e3f927231d}{%
+           family={LeCun},
+           familyi={L\bibinitperiod},
+           given={Yann},
+           giveni={Y\bibinitperiod}}}%
+      }
+      \strng{namehash}{b25e91534b92f8a61f0fb523d489acb2}
+      \strng{fullhash}{07447a0784f7db3483feb07579f598a8}
+      \strng{authornamehash}{b25e91534b92f8a61f0fb523d489acb2}
+      \strng{authorfullhash}{07447a0784f7db3483feb07579f598a8}
+      \field{labelalpha}{Ser+13}
+      \field{sortinit}{S}
+      \field{sortinithash}{fd1e7c5ab79596b13dbbb67f8d70fb5a}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{shorttitle}
+      \field{journaltitle}{arXiv preprint arXiv:1312.6229}
+      \field{shorttitle}{Overfeat}
+      \field{title}{Overfeat: {{Integrated}} Recognition, Localization and Detection Using Convolutional Networks}
+      \field{urlday}{9}
+      \field{urlmonth}{5}
+      \field{urlyear}{2017}
+      \field{year}{2013}
+      \field{urldateera}{ce}
+      \verb{file}
+      \verb [PDF] arxiv.org:/home/morris/var/zotero/storage/2XCPHCWJ/Sermanet et al. - 2013 - Overfeat Integrated recognition, localization and.pdf:application/pdf;Snapshot:/home/morris/var/zotero/storage/V5TATBGR/1312.html:text/html
+      \endverb
+    \endentry
     \entry{shi_is_2016}{article}{}
       \name{author}{7}{}{%
         {{hash=59260dd2ba392e626647c9ee8f8c6b35}{%
@@ -1399,6 +1602,52 @@
       \endverb
       \keyw{Computer Science - Computer Vision and Pattern Recognition}
     \endentry
+    \entry{shelhamer_fully_2016}{article}{}
+      \name{author}{3}{}{%
+        {{hash=4ce499f8943cac7cba0a73388d289a2e}{%
+           family={Shelhamer},
+           familyi={S\bibinitperiod},
+           given={Evan},
+           giveni={E\bibinitperiod}}}%
+        {{hash=17faae490b91366d25e0e2d774e7b6b1}{%
+           family={Long},
+           familyi={L\bibinitperiod},
+           given={Jonathan},
+           giveni={J\bibinitperiod}}}%
+        {{hash=90180e1a30742e0d15328bfe637c2ef4}{%
+           family={Darrell},
+           familyi={D\bibinitperiod},
+           given={Trevor},
+           giveni={T\bibinitperiod}}}%
+      }
+      \strng{namehash}{ef12dd54e0b3abd0b9ab77291e0e30d4}
+      \strng{fullhash}{d070d0f5bba90c7ab76c10afeebb7698}
+      \strng{authornamehash}{ef12dd54e0b3abd0b9ab77291e0e30d4}
+      \strng{authorfullhash}{d070d0f5bba90c7ab76c10afeebb7698}
+      \field{labelalpha}{SLD16}
+      \field{sortinit}{S}
+      \field{sortinithash}{fd1e7c5ab79596b13dbbb67f8d70fb5a}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{abstract}{Convolutional networks are powerful visual models that yield hierarchies of features. We show that convolutional networks by themselves, trained end-to-end, pixels-to-pixels, improve on the previous best result in semantic segmentation. Our key insight is to build "fully convolutional" networks that take input of arbitrary size and produce correspondingly-sized output with efficient inference and learning. We define and detail the space of fully convolutional networks, explain their application to spatially dense prediction tasks, and draw connections to prior models. We adapt contemporary classification networks (AlexNet, the VGG net, and GoogLeNet) into fully convolutional networks and transfer their learned representations by fine-tuning to the segmentation task. We then define a skip architecture that combines semantic information from a deep, coarse layer with appearance information from a shallow, fine layer to produce accurate and detailed segmentations. Our fully convolutional network achieves improved segmentation of PASCAL VOC (30\% relative improvement to 67.2\% mean IU on 2012), NYUDv2, SIFT Flow, and PASCAL-Context, while inference takes one tenth of a second for a typical image.}
+      \field{eprintclass}{cs}
+      \field{eprinttype}{arxiv}
+      \field{journaltitle}{arXiv:1605.06211 [cs]}
+      \field{month}{5}
+      \field{title}{Fully {{Convolutional Networks}} for {{Semantic Segmentation}}}
+      \field{urlday}{10}
+      \field{urlmonth}{5}
+      \field{urlyear}{2017}
+      \field{year}{2016}
+      \field{urldateera}{ce}
+      \verb{eprint}
+      \verb 1605.06211
+      \endverb
+      \verb{file}
+      \verb arXiv\:1605.06211 PDF:/home/morris/var/zotero/storage/PJ2FWQ6Z/Shelhamer et al. - 2016 - Fully Convolutional Networks for Semantic Segmenta.pdf:application/pdf;arXiv.org Snapshot:/home/morris/var/zotero/storage/DASAE53J/1605.html:text/html
+      \endverb
+      \keyw{Computer Science - Computer Vision and Pattern Recognition}
+    \endentry
     \entry{simonyan_very_2014}{article}{}
       \name{author}{2}{}{%
         {{hash=9d16b7284df92c9adaee86c37ab992df}{%
@@ -1439,6 +1688,153 @@
       \verb arXiv\:1409.1556 PDF:/home/morris/var/zotero/storage/N55FGAHT/Simonyan und Zisserman - 2014 - Very Deep Convolutional Networks for Large-Scale I.pdf:application/pdf;arXiv.org Snapshot:/home/morris/var/zotero/storage/HI6GG63I/1409.html:text/html
       \endverb
       \keyw{Computer Science - Computer Vision and Pattern Recognition}
+    \endentry
+    \entry{vinyals_matching_2016}{inproceedings}{}
+      \name{author}{5}{}{%
+        {{hash=494b568c5dc85ba8f3f409635f9c5f25}{%
+           family={Vinyals},
+           familyi={V\bibinitperiod},
+           given={Oriol},
+           giveni={O\bibinitperiod}}}%
+        {{hash=24fe1af011227491e54e299ba4cb24b5}{%
+           family={Blundell},
+           familyi={B\bibinitperiod},
+           given={Charles},
+           giveni={C\bibinitperiod}}}%
+        {{hash=9e783363d06839547f49322cbb60ca08}{%
+           family={Lillicrap},
+           familyi={L\bibinitperiod},
+           given={Tim},
+           giveni={T\bibinitperiod}}}%
+        {{hash=ccd825a0d1404afb3d9878fe08c6f106}{%
+           family={{kavukcuoglu}},
+           familyi={k\bibinitperiod},
+           given={koray},
+           giveni={k\bibinitperiod}}}%
+        {{hash=d7805381550fb5f8360345f7f72c0b49}{%
+           family={Wierstra},
+           familyi={W\bibinitperiod},
+           given={Daan},
+           giveni={D\bibinitperiod}}}%
+      }
+      \name{editor}{5}{}{%
+        {{hash=0beb50eb25818ba13aab0a4b29a04314}{%
+           family={Lee},
+           familyi={L\bibinitperiod},
+           given={D.\bibnamedelimi D.},
+           giveni={D\bibinitperiod\bibinitdelim D\bibinitperiod}}}%
+        {{hash=f2ea44ad7988f1351e0c0da3857862bd}{%
+           family={Sugiyama},
+           familyi={S\bibinitperiod},
+           given={M.},
+           giveni={M\bibinitperiod}}}%
+        {{hash=cf7c289b5d5a6e36c8e77aab497068a7}{%
+           family={Luxburg},
+           familyi={L\bibinitperiod},
+           given={U.\bibnamedelimi V.},
+           giveni={U\bibinitperiod\bibinitdelim V\bibinitperiod}}}%
+        {{hash=30090046dd2289ec0efca86420f819b7}{%
+           family={Guyon},
+           familyi={G\bibinitperiod},
+           given={I.},
+           giveni={I\bibinitperiod}}}%
+        {{hash=825f90fd818e38383a2e80d4d3331dd4}{%
+           family={Garnett},
+           familyi={G\bibinitperiod},
+           given={R.},
+           giveni={R\bibinitperiod}}}%
+      }
+      \list{publisher}{1}{%
+        {Curran Associates, Inc.}%
+      }
+      \strng{namehash}{832d19b6ecbaa1d465342fe676ffb29a}
+      \strng{fullhash}{3212b2cc525e19dd01439652ebca52fe}
+      \strng{authornamehash}{832d19b6ecbaa1d465342fe676ffb29a}
+      \strng{authorfullhash}{3212b2cc525e19dd01439652ebca52fe}
+      \strng{editornamehash}{65d8b9d0b7bc2ae0c21082dc99ffe917}
+      \strng{editorfullhash}{d0e56a47338e2d70eb6b617e398dd9fa}
+      \field{labelalpha}{Vin+16}
+      \field{sortinit}{V}
+      \field{sortinithash}{d18f5ce25ce0b5ca7f924e3f6c04870e}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{booktitle}{Advances in {{Neural Information Processing Systems}} ({{NIPS}})}
+      \field{title}{Matching {{Networks}} for {{One Shot Learning}}}
+      \field{urlday}{2}
+      \field{urlmonth}{5}
+      \field{urlyear}{2017}
+      \field{year}{2016}
+      \field{urldateera}{ce}
+      \field{pages}{3630\bibrangedash 3638}
+      \range{pages}{9}
+      \verb{file}
+      \verb NIPS Full Text PDF:/home/morris/var/zotero/storage/6A6DGNZM/Vinyals et al. - 2016 - Matching Networks for One Shot Learning.pdf:application/pdf;NIPS Snapshort:/home/morris/var/zotero/storage/P6AVG7RC/6385-matching-networks-for-one-shot-learning.html:text/html
+      \endverb
+    \endentry
+    \entry{wang_learning_2014}{inproceedings}{}
+      \name{author}{8}{}{%
+        {{hash=d79c0a25d1b013fc9e5226b9b6d422db}{%
+           family={Wang},
+           familyi={W\bibinitperiod},
+           given={Jiang},
+           giveni={J\bibinitperiod}}}%
+        {{hash=7dacbb5a6e92ab16944d46ba03705563}{%
+           family={Song},
+           familyi={S\bibinitperiod},
+           given={Yang},
+           giveni={Y\bibinitperiod}}}%
+        {{hash=909cc514625b20b174a78f5dcd8e558a}{%
+           family={Leung},
+           familyi={L\bibinitperiod},
+           given={Thomas},
+           giveni={T\bibinitperiod}}}%
+        {{hash=585e983409c08560aae9325ed9359eb5}{%
+           family={Rosenberg},
+           familyi={R\bibinitperiod},
+           given={Chuck},
+           giveni={C\bibinitperiod}}}%
+        {{hash=cc8961a9b054836b38caa4d127297c1d}{%
+           family={Wang},
+           familyi={W\bibinitperiod},
+           given={Jingbin},
+           giveni={J\bibinitperiod}}}%
+        {{hash=1e9a1d678032dfffb4e871a0f622e030}{%
+           family={Philbin},
+           familyi={P\bibinitperiod},
+           given={James},
+           giveni={J\bibinitperiod}}}%
+        {{hash=31960f03389184b7f052f5b197cc9fdf}{%
+           family={Chen},
+           familyi={C\bibinitperiod},
+           given={Bo},
+           giveni={B\bibinitperiod}}}%
+        {{hash=22fd84b8276575e01ba678bb2095dc23}{%
+           family={Wu},
+           familyi={W\bibinitperiod},
+           given={Ying},
+           giveni={Y\bibinitperiod}}}%
+      }
+      \strng{namehash}{8d74e80483ca0b99169002f34fa82347}
+      \strng{fullhash}{ec1eb9e8f68c6481f8a2f138df908437}
+      \strng{authornamehash}{8d74e80483ca0b99169002f34fa82347}
+      \strng{authorfullhash}{ec1eb9e8f68c6481f8a2f138df908437}
+      \field{labelalpha}{Wan+14}
+      \field{sortinit}{W}
+      \field{sortinithash}{99e3ba1b3f78bb6f073e7fa7ac11636b}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{booktitle}{{{IEEE Conference}} on {{Computer Vision}} and {{Pattern Recognition}} ({{CVPR}})}
+      \field{title}{Learning Fine-Grained Image Similarity with Deep Ranking}
+      \field{urlday}{9}
+      \field{urlmonth}{5}
+      \field{urlyear}{2017}
+      \field{year}{2014}
+      \field{urldateera}{ce}
+      \field{pages}{1386\bibrangedash 1393}
+      \range{pages}{8}
+      \verb{file}
+      \verb [PDF] cv-foundation.org:/home/morris/var/zotero/storage/TP5NTJ4V/Wang et al. - 2014 - Learning fine-grained image similarity with deep r.pdf:application/pdf;Snapshot:/home/morris/var/zotero/storage/DW95DFDJ/Wang_Learning_Fine-grained_Image_2014_CVPR_paper.html:text/html
+      \endverb
     \endentry
     \entry{zhou_computation_1988}{inproceedings}{}
       \name{author}{2}{}{%

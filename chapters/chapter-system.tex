@@ -65,7 +65,7 @@ A lot of images produce probability maps that are sparsely filled. We want to pe
 \begin{equation}
     L_\infty = \max(|x_2 - x_1|, |y_2 - y_1|)
 \end{equation}
-The transformed image is normalized and substracted from the original probability map.
+The transformed image is normalized and substracted from the original probability map. This additional steps increases mean AUC on \textsc{Pascal}-Part by 3\%. 
 
 \subsection{Calculating the score densities}
 \label{sec:pipeline:eval:density}
