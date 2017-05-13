@@ -886,6 +886,48 @@
       \verb NIPS Full Text PDF:/home/morris/var/zotero/storage/I4KBNW24/Krizhevsky et al. - 2012 - ImageNet Classification with Deep Convolutional Ne.pdf:application/pdf;NIPS Snapshort:/home/morris/var/zotero/storage/WCEH5ZPA/4824-imagenet-classification-with-deep-convolutional-neural-networks.html:text/html
       \endverb
     \endentry
+    \entry{lecun_deep_2015}{article}{}
+      \name{author}{3}{}{%
+        {{hash=6a1aa6b7eab12b931ca7c7e3f927231d}{%
+           family={LeCun},
+           familyi={L\bibinitperiod},
+           given={Yann},
+           giveni={Y\bibinitperiod}}}%
+        {{hash=40a8e4774982146adc2688546f54efb2}{%
+           family={Bengio},
+           familyi={B\bibinitperiod},
+           given={Yoshua},
+           giveni={Y\bibinitperiod}}}%
+        {{hash=9a8750ccdb2a4cf14d2655face1ce016}{%
+           family={Hinton},
+           familyi={H\bibinitperiod},
+           given={Geoffrey},
+           giveni={G\bibinitperiod}}}%
+      }
+      \strng{namehash}{9e4c6012409dc8dd9b2aa198a2059804}
+      \strng{fullhash}{c6c75bd00ce5a488e91a749d8383b3df}
+      \strng{authornamehash}{9e4c6012409dc8dd9b2aa198a2059804}
+      \strng{authorfullhash}{c6c75bd00ce5a488e91a749d8383b3df}
+      \field{labelalpha}{LBH15}
+      \field{sortinit}{L}
+      \field{sortinithash}{872351f18d0f736066eda0bf18bfa4f7}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{journaltitle}{Nature}
+      \field{number}{7553}
+      \field{title}{Deep Learning}
+      \field{urlday}{12}
+      \field{urlmonth}{5}
+      \field{urlyear}{2017}
+      \field{volume}{521}
+      \field{year}{2015}
+      \field{urldateera}{ce}
+      \field{pages}{436\bibrangedash 444}
+      \range{pages}{9}
+      \verb{file}
+      \verb [PDF] von wisc.edu:/home/morris/var/zotero/storage/QK9Q4HG6/LeCun et al. - 2015 - Deep learning.pdf:application/pdf;Snapshot:/home/morris/var/zotero/storage/RQAEK7EI/nature14539.html:text/html
+      \endverb
+    \endentry
     \entry{lecun_handwritten_1990}{inproceedings}{}
       \name{author}{7}{}{%
         {{hash=6a1aa6b7eab12b931ca7c7e3f927231d}{%
@@ -1647,6 +1689,58 @@
       \verb arXiv\:1605.06211 PDF:/home/morris/var/zotero/storage/PJ2FWQ6Z/Shelhamer et al. - 2016 - Fully Convolutional Networks for Semantic Segmenta.pdf:application/pdf;arXiv.org Snapshot:/home/morris/var/zotero/storage/DASAE53J/1605.html:text/html
       \endverb
       \keyw{Computer Science - Computer Vision and Pattern Recognition}
+    \endentry
+    \entry{springenberg_striving_2014}{article}{}
+      \name{author}{4}{}{%
+        {{hash=de7de1a4d295b5756e14ea54090af136}{%
+           family={Springenberg},
+           familyi={S\bibinitperiod},
+           given={Jost\bibnamedelima Tobias},
+           giveni={J\bibinitperiod\bibinitdelim T\bibinitperiod}}}%
+        {{hash=72308762399d6ab62bbd9391c64c7bfd}{%
+           family={Dosovitskiy},
+           familyi={D\bibinitperiod},
+           given={Alexey},
+           giveni={A\bibinitperiod}}}%
+        {{hash=b452a32296958371572717940f900884}{%
+           family={Brox},
+           familyi={B\bibinitperiod},
+           given={Thomas},
+           giveni={T\bibinitperiod}}}%
+        {{hash=9449802bcb467309c0ebced658096818}{%
+           family={Riedmiller},
+           familyi={R\bibinitperiod},
+           given={Martin},
+           giveni={M\bibinitperiod}}}%
+      }
+      \strng{namehash}{f18bb2773fd34a925cb863f218d3c84b}
+      \strng{fullhash}{11ba05f956b4e5bcaed8733650ebaa0b}
+      \strng{authornamehash}{f18bb2773fd34a925cb863f218d3c84b}
+      \strng{authorfullhash}{11ba05f956b4e5bcaed8733650ebaa0b}
+      \field{labelalpha}{Spr+14}
+      \field{sortinit}{S}
+      \field{sortinithash}{fd1e7c5ab79596b13dbbb67f8d70fb5a}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{shorttitle}
+      \field{abstract}{Most modern convolutional neural networks (CNNs) used for object recognition are built using the same principles: Alternating convolution and max-pooling layers followed by a small number of fully connected layers. We re-evaluate the state of the art for object recognition from small images with convolutional networks, questioning the necessity of different components in the pipeline. We find that max-pooling can simply be replaced by a convolutional layer with increased stride without loss in accuracy on several image recognition benchmarks. Following this finding -- and building on other recent work for finding simple network structures -- we propose a new architecture that consists solely of convolutional layers and yields competitive or state of the art performance on several object recognition datasets (CIFAR-10, CIFAR-100, ImageNet). To analyze the network we introduce a new variant of the "deconvolution approach" for visualizing features learned by CNNs, which can be applied to a broader range of network structures than existing approaches.}
+      \field{eprintclass}{cs}
+      \field{eprinttype}{arxiv}
+      \field{journaltitle}{arXiv:1412.6806 [cs]}
+      \field{month}{12}
+      \field{shorttitle}{Striving for {{Simplicity}}}
+      \field{title}{Striving for {{Simplicity}}: {{The All Convolutional Net}}}
+      \field{urlday}{12}
+      \field{urlmonth}{5}
+      \field{urlyear}{2017}
+      \field{year}{2014}
+      \field{urldateera}{ce}
+      \verb{eprint}
+      \verb 1412.6806
+      \endverb
+      \verb{file}
+      \verb arXiv\:1412.6806 PDF:/home/morris/var/zotero/storage/3QJATCPD/Springenberg et al. - 2014 - Striving for Simplicity The All Convolutional Net.pdf:application/pdf;arXiv.org Snapshot:/home/morris/var/zotero/storage/RWFZMC62/1412.html:text/html
+      \endverb
+      \keyw{Computer Science - Computer Vision and Pattern Recognition,Computer Science - Learning,Computer Science - Neural and Evolutionary Computing}
     \endentry
     \entry{simonyan_very_2014}{article}{}
       \name{author}{2}{}{%

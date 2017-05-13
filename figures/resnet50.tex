@@ -9,21 +9,21 @@ $}
     \centering
     \begin{tikzpicture}[font=\scriptsize]
         {[start chain, node distance=0.3cm]
-           \node[fill=orange!20,on chain,draw] (RB1) at (2.3,0) {\resblock{256}{64}};
+           \node[fill=set2_1!60,on chain,draw] (RB1) at (2.3,0) {\resblock{256}{64}};
            \node[below=0.8cm] at (RB1) {$\times$ 3};
-           \node[fill=orange!20,above=1cm,draw,minimum width=2cm] at (RB1) {$56\times56$};
+           \node[fill=set2_1!60,above=1cm,draw,minimum width=2cm] at (RB1) {$56\times56$};
 
-           \node[fill=green!20,on chain,draw,join=by {->}] (RB2) {\resblock{512}{128}};
+           \node[fill=set2_2!60,on chain,draw,join=by {->}] (RB2) {\resblock{512}{128}};
            \node[below=0.8cm] at (RB2) {$\times$ 4};
-           \node[fill=green!20,above=1cm,draw,minimum width=2cm] at (RB2) {$28\times28$};
+           \node[fill=set2_2!60,above=1cm,draw,minimum width=2cm] at (RB2) {$28\times28$};
 
-           \node[fill=blue!20,on chain,draw,join=by {->}] (RB3) {\resblock{1024}{256}};
+           \node[fill=set2_3!60,on chain,draw,join=by {->}] (RB3) {\resblock{1024}{256}};
            \node[below=0.8cm] at (RB3) {$\times$ 6};
-           \node[fill=blue!20,above=1cm,draw,minimum width=2cm] at (RB3) {$14\times14$};
+           \node[fill=set2_3!60,above=1cm,draw,minimum width=2cm] at (RB3) {$14\times14$};
 
-           \node[fill=pink!20,on chain,draw,join=by {->}] (RB4) {\resblock{2048}{512}};
+           \node[fill=set2_4!60,on chain,draw,join=by {->}] (RB4) {\resblock{2048}{512}};
            \node[below=0.8cm] at (RB4) {$\times$ 3};
-           \node[fill=pink!20,above=1cm,draw,minimum width=2cm] at (RB4) {$7\times7$};
+           \node[fill=set2_4!60,above=1cm,draw,minimum width=2cm] at (RB4) {$7\times7$};
         }
         \path (0,1.5) node[draw, text width=1.3cm, align=center] (conv1) {$7\times7$, 64\\ stride 2}
               (0,0) node[draw, text width=1.3cm, align=center] (pool) {$3\times3$ max pool\\  stride 2};

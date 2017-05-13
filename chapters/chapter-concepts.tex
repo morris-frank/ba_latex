@@ -26,13 +26,28 @@ Lastly we have \textbf{image segmentation}. Here we aim to not only identify mul
 \subsection{Convolutions} % (fold)
 \label{sub:conepts:nn:conv}
 
-\subsection{Pooling}
-\label{sub:concepts:nn:pooling}
-A typical building block for \glspl{cnn} is the triple of a \gls{conv} layer followed by a non-linear activation function followed by a pooling layer. The pooling layer takes its input from the previous layer and compresses spatially into into a smaller form. Different function can be applied to the data neighborhood from the input. Average pooling \citep{lecun_handwritten_1990} or max pooling \citep{zhou_computation_1988} are two of the most prominent ones.
-
 \subsection{Activation Functions} % (fold)
 \label{sub:conepts:nn:activations}
-\gls{relu}
+\begin{figure}
+    \centering
+    \begin{tabulary}{\linewidth}{CCCC}
+        \includegraphics[height=3cm]{figures/build/activation_data} &
+        \vspace{-1.8cm}\includegraphics[height=1cm]{figures/build/activation_filter-img0} &
+        \includegraphics[height=3cm]{figures/build/activation_response-img0} &
+        \includegraphics[height=3cm]{figures/build/activation_relu-img0} \\
+        image data & filter & filter response & \gls{relu} \\
+    \end{tabulary}
+    \caption{The effect of \gls{relu} visualized. The green activations are positive and the purple ones are negative.}
+\end{figure}
+\gls{conv} layers return the response of their inputs to their filters. The next step is to output how the neuron at each position inside the receptive field was activated. This is done by the activation function $f(x)$. In the most simple cases this could by the identity $f(x) = x$ or the unit step function $f(x) = (\sign x + 1) / 2$. With the identity we just use the response values as activations not introducing any more complexity and the sign removes almost all information.
+
+As shown before convolutions are linear operations. A chain of convolutions would still return a linear classifier but we know that working on raw pixel values from our images it will in the most cases be impossible to linearly separate the different classes \citep{lecun_deep_2015}. To discriminate such representation we need a non-linear division boundary and thus a \gls{cnn} should be a composite of linear and non-linear operations so that at least in theory it can approximate the non-linear representation.
+
+\subsection{Pooling}
+\label{sub:concepts:nn:pooling}
+A typical building block for \glspl{cnn} is the triple of a \gls{conv} layer followed by a non-linear activation function followed by a pooling layer. The pooling layer takes its input from the previous layer and compresses spatially into into a smaller form. Different function can be applied to the data neighborhood from the input. Average pooling \citep{lecun_handwritten_1990} or max pooling \citep{zhou_computation_1988} are two of the most prominent ones. With average pooling we return the average of the values from the neighborhood and with max pooling we return the maximum value from the neighborhood.
+
+It is important to note that average pooling is a linear function while max pooling is not. \glspl{cnn} should compose a non-linear function. Thus pooling is often used to introduce more non-linearity and therefore max pooling is more popular to use. Also as downsampling of the deep filters can be done with strided convolutions alone pooling is not necessary for this and more and more network architectures drop the pooling layers entirely \citep{springenberg_striving_2014}.
 
 \subsection{Regularization} % (fold)
 \label{sub:conepts:nn:regularization}
@@ -96,5 +111,24 @@ For this work we use the 50-layered \gls{resnet} as described in the original pa
 
 \section{Evaluation}
 \label{sec:concepts:eval}
-The result of this work is a binary object detector. Therefore a test run of the detector will result in a set of $n$ boxes $B_p$ that the method predicts as positive (object of the class the classifier was trained on) with probabilites $p_p \subset \mathbb{R}^n$. For the test set of images we know the actual ground truth boxes $B_g$ of this class. Thus for each
-\subsubsection{Precision Recall}
+The result of this work is a binary object detector. Therefore a test run of the detector will result in a set of $n$ boxes $B_p$ that the method predicts as positive (object of the class the classifier was trained on) with probabilities $p_p \subset \mathbb{R}^n$. For the test set of images we know the actual ground truth boxes $B_g$ of this class. With some defined condition we mark the predicted boxes $B_p$ as true positive or false negative. The boxes from $B_g$ that were not predicted as positives by the detector are false negatives.
+
+\subsubsection{Precision and Recall}
+One way to evaluate a binary detector to plot the precision recall curves. Precision is defined as the proportion of the predicted positives that are actual positives:
+\begin{equation}
+    \textit{precision} = \frac{|B_p \cap B_g|}{|B_g|}
+\end{equation}
+Therefore a detector which does not predict any positives would have perfect precision even though it is obviously bad. The counteracting measure to use is the recall. Recall or also called \gls{tpr} states the proportion of all ground truth positives that are predicted positives:
+\begin{equation}
+    \textit{recall} = \textit{tpr} = \frac{|B_p \cap B_g|}{|B_p|}
+\end{equation}
+Here a detector that predicts only positives will receive perfect recall and as such we want a model with high precision and high recall.
+
+Our detector returns probability scores for each positive predicted box and therefore we have to select an cut-off value for accepting positives. Now we can analyze how precision and recall change will we change this threshold. This transition is plotted in the precision-recall curve in which we plot precision against recall over the changing discrimination value.
+
+\subsubsection{\gls{roc}}
+Another often employed evaluation method are \gls{roc} curves and their \gls{auc}. For the \gls{roc} we pose the \gls{tpr} which tells how many of the positives we detected as positives against the \gls{fpr} which tells how many of the negatives were predicted as false positives. \gls{tpr} tells the probability that we hit a positive and \gls{fpr} tells the probability of an false alarm.
+
+Plotting \gls{tpr} against \gls{fpr} over the changing discrimination threshold the same way as the precision-recall curve returns the \gls{roc} curve. The perfect detector would have a \gls{tpr} of 1 and a \gls{fpr} of 0 therefore we want a detector approaching this point of perfect classification. The \gls{roc} space reaches from 0 to 1 over both axes. A randomly guessing detector maps to the diagonal in this plot which as such is the discriminator between good and bad models.
+
+To even summarize this metric more we calculate and report the \gls{auc} values for the different models. As the name states the \gls{auc} is the area under the \gls{roc} curve with values in $[0, 1]$. Because the random classifier returns the diagonal inside the \gls{roc} space the \gls{auc} value can be interpreted as the probability that a detector will score a positive ground truth sample higher than a negative one. With \gls{auc} of 1 that would be perfect with 0.5 it would be random. We calculate the \gls{auc} with the trapezoidal rule applied to the \gls{roc} curve.

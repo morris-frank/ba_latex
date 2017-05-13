@@ -35,7 +35,6 @@
 \newcommand{\thesisUniversityStreetAddress}{Berliner Str. 43}
 \newcommand{\thesisUniversityPostalCode}{69120}
 
-
 % **************************************************
 % Debug LaTeX Information
 % **************************************************
@@ -60,6 +59,8 @@
     wrapfooter=false,%
 }{cleanthesis}
 \usepackage{cleanthesis}
+
+
 \usepackage{url}
 \setcounter{biburllcpenalty}{7000}
 \setcounter{biburlucpenalty}{8000}
@@ -69,7 +70,7 @@
     pdfsubject={\thesisSubject},%   - subject (PDF meta)
     pdfauthor={\thesisName},    %   - author (PDF meta)
     plainpages=false,           %   -
-    colorlinks=false,           %   - colorize links?
+    colorlinks=false,
     pdfborder={0 0 0},          %   -
     breaklinks=true,            %   - allow line break inside links
     bookmarksnumbered=true,     %
@@ -92,6 +93,9 @@
 \usepackage{amsmath}
 \usepackage{amssymb}
 \usepackage{wrapfig}
+\usepackage{setspace}
+
+\DeclareMathOperator{\sign}{sign}
 
 % \usepackage{showframe}
 
@@ -115,3 +119,11 @@
   \clearname{editor}
  }
 }
+
+% COLORS:
+\definecolor{set2_1}{RGB}{102,194,165}
+\definecolor{set2_2}{RGB}{252,141,98}
+\definecolor{set2_3}{RGB}{141,160,203}
+\definecolor{set2_4}{RGB}{231,138,195}
+% \definecolor{primary}{CMYK}{.52, 0, .41, .6}
+% \definecolor{secondary}{CMYK}{0, .52, .11, .6}%

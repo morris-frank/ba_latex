@@ -3,14 +3,14 @@
     \centering
     \begin{tabular}{cc}
     \begin{tikzpicture}[font=\footnotesize\sffamily]
-        \fill[black!20!white] (1,3) rectangle (2,3.5);
-        \fill[black!20!white] (6,3) rectangle (7,3.5);
+        \fill[black!20] (1,3) rectangle (2,3.5);
+        \fill[black!20] (6,3) rectangle (7,3.5);
 
         \foreach \x/\y in {1/2, 2/1.5, 3/1, 4/0.5, 5/0}
-            \fill[green!20!white] (\x, \y) rectangle (\x + 2, \y + 0.5);
+            \fill[set2_1!50] (\x, \y) rectangle (\x + 2, \y + 0.5);
 
-        \fill[black!20!white] (1,2) rectangle (2,2.5);
-        \fill[black!20!white] (6,0) rectangle (7,0.5);
+        \fill[black!20] (1,2) rectangle (2,2.5);
+        \fill[black!20] (6,0) rectangle (7,0.5);
 
         \foreach \x/\y in {1/2, 2/1.5, 3/1, 4/0.5, 5/0}
         {
@@ -30,14 +30,14 @@
         \draw [->] (1.9,1.75) -- (0.5,1.75);
     \end{tikzpicture} &
     \begin{tikzpicture}[font=\footnotesize\sffamily]
-        \fill[black!20!white] (0,5) rectangle (0.5,6);
-        \fill[black!20!white] (0,0) rectangle (0.5,1);
+        \fill[black!20] (0,5) rectangle (0.5,6);
+        \fill[black!20] (0,0) rectangle (0.5,1);
 
         \foreach \y/\x in {4/1, 3/1.5, 2/2, 1/2.5, 0/3}
-            \fill[green!20!white] (\x, \y) rectangle (\x + 0.5, \y + 2);
+            \fill[set2_1!50] (\x, \y) rectangle (\x + 0.5, \y + 2);
 
-        \fill[black!20!white] (1,5) rectangle (1.5,6);
-        \fill[black!20!white] (3,0) rectangle (3.5,1);
+        \fill[black!20] (1,5) rectangle (1.5,6);
+        \fill[black!20] (3,0) rectangle (3.5,1);
 
         \foreach \y/\x in {4/1, 3/1.5, 2/2, 1/2.5, 0/3}
         {

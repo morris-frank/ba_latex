@@ -13,7 +13,7 @@
     listof=totoc,           % include listof entries in toc
     titlepage=on,           % own page for each title page
     captions=tableabove,    % display table captions above the float env
-    draft=true            % value for draft version
+    draft=false            % value for draft version
 ]{scrreprt}%
 
 
@@ -69,7 +69,8 @@
 % Back matter
 % --------------------------
 %
-\printglossaries
+\renewcommand*{\glsgroupskip}{}
+\printglossary
 {%
 \setstretch{1.1}
 \renewcommand{\bibfont}{\normalfont\small}

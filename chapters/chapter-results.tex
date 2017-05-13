@@ -64,10 +64,37 @@ The testing pipeline should be as similar as possible to the novel method. To us
 
 \section{Detection results}
 \label{sec:results:results}
+\begin{figure}[htb]
+    \setlength\tabcolsep{0pt}
+    \renewcommand{\arraystretch}{0}
+    \begin{tabular}{ccccccc}
+      \includegraphics[height=1.8cm]{figures/person_hair/1sample/2008_002067} &
+      \includegraphics[height=1.8cm]{figures/person_hair/1sample/2009_004323} &
+      \includegraphics[height=1.8cm]{figures/person_hair/1sample/2009_004784} &
+      \includegraphics[height=1.8cm]{figures/person_hair/1sample/2009_005222} &
+      \includegraphics[height=1.8cm]{figures/person_hair/1sample/2009_002715} &
+      \includegraphics[height=1.8cm]{figures/person_hair/1sample/2010_005967} \\
+
+      \includegraphics[height=1.8cm]{figures/person_hair/50sample/2008_002067} &
+      \includegraphics[height=1.8cm]{figures/person_hair/50sample/2009_004323} &
+      \includegraphics[height=1.8cm]{figures/person_hair/50sample/2009_004784} &
+      \includegraphics[height=1.8cm]{figures/person_hair/50sample/2009_005222} &
+      \includegraphics[height=1.8cm]{figures/person_hair/50sample/2009_002715} &
+      \includegraphics[height=1.8cm]{figures/person_hair/50sample/2010_005967} \\
+    \end{tabular}
+	\caption{Top detections are from a run with 1 sample, bottom detections are from a run with 50 samples}
+    \label{fig:hm_examples}
+\end{figure}
 \begin{figure}[p!]
     \centering
     \input{figures/build/auc_heatmap.pgf}
-	\caption{The heatmap of AUC values for different classes and different training set sizes}
+	\caption{\gls{auc} of the \gls{roc} curves at different classes and training set sizes}
+    \label{fig:auc_heatmap}
+\end{figure}
+\begin{figure}[p!]
+    \centering
+    \input{figures/build/auc_var_heatmap.pgf}
+	\caption{Variance of the \gls{auc} at different classes and training set sizes}
     \label{fig:auc_heatmap}
 \end{figure}
 
