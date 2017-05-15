@@ -29,6 +29,11 @@ Lastly we have \textbf{image segmentation}. Here we aim to not only identify mul
 \subsection{Activation Functions} % (fold)
 \label{sub:conepts:nn:activations}
 \begin{figure}
+    \includegraphics{figures/build/sigmoid_relu}
+    \caption{Activation functions: sigmoid on the left and \gls{relu} on the right.}
+    \label{fig:sigmoid_relu}
+\end{figure}
+\begin{figure}
     \centering
     \begin{tabulary}{\linewidth}{CCCC}
         \includegraphics[height=3cm]{figures/build/activation_data} &
@@ -41,17 +46,17 @@ Lastly we have \textbf{image segmentation}. Here we aim to not only identify mul
 \end{figure}
 \gls{conv} layers return the response of their inputs to their filters. Next the response level is used to calculate how much the node fires for this position in the receptive field. Conceptually this draws from the activation process inside neurons in the brain which also receive inputs from their dendrites and fire along their axon. Inside a artificial neural network this mapping is done by an activation function $f(x)$. In the most simple cases this can be the identity $f(x) = x$ or the unit step function $f(x) = (\sign x + 1) / 2$. With the identity we just use the response values as firing rates not introducing any more complexity and the sign reduces the levels of response to a binary firing switch.
 
-Formerly common to use was the Sigmoid as an activation function. The sigmoid $\sigma(x) = 1/(1+e^{-x})$ takes an unbounded input range and squashes it into the range $[0, 1]$. Today sigmoids are mostly avoided as they hold multiple drawbacks. First as the sigmoid saturates in both directions its gradient can approximate zero which with backpropagation will result in a generally zeroed gradient. Secondly is the gradient computation slowed due to the non-linear form.
+Formerly common to use was the sigmoid as an activation function. The sigmoid $\sigma(x) = 1/(1+e^{-x})$ \fref{fig:sigmoid_relu} takes an unbounded input range and squashes it into the range $[0, 1]$. Today sigmoids are mostly avoided as they hold multiple drawbacks. First as the sigmoid saturates in both directions its gradient can approximate zero which with backpropagation will result in a generally zeroed gradient. Secondly is the gradient computation slowed due to the non-linear form.
 
 As shown before convolutions are linear operations. A chain of convolutions would still return a linear classifier but we know that working on raw pixel values from our images it will in the most cases be impossible to linearly separate the different classes \citep{lecun_deep_2015}. To discriminate such representation we need a non-linear division boundary and thus a \gls{cnn} should be a composite of linear and non-linear operations so that at least in theory it can approximate the non-linear representation. Therefore a non-linear activation function is important in most network architectures.
 
-One activation to hold good properties is the \gls{relu} $\rho(x) = max(0, x)$. While being linear
+One popular function to hold those properties is the rectifier $\rho(x) = max(0, x)$ \fref{fig:sigmoid_relu} employed in \glspl{relu}. While being piecewise linear and therefore computationally efficient the rectifier is a non-linear function. As it is saturating it avoids the problems of zeroed or exploding gradients that the sigmoid has.
 
 \subsection{Pooling}
 \label{sub:concepts:nn:pooling}
 A typical building block for \glspl{cnn} is the triple of a \gls{conv} layer followed by a non-linear activation function followed by a pooling layer. The pooling layer takes its input from the previous layer and compresses spatially into into a smaller form. Different function can be applied to the data neighborhood from the input. Average pooling \citep{lecun_handwritten_1990} or max pooling \citep{zhou_computation_1988} are two of the most prominent ones. With average pooling we return the average of the values from the neighborhood and with max pooling we return the maximum value from the neighborhood.
 
-It is important to note that average pooling is a linear function while max pooling is not. \glspl{cnn} should compose a non-linear function. Thus pooling is often used to introduce more non-linearity and therefore max pooling is more popular to use. Also as downsampling of the deep filters can be done with strided convolutions alone pooling is not necessary for this and more and more network architectures drop the pooling layers entirely \citep{springenberg_striving_2014}.
+It is important to note that average pooling is a linear function while max pooling is not. \glspl{cnn} should compose a non-linear function. Thus pooling is can be used to introduce non-linearity and therefore max pooling is more popular to use. Also as downsampling of the deep filters can be done with strided convolutions alone pooling is not necessary for this and more and more network architectures drop the pooling layers entirely \citep{springenberg_striving_2014}.
 
 \subsection{Regularization} % (fold)
 \label{sub:conepts:nn:regularization}
@@ -68,7 +73,7 @@ To use the BatchNorm parameters while testing we compute a moving average over t
 
 \section{Fully Convolutional Networks}
 \label{sec:concepts:fcn}
-Proposed by \citet{long_fully_2015} \glspl{fcn} are a specific architecture of CNNs. Fully convolutional states that the network consists only of convolutional layers. As these are translation invariant the networks can take arbitrarily sized inputs and produce a coarse output.
+Proposed by \citet{long_fully_2015} \glspl{fcn} are a specific architecture of \glspl{cnn}. Fully convolutional states that the network consists only of convolutional layers. As these are translation invariant the networks can take arbitrarily sized inputs and produce a coarse output.
 
 The original authors use this architecture for image segmentation. They build their network from classic semantic object classifiers like VGG-16 \citep{simonyan_very_2014}. These take fixed sized images as inputs and produce a single label thereby classifying the whole image. Typically these networks produce high level features through a series of convolutional layers and classify them with a single or a series of \gls{fc} layers. To label an image pixel-wise with such an architecture we would have to forward the neighborhood of each pixel through the network which would introduce an \bigO{w * h} time complexity ($w$ and $h$ being the width and the height of the image).
 
@@ -109,8 +114,10 @@ The $W_i$ and $b_i$ denote the weights and biases for the two layers, respective
 Deeper networks will become more complex. We want to limit the increase in complexity. This can be done with bottleneck blocks as the second example in \figreft{fig:resblock}. Here we use $1\times1$ \gls{conv} layers to first reduce the dimensionality of the input and to increase it again to the inputs dimension. The actual mapping convolution now has a smaller input dimension.
 \input{figures/resnet50}
 For this work we use the 50-layered \gls{resnet} as described in the original paper. Its architecture is shown in \figreft{fig:resnet50}. At first stand a \gls{conv} layer with a big kernel size and stride 2 followed by a max pool thus reducing directly reducing the spatial size to a quarter. Then we build four chains of residual blocks each at a constant input size. Between the each chain we downscale by using a stride of 2 and in return double the channels. The last chain outputs $7 \times 7$ responses and with the average pooling layer we get to the singular score over the channels which are classified using the the final \gls{fc} layer.\\
-This \gls{resnet} does not contain any dropout layers or different separate regularization elements. The original authors argue that the thin deep structure of this design does inherently regularize.  
+This \gls{resnet} does not contain any dropout layers or different separate regularization elements. The original authors argue that the thin deep structure of this design does inherently regularize.
 
+
+\clearpage
 \section{Evaluation}
 \label{sec:concepts:eval}
 The result of this work is a binary object detector. Therefore a test run of the detector will result in a set of $n$ boxes $B_p$ that the method predicts as positive (object of the class the classifier was trained on) with probabilities $p_p \subset \mathbb{R}^n$. For the test set of images we know the actual ground truth boxes $B_g$ of this class. With some defined condition we mark the predicted boxes $B_p$ as true positive or false negative. The boxes from $B_g$ that were not predicted as positives by the detector are false negatives.

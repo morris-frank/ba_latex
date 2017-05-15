@@ -36,7 +36,7 @@ For $k\in\{1, 10, 25, 50, 100\}$ we get $p_s = \{\num{0.7},\num{0.85},\num{0.902
 
 From the estimations \tabref{tab:repeated_test_probs} we infer that it is sufficient to test the high sampled models way less then the low sampled ones. Each test if not noted different will be the mean results of $\{20, 20, 8, 4, 2\}$ rounds for $\{1, 10, 25, 50, 100\}$ samples, respectively. Through this cascade scheme we reduced the needed test rounds from 100 to only 54 without losing accuracy in test results.
 
-
+\clearpage
 \section{Baseline}
 \label{sec:results:baseline}
 To compare out results we additionally solve the task with a baseline method. We build a simple object detector inspired by \citet{felzenszwalb_object_2010} using \gls{hog} features \citep{dalal_histograms_2005}.\\
@@ -61,30 +61,49 @@ We collect $1000$ samples of augmented samples using the same method as describe
 \subsection{Testing}
 The testing pipeline should be as similar as possible to the novel method. To use the same box generation, density calculation and \gls{nms} as in \treft{sec:pipeline:eval} we need a map of class probability predictions as output. Sliding a window over the images and computing the \gls{hog} features to classify them is rather inefficient. Instead we compute the feature map for the whole image and classify a window that is slided over the feature blocks. The \gls{svm} returns the predicted class (background \textit{vs} foreground) and the scores are aggregated for all windows to build the needed probability map. Although it is not useful to train a multi-scale classifier for our small training samples we have to take differently scaled test objects into account. Thus we test on multiple scales. Because the \gls{svm} needs the same number of \gls{hog} blocks to predict their class we change the \gls{hog} parameters for the different scales. For windows half the size we also halve the width of each \gls{hog} cell thus resulting in the same number of blocks per window.
 
-
+\clearpage
 \section{Detection results}
 \label{sec:results:results}
 \begin{figure}[htb]
     \setlength\tabcolsep{0pt}
     \renewcommand{\arraystretch}{0}
     \begin{tabular}{ccccccc}
-      \includegraphics[height=1.8cm]{figures/hm_examples/1sample_2008_002067} &
-      \includegraphics[height=1.8cm]{figures/hm_examples/1sample_2009_004323} &
-      \includegraphics[height=1.8cm]{figures/hm_examples/1sample_2009_004784} &
-      \includegraphics[height=1.8cm]{figures/hm_examples/1sample_2009_005222} &
-      \includegraphics[height=1.8cm]{figures/hm_examples/1sample_2009_002715} &
-      \includegraphics[height=1.8cm]{figures/hm_examples/1sample_2010_005967} \\
+      \includegraphics[height=1.8cm]{figures/hm_examples/1s_2008_002067} &
+      \includegraphics[height=1.8cm]{figures/hm_examples/1s_2009_004323} &
+      \includegraphics[height=1.8cm]{figures/hm_examples/1s_2009_004784} &
+      \includegraphics[height=1.8cm]{figures/hm_examples/1s_2009_005222} &
+      \includegraphics[height=1.8cm]{figures/hm_examples/1s_2009_002715} &
+      \includegraphics[height=1.8cm]{figures/hm_examples/1s_2010_005967} \\
+      \includegraphics[height=1.8cm]{figures/hm_examples/1s_bbox_2008_002067} &
+      \includegraphics[height=1.8cm]{figures/hm_examples/1s_bbox_2009_004323} &
+      \includegraphics[height=1.8cm]{figures/hm_examples/1s_bbox_2009_004784} &
+      \includegraphics[height=1.8cm]{figures/hm_examples/1s_bbox_2009_005222} &
+      \includegraphics[height=1.8cm]{figures/hm_examples/1s_bbox_2009_002715} &
+      \includegraphics[height=1.8cm]{figures/hm_examples/1s_bbox_2010_005967} \\[3pt]
 
-      \includegraphics[height=1.8cm]{figures/hm_examples/50sample_2008_002067} &
-      \includegraphics[height=1.8cm]{figures/hm_examples/50sample_2009_004323} &
-      \includegraphics[height=1.8cm]{figures/hm_examples/50sample_2009_004784} &
-      \includegraphics[height=1.8cm]{figures/hm_examples/50sample_2009_005222} &
-      \includegraphics[height=1.8cm]{figures/hm_examples/50sample_2009_002715} &
-      \includegraphics[height=1.8cm]{figures/hm_examples/50sample_2010_005967}
+      \includegraphics[height=1.8cm]{figures/hm_examples/50s_2008_002067} &
+      \includegraphics[height=1.8cm]{figures/hm_examples/50s_2009_004323} &
+      \includegraphics[height=1.8cm]{figures/hm_examples/50s_2009_004784} &
+      \includegraphics[height=1.8cm]{figures/hm_examples/50s_2009_005222} &
+      \includegraphics[height=1.8cm]{figures/hm_examples/50s_2009_002715} &
+      \includegraphics[height=1.8cm]{figures/hm_examples/50s_2010_005967} \\
+      \includegraphics[height=1.8cm]{figures/hm_examples/50s_bbox_2008_002067} &
+      \includegraphics[height=1.8cm]{figures/hm_examples/50s_bbox_2009_004323} &
+      \includegraphics[height=1.8cm]{figures/hm_examples/50s_bbox_2009_004784} &
+      \includegraphics[height=1.8cm]{figures/hm_examples/50s_bbox_2009_005222} &
+      \includegraphics[height=1.8cm]{figures/hm_examples/50s_bbox_2009_002715} &
+      \includegraphics[height=1.8cm]{figures/hm_examples/50s_bbox_2010_005967}
+
     \end{tabular}
 	\caption{Examples from \code{person\_hair}: Top detections are from a run with 1 sample, bottom detections are from a run with 50 samples. Note how the 50 sampled network detects more variations of the parts while the other one does not. Also note how both networks miss-detect the cats head as human hair.}
-    \label{fig:hm_examples}
+  \label{fig:hm_examples}
 \end{figure}
+We test the pipeline for the class-parts combinations $(c,p)$ listed in appendix \ref{sec:appendix:combos} using the cascade scheme described  in \treft{sec:results:repeat}.
+
+For a summary of test results see \figreft{fig:auc_heatmap}. We clearly see the correlation between set size and the success in testing. Training with only one sample returns the worst results by distance with a mean \gls{auc} over all parts and all runs of 0.72. With increasing set size the test results saturate quite quickly. The mean \gls{auc} for all other set sizes lie inside a window of only 0.03. That may be explainable with our training settings which are designed for fast training and has no time to incorporate a high number of examples into the representation learning.
+
+Besides the anticipated correlation between set size and test success we also show the correlation between different object parts and the success in quickly learning their representation. An example for this difference is given in \figreft{fig:pr_example}. Training on human hair was one of the more successful experiments while training on human necks does not return a useful classifier. The difference can be explained by the amount of discriminating structure a part has to offer. While necks most of the time are very small mostly contrast-less and structure-less patches hair has a distinguishable surface and thus more recognizable features.
+
 \begin{figure}
   \begin{tabular}{cc}
     \includegraphics[width=0.47\textwidth]{figures/build/person_hair_precs_recs.pdf} &
@@ -93,13 +112,8 @@ The testing pipeline should be as similar as possible to the novel method. To us
   \caption{Precision-Recall curves for two parts. \code{person\_hair} on the left as an successful example and \code{person\_neck} as an example for utterly failed training. Certainly though we see in both plots the clear separation between different set sizes.}
   \label{fig:pr_example}
 \end{figure}
-We test the pipeline for the class-parts combinations $(c,p)$ listed in appendix \ref{sec:appendix:combos} using the cascade scheme described  in \treft{sec:results:repeat}.
 
-For a summary of test results see \figreft{fig:auc_heatmap}. We clearly see the correlation between set size and the success in testing. While training with only one sample returns with distance the worst results with a mean \gls{auc} over all parts and all runs of 0.72 the test results saturate quite quickly with increasing set size. The mean \gls{auc} for all other set sizes lie inside a window of only 0.03. That may be explainable with our training settings which are designed for fast training and has no time to incorporate a high number of examples into the representation learning.
-
-Besides the anticipated correlation between set size and test success we also show the correlation between different object parts and the success in quickly learning their representation. An example for this difference is given in \figreft{fig:pr_example}. Training on human hair was one of the more successful experiments while training on human necks does not return a useful classifier. This difference can quickly be explained by the amount of discriminating structure a part has to offer. While necks most of the time are very small mostly contrast-less and structure-less patches inside natural images hair has a distinguishable surface and thus more recognizable features.
-
-Another potential difference lies in our training method. We train our classifier not on the pixel-precise masks that \textsc{Pascal}-Part provide but on rectangular patches retrieved from the original images around each part. As such a patch of human hair will contain a section of the head underneath. One therefore can expect that a network not only learns the presentation of the part itself but also of the surrounding object segments. We see this relation in the quite similar results of \code{person\_hair} and \code{person\_head}. Firstly such spatial relations are only relevant in some cases and secondly while this may frustate part-based training in some cases most of the time spatial relations to semantically related parts are an actual indicator for the searched part. If we search for human hair and find human heads then we also found many instances of human hair.
+Another potential explanation lies in our training method. We train our classifier not on the pixel-precise masks that \textsc{Pascal}-Part provide but on rectangular patches retrieved from the original images around each part. As such a patch of human hair will contain a section of the head underneath. One therefore can expect that a network not only learns the presentation of the part itself but also of the surrounding object segments. We see this relation in the quite similar results of \code{person\_hair} and \code{person\_head}. Firstly such spatial relations are only relevant in some cases and secondly while this may frustate part-based training in some cases most of the time spatial relations to semantically related parts are an actual indicator for the searched part. If we search for human hair and find human heads then we also found many instances of human hair.
 
 Furthermore we want to check that the cascade testing scheme was long enough to report sufficiently precise results. We calculate the variance of \gls{auc} scores for the different parts and training sizes to verify their precision \fref{fig:auc_var_heatmap}. As we expected the variance drastically decreases with increasing set size and as such we conclude our testing scheme to be adequate for this random sampling. Even for the 20 times repeated 1 sampled training runs the variance of \gls{auc} scores remains under 0.02 most of the times.
 \begin{figure}[p!h]
@@ -123,4 +137,4 @@ Furthermore we want to check that the cascade testing scheme was long enough to 
   \caption{Distribution of durations in testing and training. Time in training measured in seconds for training over 500 iterations. Time in testing is measured in ms per image completing forwarding and all postprocessing.}
   \label{fig:timings}
 \end{figure}
-For the application of this method in a live production setting speed is from huge importance. Therefore we measure and report the duration for training and deploying the network \fref{fig:timings}. Training takes 3.5 minutes on a single Titan X and testing runs at around 80ms per image. With around 12.5 images / second we are thus reaching real-time search in image databases.
+For the application of this method in a live production setting speed is from huge importance. Therefore we measure and report the duration for training and deploying the network \fref{fig:timings}. Training takes 3.5 minutes on a single Titan X and testing runs at around 55ms per image. With therefore around 18 images / second we are thus reaching real-time search in image databases.
