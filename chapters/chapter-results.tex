@@ -120,13 +120,13 @@ Another potential explanation lies in our training method. We train our classifi
 Furthermore we want to check that the cascade testing scheme was long enough to report sufficiently precise results. We calculate the variance of \gls{auc} scores for the different parts and training sizes to verify their precision \fref{fig:auc_var_heatmap}. As we expected the variance drastically decreases with increasing set size and as such we conclude our testing scheme to be adequate for this random sampling. Even for the 20 times repeated 1 sampled training runs the variance of \gls{auc} scores remains under 0.02 most of the times.
 \begin{figure}[p!h]
     \centering
-    \input{figures/build/auc_heatmap.pgf}
+    \input{figures/auc_heatmap.pgf}
 	\caption{\gls{auc} of the \gls{roc} curves at different classes and training set sizes}
     \label{fig:auc_heatmap}
 \end{figure}
 \begin{figure}[p!h]
     \centering
-    \input{figures/build/auc_var_heatmap.pgf}
+    \input{figures/auc_var_heatmap.pgf}
 	\caption{Variance of the \gls{auc} at different classes and training set sizes}
     \label{fig:auc_var_heatmap}
 \end{figure}
