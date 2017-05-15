@@ -1800,11 +1800,11 @@
            familyi={L\bibinitperiod},
            given={Tim},
            giveni={T\bibinitperiod}}}%
-        {{hash=ccd825a0d1404afb3d9878fe08c6f106}{%
-           family={{kavukcuoglu}},
-           familyi={k\bibinitperiod},
-           given={koray},
-           giveni={k\bibinitperiod}}}%
+        {{hash=481308b301166b521c74fde6566e97e6}{%
+           family={Kavukcuoglu},
+           familyi={K\bibinitperiod},
+           given={Koray},
+           giveni={K\bibinitperiod}}}%
         {{hash=d7805381550fb5f8360345f7f72c0b49}{%
            family={Wierstra},
            familyi={W\bibinitperiod},
@@ -1842,9 +1842,9 @@
         {Curran Associates, Inc.}%
       }
       \strng{namehash}{832d19b6ecbaa1d465342fe676ffb29a}
-      \strng{fullhash}{3212b2cc525e19dd01439652ebca52fe}
+      \strng{fullhash}{154990275690215095c014c0dcc68f05}
       \strng{authornamehash}{832d19b6ecbaa1d465342fe676ffb29a}
-      \strng{authorfullhash}{3212b2cc525e19dd01439652ebca52fe}
+      \strng{authorfullhash}{154990275690215095c014c0dcc68f05}
       \strng{editornamehash}{65d8b9d0b7bc2ae0c21082dc99ffe917}
       \strng{editorfullhash}{d0e56a47338e2d70eb6b617e398dd9fa}
       \field{labelalpha}{Vin+16}

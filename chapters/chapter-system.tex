@@ -25,7 +25,7 @@
     \label{fig:augmentation}
 \end{figure}
 It has been long shown that preprocessing the training data and expanding it by modifying the data improves training time and test results \citep{dosovitskiy_discriminative_2014}.\\
-We preprocess the trainings samples with one step by subtracting the mean of all images from the dataset from each sample \citep{krizhevsky_imagenet_2012}.\\
+We preprocess the trainings samples with one step by subtracting the mean of all images from the dataset from each sample \citep{krizhevsky_imagenet_2012}. Through this step the input data becomes zero-centered.\\
 Moreover as we will increasingly reduce the number of samples to train from data augmentation is immensely important.  We employ multiple image transformations to artificially enlarge the trainings set. For this we use the preprocessing methods provided by the Keras library \citep{chollet_keras:_2015} and add additional transformations. While training we generate new samples online with a set of bounded random transformations. The composite transformation $T_p$ is chosen with the random parameter vector $p = \{\alpha, \beta, s, t_x, t_y, m, t_s, t_v, f_s, f_v, v_s, v_v\}$ defining the following transformations:
 \begin{my_list_item}
     \item \textbf{Rotation} with $\alpha\in[-\ang{20}, +\ang{20}]$

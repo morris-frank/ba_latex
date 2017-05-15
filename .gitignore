@@ -19,3 +19,5 @@
 *.auxlock
 *.txt
 *.py
+references.bib
+figures/build

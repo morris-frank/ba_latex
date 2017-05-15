@@ -18,17 +18,9 @@ Two year late \citet{he_mask_2017} extended this approach with \textbf{Mask \gls
 
 As out work also has to focus on time performance it is related to other fast object detectors. \citet{redmon_you_2016} use a freshly designed network architecture \textbf{YOLO} to achieve object detection at real-time. The input image is divided into a regular grid. The last \gls{fc} layer from their network predicts for each cell of the grid the class probabilities and the coordinates and objectness confidence of two bounding boxes. Detections then get selected by the multiplication of their conventional class probabilities and their individual confidence predictions. While the method is extremely fast it is limited by the shape of bounding boxes it will predict.
 
-\section{One-shot learning}
-\label{sec:related:oneshot}
-\begin{my_list}
-    \item \citet{liu_ssd:_2016}
-    \item \citet{vinyals_matching_2016}
-\end{my_list}
-
 \section{Similarity retrieval}
 \label{sec:related:retrieval}
 \begin{my_list}
-    \item \citet{sermanet_overfeat:_2013}
     \item \citet{wang_learning_2014}
     \item \citet{chen_visual-based_2015}
 \end{my_list}

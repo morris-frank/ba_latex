@@ -8,7 +8,7 @@
 \section{Machine learning}
 \label{sec:concepts:ml}
 
-\section{Task definition}
+\section{Task definitions}
 \label{sec:concepts:tasks}
 Although the posed task for this thesis is pretty clear from its formulation we want to quickly distinguish the similar but different image understanding tasks that are solved using these techniques.
 
@@ -39,9 +39,13 @@ Lastly we have \textbf{image segmentation}. Here we aim to not only identify mul
     \end{tabulary}
     \caption{The effect of \gls{relu} visualized. The green activations are positive and the purple ones are negative.}
 \end{figure}
-\gls{conv} layers return the response of their inputs to their filters. The next step is to output how the neuron at each position inside the receptive field was activated. This is done by the activation function $f(x)$. In the most simple cases this could by the identity $f(x) = x$ or the unit step function $f(x) = (\sign x + 1) / 2$. With the identity we just use the response values as activations not introducing any more complexity and the sign removes almost all information.
+\gls{conv} layers return the response of their inputs to their filters. Next the response level is used to calculate how much the node fires for this position in the receptive field. Conceptually this draws from the activation process inside neurons in the brain which also receive inputs from their dendrites and fire along their axon. Inside a artificial neural network this mapping is done by an activation function $f(x)$. In the most simple cases this can be the identity $f(x) = x$ or the unit step function $f(x) = (\sign x + 1) / 2$. With the identity we just use the response values as firing rates not introducing any more complexity and the sign reduces the levels of response to a binary firing switch.
 
-As shown before convolutions are linear operations. A chain of convolutions would still return a linear classifier but we know that working on raw pixel values from our images it will in the most cases be impossible to linearly separate the different classes \citep{lecun_deep_2015}. To discriminate such representation we need a non-linear division boundary and thus a \gls{cnn} should be a composite of linear and non-linear operations so that at least in theory it can approximate the non-linear representation.
+Formerly common to use was the Sigmoid as an activation function. The sigmoid $\sigma(x) = 1/(1+e^{-x})$ takes an unbounded input range and squashes it into the range $[0, 1]$. Today sigmoids are mostly avoided as they hold multiple drawbacks. First as the sigmoid saturates in both directions its gradient can approximate zero which with backpropagation will result in a generally zeroed gradient. Secondly is the gradient computation slowed due to the non-linear form.
+
+As shown before convolutions are linear operations. A chain of convolutions would still return a linear classifier but we know that working on raw pixel values from our images it will in the most cases be impossible to linearly separate the different classes \citep{lecun_deep_2015}. To discriminate such representation we need a non-linear division boundary and thus a \gls{cnn} should be a composite of linear and non-linear operations so that at least in theory it can approximate the non-linear representation. Therefore a non-linear activation function is important in most network architectures.
+
+One activation to hold good properties is the \gls{relu} $\rho(x) = max(0, x)$. While being linear
 
 \subsection{Pooling}
 \label{sub:concepts:nn:pooling}
@@ -54,7 +58,7 @@ It is important to note that average pooling is a linear function while max pool
 
 \subsection{Batch Normalization} % (fold)
 \label{sub:conepts:nn:batchnorm}
-Batch normalization \citep{ioffe_batch_2015} is a method the ease the computation of gradient decent in backpropagation. Inside a deep neural network emerges the problem of internal covariate shift. Each deeper layer of the network depends on the outputs from its previous layer. The first layer learns on top of the data input but the second layer learns from the output of the first layers features and the third layer depends on the second one and so on. In training all these features change through backpropagation and the distribution of all activations change and the deeper the layer is the longer the chain of evolving distributions in front of it becomes.\\
+Batch normalization \citep{ioffe_batch_2015} is a method the ease the computation of gradient descent in backpropagation and also to reduce problems of bad weight initialization. Inside a deep neural network emerges the problem of internal covariate shift. Each deeper layer of the network depends on the outputs from its previous layer. The first layer learns on top of the data input but the second layer learns from the output of the first layers features and the third layer depends on the second one and so on. In training all these features change through backpropagation and the distribution of all activations change and the deeper the layer is the longer the chain of evolving distributions in front of it becomes.\\
 If the features in training shift over time the gradient decent becomes harder as each layer has to follow this covariate shift of its successor. BatchNorm helps to avoid this difficulty by normalizing mini batches of inputs. The layer is added after a convolutional layer (or any other linear layer) and collects a batch of inputs $X = \{x_1, x_2, x_3, \dots, x_n\}$ for this layers inputs. Then it calculates the mean $\mu_X$ and the variance $\sigma_X^2$ for this mini batch. Normalizing all the values from that batch  with
 \begin{equation}
     \hat{x_i} = \frac{x_i - \mu_X}{\sqrt{\sigma_X^2 + \epsilon}}
@@ -66,15 +70,12 @@ To use the BatchNorm parameters while testing we compute a moving average over t
 \label{sec:concepts:fcn}
 Proposed by \citet{long_fully_2015} \glspl{fcn} are a specific architecture of CNNs. Fully convolutional states that the network consists only of convolutional layers. As these are translation invariant the networks can take arbitrarily sized inputs and produce a coarse output.
 
+The original authors use this architecture for image segmentation. They build their network from classic semantic object classifiers like VGG-16 \citep{simonyan_very_2014}. These take fixed sized images as inputs and produce a single label thereby classifying the whole image. Typically these networks produce high level features through a series of convolutional layers and classify them with a single or a series of \gls{fc} layers. To label an image pixel-wise with such an architecture we would have to forward the neighborhood of each pixel through the network which would introduce an \bigO{w * h} time complexity ($w$ and $h$ being the width and the height of the image).
+
 \subsection{Deconvolution} % (fold)
 \label{sub:conepts:fcn:deconv}
-Deconvolution or often called transposed convolution, first used by \citet{zeiler_deconvolutional_2010}, introduces a new operation for neural networks.
 \input{figures/conv_deconv}
-For images the output size of a deconvolutional (deconv) layer is calculated with the inverse formula for the output size of a convolutional layer. The stride defines the upsampling factor of this layer, the kernel size the ratio of 'overlapiness' and the padding is set accordingly.
-
-\subsection{Fully convolutional network} % (fold)
-\label{sub:conepts:fcn:fcn}
-The original authors use this architecture for image segmentation. They build their network from classic semantic object classifiers like VGG-16 \citep{simonyan_very_2014}. These take fixed sized images as inputs and produce a single label thereby classifying the whole image. Typically these networks produce high level features through a series of convolutional layers and classify them with a single or a series of \gls{fc} layers. To label an image pixel-wise with such an architecture we would have to forward the neighborhood of each pixel through the network which would introduce an \bigO{w * h} time complexity ($w$ and $h$ being the width and the height of the image).
+Deconvolution or often called transposed convolution, first used by \citet{zeiler_deconvolutional_2010}, introduces a new operation for neural networks. Simply spoken a deconvolution takes the receptive field and produces a larger window as output thus operating some form of upsampling. \figreft{fig:1d_strided_conv} visualizes the differences between convolution and deconvolution in $1-d$.
 
 \subsection{Conversion of \gls{fc} layers}
 \label{sub:concepts:fcn:fc_conversion}
@@ -107,7 +108,8 @@ The $W_i$ and $b_i$ denote the weights and biases for the two layers, respective
 
 Deeper networks will become more complex. We want to limit the increase in complexity. This can be done with bottleneck blocks as the second example in \figreft{fig:resblock}. Here we use $1\times1$ \gls{conv} layers to first reduce the dimensionality of the input and to increase it again to the inputs dimension. The actual mapping convolution now has a smaller input dimension.
 \input{figures/resnet50}
-For this work we use the 50-layered \gls{resnet} as described in the original paper. Its architecture is shown in \figreft{fig:resnet50}.
+For this work we use the 50-layered \gls{resnet} as described in the original paper. Its architecture is shown in \figreft{fig:resnet50}. At first stand a \gls{conv} layer with a big kernel size and stride 2 followed by a max pool thus reducing directly reducing the spatial size to a quarter. Then we build four chains of residual blocks each at a constant input size. Between the each chain we downscale by using a stride of 2 and in return double the channels. The last chain outputs $7 \times 7$ responses and with the average pooling layer we get to the singular score over the channels which are classified using the the final \gls{fc} layer.\\
+This \gls{resnet} does not contain any dropout layers or different separate regularization elements. The original authors argue that the thin deep structure of this design does inherently regularize.  
 
 \section{Evaluation}
 \label{sec:concepts:eval}
