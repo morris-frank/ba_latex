@@ -16,23 +16,47 @@ The first task that was tackled is \textbf{image classification}. In image class
 
 Next \textbf{object localization} was addressed. Localization means that we still have only one relevant object per image but here the object fills only a part of the image. Instead of only predicting the class of this object the localizer also has to predict translation and scaling for each image.
 
-Harder to solve but also way more applicable is \textbf{object detection}. Now we take complicated images containing a variable number of overlapping objects each of varying class. The detector identifies all objects he was trained for inside each image and predicts their boundaries.
+Harder to solve but also way more applicable is \textbf{object detection}. Now we take complicated images containing a variable number of overlapping objects each of varying class. The detector has to identify all objects he was trained for inside each image and predicts their boundaries.
 
-Lastly we have \textbf{image segmentation}. Here we aim to not only identify multiple different object in a image but also to find their boundaries on the pixel level. As such each pixel of a found object in the image is labeled with its class id resulting in multiple binary masks each masking out one individual object.
+Lastly we have \textbf{image segmentation}. Here we aim to not only identify multiple different object in a image but also to find their boundaries on the pixel level. As such each pixel of a found object in the image is labeled with its class label resulting in multiple binary masks each masking out one individual object.
 
 \section{Neural Networks}
 \label{sec:concepts:nn}
+Neural networks are a specific method to approximate a function $f(x) = y$ that yields some desired output from input data. For example this could be the task to return the name of the breed given images of dogs as input. They are called networks because they are a composite of chained functions each computing some output from its input. Data flows from the top, the first computation, to the end getting further processed: $f(x) = f_n(f_{n-1}(\dots f_1(x))) = y$. When the network is connected on a acyclic graph meaning the flowing data does not go through any loops we call the network a \textbf{feedforward network}.
 
-\subsection{Convolutions} % (fold)
+
+\subsection{Backpropagation}
+\label{sub:concepts:nn:backprob}
+\citet{rumelhart_learning_1988}
+computing the gradient then used to apply a gradient descent method
+
+
+
+\subsection{Convolution} % (fold)
 \label{sub:conepts:nn:conv}
+Convolution is a special kind of linear operation that is immensely successfully applied in deep neural networks which we then call a \acrfull{cnn}. For two one dimensional continuous signals expressed by the functions $f$ and $g$ convolution is described as follows:
+\begin{equation}
+    (f * g)(t) = \int_{-\infty}^\infty f(\tau)g(t - \tau)d\tau
+\end{equation}
+Here the function $g$ is translated through their domain and we integrate over the piecewise multiplication of the shifting $g$ and the stationary $f$.
+Because we work on digital discretized data (\textit{e.g. images}) we need the discretized convolution which in $1d$ looks like this:
+\begin{equation}
+    (I * K)(t)  = \sum_{\tau = - \infty}^\infty I(\tau)K(t - \tau)
+\end{equation}
+Again we see how $K$ slides over the domain of $I$ and $K$ and is multiplicative there with $I$.\\
+We want to use convolutions to examine images. While images could be flatted into a $1d$ representation that would drop $2d$ visual information. As such we want to use convolutions on $2d$ signals:
+\begin{equation}
+    (I * K)(x,y)  = \sum_i\sum_j I(x,y)K(x-i,y-j)
+\end{equation}
+$I$ is the input, a image, and $K$ is called the \textbf{kernel}. The kernel is shifted over both axes of the image and at each position we compute the multiplication between the kernel and the respective part of the image. For example $K$ could be of size $3\times 3$ and for a arbitrarily sized image $I$ the convolution $I * K$ would return all results of the multiplication between $K$ and each $3\times 3$ part of the image around each pixel $i(x,y)$ inside $I$. The part of the input image the kernel is connected to at one computation is called its \textbf{recpetive field}. The result can be seen as map, same-sized to the input, describing how much the input responded to the kernel at each point, thus it often is called \textbf{response map}.
+
+The first advantage in the use of kernels is that they can remain very small (like $3\times 3$ or $7\times 7$) but return outputs for the way bigger input and therefore need few parameters to operate.\\
+Secondly convolutions are equivariant to translations which means that if we translate the input somehow the response at the shifted position in the response map is still the same as before. This is really important as then the convolutions respond to signals independent of their position in the input.\\
+Lastly convolutions can be described with a value restricted matrix multiplication, in the form of a Toeplitz matrix, and therefore the discretized convolution is linear operation.\\
+Inside \glspl{cnn} we use convolutions to map how much a specific small structure is present at each position inside a image. An example of this is shown in \figreft{fig:sigmoid_relu}.
 
 \subsection{Activation Functions} % (fold)
 \label{sub:conepts:nn:activations}
-\begin{figure}
-    \includegraphics{figures/build/sigmoid_relu}
-    \caption{Activation functions: sigmoid on the left and \gls{relu} on the right.}
-    \label{fig:sigmoid_relu}
-\end{figure}
 \begin{figure}
     \centering
     \begin{tabulary}{\linewidth}{CCCC}
@@ -42,7 +66,12 @@ Lastly we have \textbf{image segmentation}. Here we aim to not only identify mul
         \includegraphics[height=3cm]{figures/build/activation_relu-img0} \\
         image data & filter & filter response & \gls{relu} \\
     \end{tabulary}
-    \caption{The effect of \gls{relu} visualized. The green activations are positive and the purple ones are negative.}
+    \caption{The effect of a convolution and a following \gls{relu} visualized. The green activations are positive and the purple ones are negative.}
+\end{figure}
+\begin{figure}
+    \includegraphics{figures/build/sigmoid_relu}
+    \caption{Activation functions: sigmoid on the left and rectifier on the right.}
+    \label{fig:sigmoid_relu}
 \end{figure}
 \gls{conv} layers return the response of their inputs to their filters. Next the response level is used to calculate how much the node fires for this position in the receptive field. Conceptually this draws from the activation process inside neurons in the brain which also receive inputs from their dendrites and fire along their axon. Inside a artificial neural network this mapping is done by an activation function $f(x)$. In the most simple cases this can be the identity $f(x) = x$ or the unit step function $f(x) = (\sign x + 1) / 2$. With the identity we just use the response values as firing rates not introducing any more complexity and the sign reduces the levels of response to a binary firing switch.
 
@@ -80,7 +109,7 @@ The original authors use this architecture for image segmentation. They build th
 \subsection{Deconvolution} % (fold)
 \label{sub:conepts:fcn:deconv}
 \input{figures/conv_deconv}
-Deconvolution or often called transposed convolution, first used by \citet{zeiler_deconvolutional_2010}, introduces a new operation for neural networks. Simply spoken a deconvolution takes the receptive field and produces a larger window as output thus operating some form of upsampling. \figreft{fig:1d_strided_conv} visualizes the differences between convolution and deconvolution in $1-d$.
+Deconvolution or often called transposed convolution, first used by \citet{zeiler_deconvolutional_2010}, introduces a new operation for neural networks. Simply spoken a deconvolution takes the receptive field and produces a larger window as output thus operating some form of upsampling. \figreft{fig:1d_strided_conv} visualizes the differences between convolution and deconvolution in $1d$.
 
 \subsection{Conversion of \gls{fc} layers}
 \label{sub:concepts:fcn:fc_conversion}

@@ -2,8 +2,10 @@
 %
 \chapter{Test results}
 \label{sec:results}
-Testing of the method is done on the \textsc{Pascal}-Part dataset \citep{Chen_2014_CVPR} which provides part-based segmentation annotations for the \textsc{Pascal}-VOC 2010 challenge dataset \citep{pascal-voc-2010}. For the 20 object classes the dataset contains binary segmentation maps for parts of these objects.\\
-For testing the detection method we train a model with different number of images. From \textsc{Pascal}-Part we pick sets of classes $c \subset C = \{\code{bird, person, train,}\dotsc\}$ and parts $p \subset P = \{\code{head, beak, lhand,}\dotsc\}$. We gather all images from \textsc{Pascal}-VOC 2010 which contain parts $p$ from the classes $c$. Then we extract all patches of these images around the selected parts. We call this set of image patches $I_{c,p}$, e.g. all images of beaks of birds. Then we pick a random subset of $k$ images from $I_{c,p}$ and train the network with this subset. We want to investigate the influence of $k$ on detection results.\\
+Testing of the method is done on the \textsc{Pascal}-Part dataset \citep{Chen_2014_CVPR} which provides part-based segmentation annotations for the \textsc{Pascal}-VOC 2010 challenge dataset \citep{pascal-voc-2010}. For the 20 object classes it provides binary segmentation maps for parts of all objects.\\
+For testing the detection method we train a model with different number of images. From \textsc{Pascal}-Part we pick sets of classes $c \subset C = \{\code{bird, person, train,}\dotsc\}$ and parts $p \subset P = \{\code{head, beak, lhand,}\dotsc\}$. We gather all images from \textsc{Pascal}-VOC 2010 which contain parts $p$ from the classes $c$. Then we extract all patches of these images around the selected parts. We call this set of image patches $I_{c,p}$, e.g. all images of beaks of birds. Then we pick a random subset of $k$ images from $I_{c,p}$ and train the network with this subset. We want to investigate the influence of $k$ on detection results.
+
+Following in this chapter we first rationalize our reduced and unequal number of tests \tref{sec:results:repeat}. Next in \treft{sec:results:baseline} we quickly explain the baseline method that was used to compare our results. Finally in \treft{sec:results:results} we report our test results in detection success and time performance \tref{sec:results:time}.
 
 \section{Repeated training and testing}
 \label{sec:results:repeat}
@@ -39,7 +41,7 @@ From the estimations \tabref{tab:repeated_test_probs} we infer that it is suffic
 \clearpage
 \section{Baseline}
 \label{sec:results:baseline}
-To compare out results we additionally solve the task with a baseline method. We build a simple object detector inspired by \citet{felzenszwalb_object_2010} using \gls{hog} features \citep{dalal_histograms_2005}.\\
+To compare out results we additionally solve the task with a baseline method. We build a simple object detector inspired by \citet{felzenszwalb_object_2010} using \acrfull{hog} \citep{dalal_histograms_2005}.\\
 
 \subsection{\Gls{hog}}
 \begin{wrapfigure}{r}{0.45\textwidth}
@@ -137,4 +139,7 @@ Furthermore we want to check that the cascade testing scheme was long enough to 
   \caption{Distribution of durations in testing and training. Time in training measured in seconds for training over 500 iterations. Time in testing is measured in ms per image completing forwarding and all postprocessing.}
   \label{fig:timings}
 \end{figure}
-For the application of this method in a live production setting speed is from huge importance. Therefore we measure and report the duration for training and deploying the network \fref{fig:timings}. Training takes 3.5 minutes on a single Titan X and testing runs at around 55ms per image. With therefore around 18 images / second we are thus reaching real-time search in image databases.
+For the application of this method in a live production setting speed is from huge importance. Therefore we measure and report the duration of training and deployment of the network \fref{fig:timings}. Training takes 3.5 minutes on a single Titan X and testing runs at around 55ms per image. With therefore around 18 images / second we are reaching real-time search in image databases.\\
+Although this is a short time for a train in test run of a neural network it  nevertheless does reduce the applicability of our approach. If we assume a art image database of 10.000 images a query and complete search through the database would take $t \approx \SI{210}{\second} + \sfrac{10000}{18}s = \SI{12.8}{\minute}$.
+
+There might be options to improve the time performance. One idea might be to precompute the last feature maps for all images so that while forwarding we only have to compute a single convolution and the bounding box retrieval. This might drastically improve retrieval speed but training the network still causes a practical barrier.

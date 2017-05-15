@@ -19,6 +19,91 @@
 
 \refsection{0}
   \sortlist[entry]{anyt/global/}
+    \entry{babenko_neural_2014}{inproceedings}{}
+      \name{author}{4}{}{%
+        {{hash=799a6bc499428a859c0cfe734a21bdbb}{%
+           family={Babenko},
+           familyi={B\bibinitperiod},
+           given={Artem},
+           giveni={A\bibinitperiod}}}%
+        {{hash=2cf07727c13320ce7e8fc313574b724b}{%
+           family={Slesarev},
+           familyi={S\bibinitperiod},
+           given={Anton},
+           giveni={A\bibinitperiod}}}%
+        {{hash=6120a871b3ed7ca326e5fb31530450ca}{%
+           family={Chigorin},
+           familyi={C\bibinitperiod},
+           given={Alexandr},
+           giveni={A\bibinitperiod}}}%
+        {{hash=a48f60762c88685a899455e12615e1df}{%
+           family={Lempitsky},
+           familyi={L\bibinitperiod},
+           given={Victor},
+           giveni={V\bibinitperiod}}}%
+      }
+      \list{publisher}{1}{%
+        {Springer}%
+      }
+      \strng{namehash}{2d07ea2b109efe1d1e60cede656fef06}
+      \strng{fullhash}{6f72494f39d05039a040c565b603c71a}
+      \strng{authornamehash}{2d07ea2b109efe1d1e60cede656fef06}
+      \strng{authorfullhash}{6f72494f39d05039a040c565b603c71a}
+      \field{labelalpha}{Bab+14}
+      \field{sortinit}{B}
+      \field{sortinithash}{4ecbea03efd0532989d3836d1a048c32}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{booktitle}{European Conference on Computer Vision}
+      \field{title}{Neural Codes for Image Retrieval}
+      \field{urlday}{15}
+      \field{urlmonth}{5}
+      \field{urlyear}{2017}
+      \field{year}{2014}
+      \field{urldateera}{ce}
+      \field{pages}{584\bibrangedash 599}
+      \range{pages}{16}
+      \verb{file}
+      \verb [PDF] arxiv.org:/home/morris/var/zotero/storage/7UKBDNCI/Babenko et al. - 2014 - Neural codes for image retrieval.pdf:application/pdf;Snapshot:/home/morris/var/zotero/storage/JKMMNDCC/978-3-319-10590-1_38.html:text/html
+      \endverb
+    \endentry
+    \entry{bell_learning_2015}{article}{}
+      \name{author}{2}{}{%
+        {{hash=66430b8659a566bd0a6f426873ec981a}{%
+           family={Bell},
+           familyi={B\bibinitperiod},
+           given={Sean},
+           giveni={S\bibinitperiod}}}%
+        {{hash=a6107ba226c1ac8bc29c118a2fc0d0a1}{%
+           family={Bala},
+           familyi={B\bibinitperiod},
+           given={Kavita},
+           giveni={K\bibinitperiod}}}%
+      }
+      \strng{namehash}{e269e062276339f4638e5f220e53c300}
+      \strng{fullhash}{e269e062276339f4638e5f220e53c300}
+      \strng{authornamehash}{e269e062276339f4638e5f220e53c300}
+      \strng{authorfullhash}{e269e062276339f4638e5f220e53c300}
+      \field{labelalpha}{BB15}
+      \field{sortinit}{B}
+      \field{sortinithash}{4ecbea03efd0532989d3836d1a048c32}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{journaltitle}{ACM Transactions on Graphics (TOG)}
+      \field{number}{4}
+      \field{title}{Learning Visual Similarity for Product Design with Convolutional Neural Networks}
+      \field{urlday}{15}
+      \field{urlmonth}{5}
+      \field{urlyear}{2017}
+      \field{volume}{34}
+      \field{year}{2015}
+      \field{urldateera}{ce}
+      \field{pages}{98}
+      \range{pages}{1}
+      \verb{file}
+      \verb [PDF] semanticscholar.org:/home/morris/var/zotero/storage/UPP2DBM9/Bell und Bala - 2015 - Learning visual similarity for product design with.pdf:application/pdf;Snapshot:/home/morris/var/zotero/storage/KUKCPQ8A/citation.html:text/html
+      \endverb
+    \endentry
     \entry{bombelli_retrato_1669}{misc}{}
       \name{author}{1}{}{%
         {{hash=3703b121b06591576a49e229ba578bd4}{%
@@ -38,6 +123,53 @@
       \field{labeltitlesource}{title}
       \field{title}{Retrato Del Procurador {{Girolamo Querini}}}
       \field{year}{1669}
+    \endentry
+    \entry{chechik_large_2010}{article}{}
+      \name{author}{4}{}{%
+        {{hash=cb9892f91608c4c90c4bd75db5266cdf}{%
+           family={Chechik},
+           familyi={C\bibinitperiod},
+           given={Gal},
+           giveni={G\bibinitperiod}}}%
+        {{hash=abcb73ea883599855ed1c5bcfe186547}{%
+           family={Sharma},
+           familyi={S\bibinitperiod},
+           given={Varun},
+           giveni={V\bibinitperiod}}}%
+        {{hash=c39ea9ea2b55e1753c555a453a610aec}{%
+           family={Shalit},
+           familyi={S\bibinitperiod},
+           given={Uri},
+           giveni={U\bibinitperiod}}}%
+        {{hash=02404a92b0be3f52ec5ac08e41c13445}{%
+           family={Bengio},
+           familyi={B\bibinitperiod},
+           given={Samy},
+           giveni={S\bibinitperiod}}}%
+      }
+      \strng{namehash}{1e17e14a7b2410c8fc45a7f3842b30f2}
+      \strng{fullhash}{f672213c5ef5c15a0a4741e390352281}
+      \strng{authornamehash}{1e17e14a7b2410c8fc45a7f3842b30f2}
+      \strng{authorfullhash}{f672213c5ef5c15a0a4741e390352281}
+      \field{labelalpha}{Che+10}
+      \field{sortinit}{C}
+      \field{sortinithash}{59f25d509f3381b07695554a9f35ecb2}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{journaltitle}{Journal of Machine Learning Research}
+      \field{number}{Mar}
+      \field{title}{Large Scale Online Learning of Image Similarity through Ranking}
+      \field{urlday}{15}
+      \field{urlmonth}{5}
+      \field{urlyear}{2017}
+      \field{volume}{11}
+      \field{year}{2010}
+      \field{urldateera}{ce}
+      \field{pages}{1109\bibrangedash 1135}
+      \range{pages}{27}
+      \verb{file}
+      \verb [PDF] jmlr.org:/home/morris/var/zotero/storage/44VSKNHB/Chechik et al. - 2010 - Large scale online learning of image similarity th.pdf:application/pdf;Snapshot:/home/morris/var/zotero/storage/PCUEAWN3/chechik10a.html:text/html
+      \endverb
     \endentry
     \entry{Chen_2014_CVPR}{inproceedings}{}
       \name{author}{6}{}{%
@@ -906,6 +1038,39 @@
       \verb NIPS Full Text PDF:/home/morris/var/zotero/storage/I4KBNW24/Krizhevsky et al. - 2012 - ImageNet Classification with Deep Convolutional Ne.pdf:application/pdf;NIPS Snapshort:/home/morris/var/zotero/storage/WCEH5ZPA/4824-imagenet-classification-with-deep-convolutional-neural-networks.html:text/html
       \endverb
     \endentry
+    \entry{khosla_building_2015}{article}{}
+      \name{author}{2}{}{%
+        {{hash=1027946f01e97dd101efc1061d1c5376}{%
+           family={Khosla},
+           familyi={K\bibinitperiod},
+           given={Neal},
+           giveni={N\bibinitperiod}}}%
+        {{hash=9ed2fa4c8e75491c193a317e13122615}{%
+           family={Venkataraman},
+           familyi={V\bibinitperiod},
+           given={Vignesh},
+           giveni={V\bibinitperiod}}}%
+      }
+      \strng{namehash}{5afa650df960e7ee592b72f98fd07a68}
+      \strng{fullhash}{5afa650df960e7ee592b72f98fd07a68}
+      \strng{authornamehash}{5afa650df960e7ee592b72f98fd07a68}
+      \strng{authorfullhash}{5afa650df960e7ee592b72f98fd07a68}
+      \field{labelalpha}{KV15}
+      \field{sortinit}{K}
+      \field{sortinithash}{a7d5b3aec5a0890aae7baf85a209abfc}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{journaltitle}{CS231n course project reports}
+      \field{title}{Building Image-Based Shoe Search Using Convolutional Neural Networks}
+      \field{urlday}{9}
+      \field{urlmonth}{5}
+      \field{urlyear}{2017}
+      \field{year}{2015}
+      \field{urldateera}{ce}
+      \verb{file}
+      \verb [PDF] stanford.edu:/home/morris/var/zotero/storage/DJRG3WMR/Khosla und Venkataraman - 2015 - Building image-based shoe search using convolution.pdf:application/pdf
+      \endverb
+    \endentry
     \entry{lecun_deep_2015}{article}{}
       \name{author}{3}{}{%
         {{hash=6a1aa6b7eab12b931ca7c7e3f927231d}{%
@@ -1384,6 +1549,48 @@
       \verb NIPS Full Text PDF:/home/morris/var/zotero/storage/GT39F57C/Ren et al. - 2015 - Faster R-CNN Towards Real-Time Object Detection w.pdf:application/pdf;NIPS Snapshort:/home/morris/var/zotero/storage/BNR7UIJX/5638-faster-r-cnn-towards-real-time-object-detection-with-region-proposal-networks.html:text/html
       \endverb
     \endentry
+    \entry{rumelhart_learning_1988}{article}{}
+      \name{author}{3}{}{%
+        {{hash=c84f9d607e83d071830e9667dc3cb31f}{%
+           family={Rumelhart},
+           familyi={R\bibinitperiod},
+           given={David\bibnamedelima E.},
+           giveni={D\bibinitperiod\bibinitdelim E\bibinitperiod}}}%
+        {{hash=881b7655f3886f90a9400902a521acdb}{%
+           family={Hinton},
+           familyi={H\bibinitperiod},
+           given={Geoffrey\bibnamedelima E.},
+           giveni={G\bibinitperiod\bibinitdelim E\bibinitperiod}}}%
+        {{hash=68500db67576d4d0a65080bb1c0f9b9b}{%
+           family={Williams},
+           familyi={W\bibinitperiod},
+           given={Ronald\bibnamedelima J.},
+           giveni={R\bibinitperiod\bibinitdelim J\bibinitperiod}}}%
+      }
+      \strng{namehash}{4b3e7678c1ed39b90588a4aeee6b8249}
+      \strng{fullhash}{ba1d15d4121bba06b3a9707e415adefc}
+      \strng{authornamehash}{4b3e7678c1ed39b90588a4aeee6b8249}
+      \strng{authorfullhash}{ba1d15d4121bba06b3a9707e415adefc}
+      \field{labelalpha}{RHW88}
+      \field{sortinit}{R}
+      \field{sortinithash}{c7387613477035a752d935acfc3e3ea2}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{journaltitle}{Cognitive modeling}
+      \field{number}{3}
+      \field{title}{Learning Representations by Back-Propagating Errors}
+      \field{urlday}{15}
+      \field{urlmonth}{5}
+      \field{urlyear}{2017}
+      \field{volume}{5}
+      \field{year}{1988}
+      \field{urldateera}{ce}
+      \field{pages}{1}
+      \range{pages}{1}
+      \verb{file}
+      \verb [PDF] toronto.edu:/home/morris/var/zotero/storage/UW3U3AJV/Rumelhart et al. - 1988 - Learning representations by back-propagating error.pdf:application/pdf;Snapshot:/home/morris/var/zotero/storage/7XJ3WINE/books.html:text/html
+      \endverb
+    \endentry
     \entry{russakovsky_imagenet_2015}{article}{}
       \name{author}{12}{}{%
         {{hash=2a74ec28b731b015747e2af5f0b519e1}{%
@@ -1748,6 +1955,64 @@
       \range{pages}{8}
       \verb{file}
       \verb [PDF] cv-foundation.org:/home/morris/var/zotero/storage/TP5NTJ4V/Wang et al. - 2014 - Learning fine-grained image similarity with deep r.pdf:application/pdf;Snapshot:/home/morris/var/zotero/storage/DW95DFDJ/Wang_Learning_Fine-grained_Image_2014_CVPR_paper.html:text/html
+      \endverb
+    \endentry
+    \entry{wu_online_2013}{inproceedings}{}
+      \name{author}{6}{}{%
+        {{hash=5a15456dbae3e197b2b71d562c64aa94}{%
+           family={Wu},
+           familyi={W\bibinitperiod},
+           given={Pengcheng},
+           giveni={P\bibinitperiod}}}%
+        {{hash=ae708d2940c159d68a6506017e219716}{%
+           family={Hoi},
+           familyi={H\bibinitperiod},
+           given={Steven\bibnamedelima CH},
+           giveni={S\bibinitperiod\bibinitdelim C\bibinitperiod}}}%
+        {{hash=d5d11ffdc904037e83d46708fc2ab712}{%
+           family={Xia},
+           familyi={X\bibinitperiod},
+           given={Hao},
+           giveni={H\bibinitperiod}}}%
+        {{hash=fe645b7ce1ec4b48743cbe538410cc82}{%
+           family={Zhao},
+           familyi={Z\bibinitperiod},
+           given={Peilin},
+           giveni={P\bibinitperiod}}}%
+        {{hash=a4bb61e18f0091e606a0fb606b1a9b48}{%
+           family={Wang},
+           familyi={W\bibinitperiod},
+           given={Dayong},
+           giveni={D\bibinitperiod}}}%
+        {{hash=b15c66dc78018663c450b8f00914154c}{%
+           family={Miao},
+           familyi={M\bibinitperiod},
+           given={Chunyan},
+           giveni={C\bibinitperiod}}}%
+      }
+      \list{publisher}{1}{%
+        {ACM}%
+      }
+      \strng{namehash}{902c8572b36adef0a28d5c9a0fceff1f}
+      \strng{fullhash}{39e1d2404be2f0c43c67539d9779566a}
+      \strng{authornamehash}{902c8572b36adef0a28d5c9a0fceff1f}
+      \strng{authorfullhash}{39e1d2404be2f0c43c67539d9779566a}
+      \field{labelalpha}{Wu+13}
+      \field{sortinit}{W}
+      \field{sortinithash}{99e3ba1b3f78bb6f073e7fa7ac11636b}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{booktitle}{Proceedings of the 21st {{ACM}} International Conference on {{Multimedia}}}
+      \field{title}{Online Multimodal Deep Similarity Learning with Application to Image Retrieval}
+      \field{urlday}{15}
+      \field{urlmonth}{5}
+      \field{urlyear}{2017}
+      \field{year}{2013}
+      \field{urldateera}{ce}
+      \field{pages}{153\bibrangedash 162}
+      \range{pages}{10}
+      \verb{file}
+      \verb [PDF] psu.edu:/home/morris/var/zotero/storage/3HN8PGJP/Wu et al. - 2013 - Online multimodal deep similarity learning with ap.pdf:application/pdf;Snapshot:/home/morris/var/zotero/storage/JN3J8VP8/citation.html:text/html
       \endverb
     \endentry
     \entry{zhou_computation_1988}{inproceedings}{}

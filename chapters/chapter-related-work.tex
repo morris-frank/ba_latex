@@ -2,7 +2,7 @@
 %
 \chapter{Related Work}
 \label{sec:related}
-In this chapter we quickly want to revise other works touching the the tasks of this thesis. In \treft{sec:related:detection} we discuss multiple successful object detection methods using \glspl{cnn}. In \treft{sec:related:oneshot} we describe two solutions to the task of one-shot learning and lastly in \treft{sec:related:retrieval} we list examples of the application of such detection systems as image search systems.
+In this chapter we quickly want to revise other works touching the the tasks of this thesis. In \treft{sec:related:detection} we discuss multiple successful object detection methods using \glspl{cnn} and in \treft{sec:related:retrieval} we list previous image retrieval systems focusing on those employing \glspl{cnn}.
 
 \section{Object detection}
 \label{sec:related:detection}
@@ -18,9 +18,13 @@ Two year late \citet{he_mask_2017} extended this approach with \textbf{Mask \gls
 
 As out work also has to focus on time performance it is related to other fast object detectors. \citet{redmon_you_2016} use a freshly designed network architecture \textbf{YOLO} to achieve object detection at real-time. The input image is divided into a regular grid. The last \gls{fc} layer from their network predicts for each cell of the grid the class probabilities and the coordinates and objectness confidence of two bounding boxes. Detections then get selected by the multiplication of their conventional class probabilities and their individual confidence predictions. While the method is extremely fast it is limited by the shape of bounding boxes it will predict.
 
-\section{Similarity retrieval}
+\section{Image retrieval}
 \label{sec:related:retrieval}
-\begin{my_list}
-    \item \citet{wang_learning_2014}
-    \item \citet{chen_visual-based_2015}
-\end{my_list}
+Retrieving relevant images from large databases by searching for similarities to an exemplar image is an long used idea. The first methods employed hand-crafted features like histograms, SIFT or \gls{hog} to compare different images in a low dimensional space. Problems in such approaches arise through semantically close groups with wide visual differences.\\
+One of the more classical but successfull approaches is \textbf{OASIS} \citep{chechik_large_2010}. Here the authors solve a bilinear similarity function for whole images using sparse local pattern descriptors. While the approach is successful under its training settings it is heavily restricted in that it has to be trained on all needed image classes.
+
+\citet{wu_online_2013} learns image similarity using stacked neural networks. The inputs for those are low image features and they learn representations of modalities of these features giving a optimized multi-model combination. With a bag of five features they achieve better results retrieving similar images than OASIS but also lack wider applicability through the complexity of training.
+
+The step forward to just learning similarity on top of raw pixels is done by \citet{babenko_neural_2014} as they show that using just the distance between  the outputs of \gls{fc} layers it is possible to retrieve visually similar images. More sophisticated \citet{wang_learning_2014} use the deep feature of an AlexNet\citep{krizhevsky_imagenet_2012} together with visual features extracted by convolutions in a linear embedding as a image descriptor. With the distance between the embeddings as measure they rank the similarity of images to a query image. The visual features and the linear embedding is learned by feeding the network triplets of query, positive and negative images. They show that the learned features outperform hand-crafted ones.
+
+Neural networks shown success in being used in reverse image search systems. In \citep{khosla_building_2015} they train different network architectures on images of shoes and use a distance measure between the descriptors from the trailing \gls{fc} layer to retrieve alike shoes to a query shoe. Similarly the image descriptions from a task-specifically fine-tuned network are used in \citep{chen_visual-based_2015} to select similar styles inside clothing catalogues. Using the idea of \citep{wang_learning_2014} \citet{bell_learning_2015} learn a embedding of image descriptors. They use a siamese network architecture to learn from tuples of similar or dissimilar pairs. With this embedding space they retrieve similar interior designs given a query product.

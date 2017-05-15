@@ -1,10 +1,17 @@
 % !TEX root = ../thesis.tex
 %
-\chapter{Pipeline}
+\chapter{Our method}
 \label{sec:pipeline}
+In this chapter we explain how we build our network from the \gls{resnet}, under which conditions we train the networks \tref{sec:pipeline:training} and how we generate bounding box object predictions on top of the pixelwise class probabilities \tref{sec:pipeline:eval}.
 
 \section{Training}
 \label{sec:pipeline:training}
+We use the \gls{resnet}-50 \tref{sec:concepts:resnet:design} as the basis for our detector and take the pretrained model\footnote{\url{https://github.com/KaimingHe/deep-residual-networks\#models}} provided by the original authors. They trained the network on the 1000 classes of the ImageNet 2012 dataset \citep{russakovsky_imagenet_2015} and therefore we can assume that the learned features are good class-independent image descriptors. For our single-class detection we replace the original \gls{fc} layer with a new one now only returning two values (background \textit{vs} foreground).\\
+As we aim for fast \textit{approximate} training for the single class it is not feasible to retrain or refine any of the \gls{conv} layers and instead we only train the weights of the single \gls{fc} layer. Additionally refining the last \gls{conv} layers in the same restricted number of iterations did not yield considerable better results.\\
+We want to use a \gls{fcn} to provide localized object predictions. This is done by the classifier to \gls{fcn} conversion described in \treft{sec:concepts:fcn}. The classifying \gls{resnet} is transformed by converting the \gls{fc} layer into a \gls{conv} layer after training and then upsampling of the sparse prediction map. Following the results of \citep{shelhamer_fully_2016} we do not train the upsampling and use fixed bilinear weights. Again the new \gls{conv} layer could be refined on the pixel level using segmentation maps but under our self-imposed restrictions the further training did not result in considerable success.
+
+For solving we use \gls{sgd} with momentum of 0.9. The weight decay is set at 0.0001 and the learning rate fixed at \num{1e-6}. Employing a learning rate reduction method like reducing after fixed steps did not influence training results and is thus omitted. Because we want time limited training we abort training independent from training progress. All networks trained for 500 to 4000 iterations. After inspection of saturating test results we fixed the number of iterations at only 500 and all results are reported at this number.
+
 \subsection{Preprocessing and augmentation}
 \label{sec:pipeline:training:augment}
 \begin{figure}[htb]
@@ -24,9 +31,9 @@
 	\caption{Top-left is the original patch and the other ones are transformed samples. Painting sample from the \textit{Portrait of the Procurator Giolamo Querini} by Bombelli, Sebastino \citep{bombelli_retrato_1669}.}
     \label{fig:augmentation}
 \end{figure}
-It has been long shown that preprocessing the training data and expanding it by modifying the data improves training time and test results \citep{dosovitskiy_discriminative_2014}.\\
-We preprocess the trainings samples with one step by subtracting the mean of all images from the dataset from each sample \citep{krizhevsky_imagenet_2012}. Through this step the input data becomes zero-centered.\\
-Moreover as we will increasingly reduce the number of samples to train from data augmentation is immensely important.  We employ multiple image transformations to artificially enlarge the trainings set. For this we use the preprocessing methods provided by the Keras library \citep{chollet_keras:_2015} and add additional transformations. While training we generate new samples online with a set of bounded random transformations. The composite transformation $T_p$ is chosen with the random parameter vector $p = \{\alpha, \beta, s, t_x, t_y, m, t_s, t_v, f_s, f_v, v_s, v_v\}$ defining the following transformations:
+It has long been shown that preprocessing the training data and expanding it by modifying the data improves training time and test results \citep{dosovitskiy_discriminative_2014}.\\
+We preprocess the trainings samples with only one step by subtracting the mean of all images of the dataset from each sample \citep{krizhevsky_imagenet_2012}. Through this step the input data becomes zero-centered.\\
+Moreover as we will increasingly reduce the number of samples to train from data augmentation is immensely important.  We employ multiple image transformations to artificially enlarge the trainings set. For this we use the preprocessing methods provided by the Keras library \citep{chollet_keras:_2015} and add additional transformations. Generating new samples is done with a set of bounded transformations. The composite transformation $T_p$ is chosen with the parameter vector $p = \{\alpha, \beta, s, t_x, t_y, m, t_s, t_v, f_s, f_v, v_s, v_v\}$ defining the following transformations:
 \begin{my_list_item}
     \item \textbf{Rotation} with $\alpha\in[-\ang{20}, +\ang{20}]$
     \item \textbf{Shearing} with $\beta\in[-\ang{11.5}, + \ang{11.5}]$
@@ -35,9 +42,9 @@ Moreover as we will increasingly reduce the number of samples to train from data
     \item \textbf{Flipping} horizontally $m\in\{0,1\}$.
     \item \textbf{Contrast}. Patches are converted to the HSV color space. We raise saturation and value to a power $t_s, t_v \in [0.25, 4]$ then multiply by factors $f_s, f_v \in [0.7, 1.4]$ and add these to some values $v_s, v_v \in [-0.1, 0.1]$ \citep{dosovitskiy_discriminative_2014}. After the contrast transformation patches are again converted back to RGB color space.
 \end{my_list_item}
-The parameter boundaries were chosen similar to those in \citet{dosovitskiy_discriminative_2014}.
+The parameter boundaries were chosen similar to those in \citet{dosovitskiy_discriminative_2014}. While training the image generator picks random images from the training set, processes each image using a random parameter vector and returns the transformed images online. Then they are resized to a size of $224\times 224$ and fed into the network. 
 
-Because the generation of new augmented samples severely slows down training if done on demand we generate new samples in parallel to the network training.
+Because the generation of new augmented samples severely slows down training if done on demand we generate new samples in parallel to the network training on the CPU.
 
 
 \section{Generating detections}
