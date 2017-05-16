@@ -7,6 +7,7 @@
 
 \section{Machine learning}
 \label{sec:concepts:ml}
+\TODO{write section}
 
 \section{Task definitions}
 \label{sec:concepts:tasks}
@@ -24,13 +25,15 @@ Lastly we have \textbf{image segmentation}. Here we aim to not only identify mul
 \label{sec:concepts:nn}
 Neural networks are a specific method to approximate a function $f(x) = y$ that yields some desired output from input data. For example this could be the task to return the name of the breed given images of dogs as input. They are called networks because they are a composite of chained functions each computing some output from its input. Data flows from the top, the first computation, to the end getting further processed: $f(x) = f_n(f_{n-1}(\dots f_1(x))) = y$. When the network is connected on a acyclic graph meaning the flowing data does not go through any loops we call the network a \textbf{feedforward network}.
 
+\subsection{Gradient decent}
+\label{sub:concepts:nn:gd}
+\TODO{write section}
 
 \subsection{Backpropagation}
 \label{sub:concepts:nn:backprob}
 \citet{rumelhart_learning_1988}
 computing the gradient then used to apply a gradient descent method
-
-
+\TODO{write section}
 
 \subsection{Convolution} % (fold)
 \label{sub:conepts:nn:conv}
@@ -89,6 +92,7 @@ It is important to note that average pooling is a linear function while max pool
 
 \subsection{Regularization} % (fold)
 \label{sub:conepts:nn:regularization}
+\TODO{write section}
 
 \subsection{Batch Normalization} % (fold)
 \label{sub:conepts:nn:batchnorm}
@@ -110,6 +114,7 @@ The original authors use this architecture for image segmentation. They build th
 \label{sub:conepts:fcn:deconv}
 \input{figures/conv_deconv}
 Deconvolution or often called transposed convolution, first used by \citet{zeiler_deconvolutional_2010}, introduces a new operation for neural networks. Simply spoken a deconvolution takes the receptive field and produces a larger window as output thus operating some form of upsampling. \figreft{fig:1d_strided_conv} visualizes the differences between convolution and deconvolution in $1d$.
+\TODO{finish section}
 
 \subsection{Conversion of \gls{fc} layers}
 \label{sub:concepts:fcn:fc_conversion}

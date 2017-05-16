@@ -17,7 +17,7 @@ Two year late \citet{he_mask_2017} extended this approach with \textbf{Mask \gls
 \citet{dai_r-fcn:_2016} incorporates the \gls{roi}-wise processing into the main network branch of their \textbf{R-FCN} through a series of \gls{conv} layers. The \gls{conv} layers encode scores at relative positions like top-left or bottom-center. Next the regions from the \gls{rpn} are divided into the same relative sub-regions and each sub-region is used to pool from the corresponding layer and then vote for the whole \gls{roi}.
 
 As out work also has to focus on time performance it is related to other fast object detectors. \citet{redmon_you_2016} use a freshly designed network architecture \textbf{YOLO} to achieve object detection at real-time. The input image is divided into a regular grid. The last \gls{fc} layer from their network predicts for each cell of the grid the class probabilities and the coordinates and objectness confidence of two bounding boxes. Detections then get selected by the multiplication of their conventional class probabilities and their individual confidence predictions. While the method is extremely fast it is limited by the shape of bounding boxes it will predict.
-
+\clearpage
 \section{Image retrieval}
 \label{sec:related:retrieval}
 Retrieving relevant images from large databases by searching for similarities to an exemplar image is an long used idea. The first methods employed hand-crafted features like histograms, SIFT or \gls{hog} to compare different images in a low dimensional space. Problems in such approaches arise through semantically close groups with wide visual differences.\\
