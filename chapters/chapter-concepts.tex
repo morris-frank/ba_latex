@@ -2,8 +2,9 @@
 %
 \chapter{Concepts}
 \label{sec:concepts}
-
 \cleanchapterquote{Q: What's the difference between machine learning and statistics?\\A: ConvNets}{Bored Yann LeCun}{via Twitter}
+
+In this chapter we quickly introduce the core techniques and concepts this thesis is build upon. First we discriminate four different tasks of describing objects in images in \ref{sec:concepts:tasks}. Next in \ref{sec:concepts:nn} we give overview over Neural Networks and what kind of computations they perform. Further we explain two specific architecture called \acrfull{fcn} and \acrfull{resnet} in \ref{sec:concepts:fcn} and \ref{sec:concepts:resnet}, respectively. The last section \ref{sec:concepts:eval} describes two methods to evaluate our approach.
 
 \section{Task definitions}
 \label{sec:concepts:tasks}
@@ -19,23 +20,55 @@ Lastly we have \textbf{image segmentation}. Here we aim to not only identify mul
 
 \section{Neural Networks}
 \label{sec:concepts:nn}
-Neural networks are a specific method to approximate a function $f(x) = y$, which yields some desired output from input data. For example this could be the task to return the name of the breed given images of dogs as input. They are called networks because they are a composite of chained functions, each computing one step of the overall function. Data flows from the top, the first computation, to the end getting further processed: $f(x) = f_n(f_{n-1}(\dots f_1(x))) = y$. When the network is connected on a acyclic graph, meaning the flowing data does not go through any loops, it is called a \textbf{feedforward network}.\\
-\TODO{glue}
+Neural networks are a specific method to approximate a function $f(x) = y$, which yields some desired output from input data. For example this could be the task to return the name of the breed given images of dogs as input. They are called networks because they are a composite of chained functions, each computing one step of the overall function. Data flows from the top, the first computation, to the end getting further processed:
+\begin{equation}
+    f(x) = f_n(f_{n-1}(\dots f_1(x))) = y
+\end{equation}
 
-Working on raw pixel values of images, it will, in the most cases, not be possible to find a linear decision function which separates inputs according to the task \citep{lecun_deep_2015}. To discriminate such representation we need a non-linear decision boundary and thus a neural network should be a composite of linear and non-linear operations, so that it, at least in theory, can approximate the non-linear representation.
+When the network is connected on a acyclic graph, meaning the flowing data does not go through any loops, it is called a \textbf{feedforward network}. The nodes in this graph, representing the functions $f_i$ are also called neurons showing the connection to the human brain on which neural networks are loosely based. Nodes, like neurons, can have different levels of connectivity. While we focus here on feedforward networks, not each deeper node has to be connected to all nodes sitting on top of it. Thereby these networks can have multiple branches with input data being split and flowing through different function chains until being gathered in a single output.
 
-\subsection{Gradient descent}
+In modern neural networks the $f_i$ are mostly linear operators but are, most of the time, incorporated with non-linear processing operators. Working on raw pixel values of images, it will, in the most cases, not be possible to find a linear decision function which separates inputs according to the task \citep{lecun_deep_2015}. To discriminate such representations we need a non-linear decision boundary and thus a neural network should be a composite of linear and non-linear operations, so that it, at least in theory, can approximate the non-linear representation.\\
+The most classical operation for $f_i$ inside a neural network are functions returning a linear combination of the inputs. Nodes using such a function are called \acrfull{fc} layers. The \gls{fc} layer is connected to all nodes from the next upper layer of the network. If we assemble all outputs from the previous nodes in a single matrix $X$ as the input for the layer, its function
+\begin{equation}
+    f_{fc}(X) = XW + b
+\end{equation}
+can simply be expressed as a matrix multiplication with a weight matrix $W$ and a bias vector $b$.\\
+
+\subsection{Optimization with Stochastic Gradient descent}
 \label{sub:concepts:nn:gd}
-\TODO{write section}
+We give a real quick overview how neural networks are trained.\\
+At the end of a neural network in training are normally a score function $S$ and a loss function $L$. The score function assigns the input to semantic label, defined for a specific task. The loss function tells how good these assignments are thus rating the current data pass through the network. We want to modify the parameters of our network to a point where the loss is minimal. The process of finding these parameters is called optimization.\\
+The basic idea for optimization is to gradually, step by step, approach this parameter set. While the optimizer does that it moves over the function space of the loss function $L$ to find one of its minimums. To reach the local minimum of $L$ we search the steepest direction at the current point and follow it done. One method to iteratively update parameters according to their loss is \acrfull{sgd}. Each parameter $\theta$ follows the negative direction of the gradient $\Delta\theta = \sfrac{\delta L}{\delta \theta}$ of the loss function:
+\begin{equation}
+    \theta = \theta - \lambda \cdot \Delta \theta
+\end{equation}
+The factor $\lambda$ setting the length of each step down the gradient is called the learning rate. It has to been set beforehand and strongly influences training success.
+
+A popular extension for \gls{sgd} is momentum \citep{qian_momentum_1999}. The momentum remembers a proportion $m$ of the last update vector $v_t$ and uses this memory to push the \gls{sgd} faster into a minimum.
+\begin{equation}
+    v_t = m\cdot v_{t-1} + \lambda \cdot \Delta \theta
+\end{equation}
+\begin{equation}
+    \theta = \theta - v_t
+\end{equation}
 
 \subsection{Backpropagation}
 \label{sub:concepts:nn:backprob}
-\citet{rumelhart_learning_1988}
-computing the gradient then used to apply a gradient descent method
-\TODO{write section}
+To use \gls{sgd} for a neural network we need to apply the gradient to all parameters of function in our network. An efficient way of propagating errors through the network is called \textbf{backpropagation} \citep{rumelhart_learning_1988}. The basic idea is to walk the graph of the neural network backwards from the outputs until the inputs at the top and on this backward pass find for all nodes the proportion they contribute to the output error. Then we apply \gls{sgd} using the errors for all nodes.
 
 \subsection{Convolution} % (fold)
 \label{sub:conepts:nn:conv}
+\begin{figure}
+    \centering
+    \begin{tabulary}{\linewidth}{CCCC}
+        \includegraphics[height=3cm]{figures/activation_data} &
+        \vspace{-1.8cm}\includegraphics[height=1cm]{figures/activation_filter} &
+        \includegraphics[height=3cm]{figures/activation_response} &
+        \includegraphics[height=3cm]{figures/activation_relu} \\
+        image data & filter & filter response & \gls{relu} \\
+    \end{tabulary}
+    \caption{The effect of a convolution and a following \gls{relu} visualized. The green activations are positive and the purple ones are negative.}
+\end{figure}
 Convolution is a special kind of linear operation, that is successfully applied in deep neural networks, which we then call a \acrfull{cnn}. For two one-dimensional continuous signals expressed by the functions $f$ and $g$ their convolution is described as follows:
 \begin{equation}
     (f * g)(t) = \int_{-\infty}^\infty f(\tau)g(t - \tau)d\tau
@@ -58,22 +91,11 @@ Inside \glspl{cnn} we use convolutions to map, how much a specific small structu
 \subsection{Activation Functions} % (fold)
 \label{sub:conepts:nn:activations}
 \begin{figure}
-    \centering
-    \begin{tabulary}{\linewidth}{CCCC}
-        \includegraphics[height=3cm]{figures/activation_data} &
-        \vspace{-1.8cm}\includegraphics[height=1cm]{figures/activation_filter} &
-        \includegraphics[height=3cm]{figures/activation_response} &
-        \includegraphics[height=3cm]{figures/activation_relu} \\
-        image data & filter & filter response & \gls{relu} \\
-    \end{tabulary}
-    \caption{The effect of a convolution and a following \gls{relu} visualized. The green activations are positive and the purple ones are negative.}
-\end{figure}
-\begin{figure}
     \includegraphics{figures/sigmoid_relu}
     \caption{Activation functions: sigmoid on the left and rectifier from a \gls{relu} on the right.}
     \label{fig:sigmoid_relu}
 \end{figure}
-\gls{conv} layers return the response of their inputs to their filters. Next the response level is used to calculate how much the node in the network fires for this position. Conceptually this draws from the activation process inside neurons in the brain, which also receive inputs from their dendrites and fire along their axon. Inside an artificial neural network this mapping is done by an activation function $f(x)$. In the most simple cases this can be the identity $f(x) = x$ or the unit step function $f(x) = (\sign x + 1) / 2$. With the identity we just use the response values as firing rates not introducing any more complexity and the sign reduces the levels of response to a binary firing switch.
+\gls{conv} layers return the response of their inputs to their filters. Next the response level is used to calculate how much the node in the network fires for this position. Conceptually this draws again from the activation process inside neurons in the brain, which also receive inputs from their dendrites and fire along their axon. Inside an artificial neural network this mapping is done by an activation function $f(x)$. In the most simple cases this can be the identity $f(x) = x$ or the unit step function $f(x) = (\sign x + 1) / 2$. With the identity we just use the response values as firing rates not introducing any more complexity and the sign reduces the levels of response to a binary firing switch.
 
 Formerly common to use as an activation function was the sigmoid. The sigmoid $\sigma(x) = 1/(1+e^{-x})$ \fref{fig:sigmoid_relu} takes an unbounded input range and squashes it into the range $[0, 1]$. Today sigmoids are mostly avoided as they hold multiple drawbacks. First as the function values saturate in both directions its gradient can approximate zero, which with backpropagation can lead to zeroed gradients or exploding gradients while training. Secondly the gradient computation is slow due to its non-linear form.
 
@@ -108,18 +130,18 @@ The original authors use this architecture for image segmentation. They build th
 \subsection{Transposed Convolution} % (fold)
 \label{sub:conepts:fcn:deconv}
 \input{figures/conv_deconv}
-Transposed convolution or sometimes mistakenly called deconvolution, first used by \citet{zeiler_deconvolutional_2010}, introduces a new operation for neural networks. Simply spoken a transposed convolution takes the receptive field and produces a larger window as output, thus operating some form of upsampling. \figreft{fig:1d_strided_conv} visualizes the differences between convolution and transposed convolution in $1d$.
-\TODO{finish section}
-
+Transposed convolution or sometimes mistakenly called deconvolution, first used by \citet{zeiler_deconvolutional_2010}, introduces a new operation for neural networks. Simply spoken a transposed convolution takes the receptive field and produces a larger window as output. \figreft{fig:1d_strided_conv} visualizes the differences between convolution and transposed convolution in $1d$. Both use a sliding kernel but the transposed convolution inverts the forward and backward passes. As such a transposed convolution is actually the gradient of some convolution \citep{dumoulin_guide_2016}.
+\clearpage
 \subsection{Conversion of \gls{fc} layers}
 \label{sub:concepts:fcn:fc_conversion}
 \gls{fc} layers can directly be converted into \gls{conv} layers, which makes \glspl{fcn} immensely efficient. To understand this process let us examine the VGG-16 network. After the 13 \gls{conv} layers and 5  corresponding max-pooling layers we get an output from \texttt{pool5} with $512\times7\times7$ pixels. Through pooling the original images ($224\times224$ pixels) got reduced to $7\times7$ pixels images over 512 channels. These go though 3 \gls{fc} layers. The first \gls{fc} layer returns 4096 values. We replace it with a \gls{conv} layer with kernel size 7 and 4096 channels thus also resulting in an $1\times1\times4096$ pixels output. The weights from the \gls{fc} layer can be reshaped into the size of the \gls{conv} layer. The other two \gls{fc} layers with 4096 and 1000 outputs, respectively can directly be put into convolutions with kernel size 1.
 
 For the former images of $224\times224$ pixels nothing changed as the output of the first \gls{fc} layer is still 4096 values but if we now increase the data size to e.g. the double $448\times448$ pixels, the advantage becomes apparent. The \texttt{pool5} will return outputs of size $14\times14$ pixels and the new \gls{conv} layer will slide over the bigger images returning outputs of size $8\times8$ pixels. Lastly the other $1\times1$ pixel-sized convolutions do not change the size so that we get 64, spatially located, predictions over the 1000 classes instead of one. These are the same as if we would have slided a window over the original image with an $8\times8$ grid but because the computations on the GPU are shared for the convolutional kernels we heavily increased performance compared to the naïve solution.
 
-\subsection{Upsampling through Convolutions}
+\subsection{Upsampling through Transposed Convolutions}
 \label{sub:concepts:fcn:upsampling}
-A \gls{fcn} as in \citep{long_fully_2015} outputs a small sparse score map. For an input image of $200\times 200$ pixels, that could be something around $10\times 10$ values. Naturally we want an output map with the same size as the input. Firstly we can use feature maps from earlier layers with their own classifiers to reduce the stride of the resulting score map but the score map from deeper layers has still to be upsampled to the input size. Upsampling can be done directly within the network using convolutions. It is possible to use transposed convolutions to upsample the inputs and filter them at the same time but this often introduces artifacts \citep{odena_deconvolution_2016}. Alternatively refining e.g. bilinear kernels in training does not help much in performance \citep{shelhamer_fully_2016}. It seems successful to upsample the score maps with a normal interpolation followed by normal convolutions at the bigger size \citep{dong_image_2016}.
+A \gls{fcn} as in \citep{long_fully_2015} outputs a small sparse score map. For an input image of $200\times 200$ pixels, that could be something around $10\times 10$ values. Naturally we want an output map with the same size as the input. Firstly we can use feature maps from earlier layers with their own classifiers to reduce the stride of the resulting score map but the score map from deeper layers has still to be upsampled to the input size. Upsampling can be done directly within the network using transposed convolutions. It is possible to use transposed convolutions to upsample the inputs and filter them at the same time but this often introduces artifacts \citep{odena_deconvolution_2016}. Alternatively refining e.g. bilinear kernels in training does not help much in performance \citep{shelhamer_fully_2016}. It seems successful to upsample the score maps with a normal interpolation followed by normal convolutions at the bigger size \citep{dong_image_2016}.\\
+While bringing upsampling inside the network proves to be computationally efficient it, depending on the library used, can introduce significant memory costs on the GPU.
 
 \section{Residual Networks}
 \label{sec:concepts:resnet}

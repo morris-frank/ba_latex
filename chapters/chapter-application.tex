@@ -3,6 +3,7 @@
 \chapter{Application}
 \label{sec:application}
 \begin{figure}[h!]
+    \centering
     \begin{tabulary}{\textwidth}{cc}
         \includegraphics[height=4.5cm]{figures/server_select} &
         \includegraphics[height=4.5cm]{figures/server_results}
@@ -20,16 +21,31 @@ Following the training, the network is instantly reshaped into the \gls{fcn} and
     \setlength\tabcolsep{3pt}
     \renewcommand{\arraystretch}{0}
     \begin{tabular}{c|ccccc}
-      \appim{000308_165_232_552_637} &
-      \appim{000005_200_450_300_550_pick} &
-      \appim{000036_300_500_400_600_pick} &
-      \appim{000055_250_450_350_550_pick} &
-      \appim{000053_400_350_500_450_pick} &
-      \appim{000033_300_396_400_529_pick} \\
+      \appim{portraits/000308_165_232_552_637} &
+      \appim{portraits/000005_200_450_300_550_pick} &
+      \appim{portraits/000036_300_500_400_600_pick} &
+      \appim{portraits/000055_250_450_350_550_pick} &
+      \appim{portraits/000053_400_350_500_450_pick} &
+      \appim{portraits/000033_300_396_400_529_pick} \\
+
+      \appim{sspiegel/000446_218_115_389_257} &
+      \appim{sspiegel/000011_800_150_900_250_blurred} &
+      \appim{sspiegel/000538_850_200_950_300_blurred} &
+      \appim{sspiegel/000479_100_100_200_200_blurred} &
+      \appim{sspiegel/000465_550_200_650_300_blurred} &
+      \appim{sspiegel/000465_400_100_500_200_blurred} \\
+
+      \appim{voc/2008_003088_16_37_332_412} &
+      \appim{voc/2010_001794_150_250_250_350_blurred} &
+      \appim{voc/2008_000724_100_264_200_397_blurred} &
+      \appim{voc/2009_001444_150_150_250_250_blurred} &
+      \appim{voc/2009_004639_200_250_300_350_blurred} &
+      \appim{voc/2009_003419_150_150_250_250_blurred} \\
     \end{tabular}
-	\caption{The first patch on the left is the query image. Right are the five highest scoring retrievals cutted to show the whole faces. The actual proposed patches are drawn sharp on the blurred source images.}
+	\caption{The first patch on the left is the query image. Right are the five highest scoring retrievals cutted to show the context. The actual proposed patches are drawn sharp on the blurred source images.}
   \label{fig:retrieval}
 \end{figure}
-Returning to the objective domain of this thesis we set up our application with two dataset of art historical images. The first is a collection of drawn or printed portrait illustrations containing 923 images. The second consists of 567 scans of pages from the \textit{Sachsensiegel}     \citep{von_repgow_heidelberger_????}, a German law book from the 13th century.\\
-\figreft{fig:retrieval} displays some qualitative examples from those sets. With the retrieved patches the presence of too small bounding boxes \tref{sec:results:results} again becomes apparent. Observe in the first row how from the query portrait of \textit{Dante}, three other portraits of \textit{Dante} were retrieved (the second retrieval is from a different image depicting the same portrait).
-\TODO{the other examples}
+Returning to the objective domain of this thesis we set up our application with two dataset of art historical images. The first is a collection of drawn or printed portrait illustrations containing 923 images. The second consists of 567 scans of pages from the \textit{Sachsenspiegel}     \citep{von_repgow_heidelberger_????}, a German law book from the 13th century.\\
+\figreft{fig:retrieval} displays some qualitative examples from those sets. With the retrieved patches the presence of too small bounding boxes \tref{sec:results:results} again becomes apparent. Observe in the first row how from the query portrait of \textit{Dante}, three other portraits of \textit{Dante} were retrieved (the second retrieval is from a different image depicting the same portrait). The second row shows a failed example from the \textit{Sachsenspiegel} set. Generally most tests with this dataset proved to be unsuccessfully. Without further investigation we suspect that might derive from the overall similarity of the depicted figures and the fact that most images are substantially filled with text which therefore  make up considerable number of the negative training samples.
+
+At last we show an example of a cat from the \textsc{Pascal}-VOC dataset which exclusivity retrieves cats for the at least top-hundred matches.

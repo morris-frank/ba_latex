@@ -537,6 +537,47 @@
       \verb [PDF] von inria.fr:/home/morris/var/zotero/storage/6NKV48KI/Dalal und Triggs - 2005 - Histograms of oriented gradients for human detecti.pdf:application/pdf;Snapshot:/home/morris/var/zotero/storage/CZMX3VCT/1467360.html:text/html
       \endverb
     \endentry
+    \entry{dumoulin_guide_2016}{article}{}
+      \name{author}{2}{}{%
+        {{hash=1328d3ceef6add8461994fc364c664df}{%
+           family={Dumoulin},
+           familyi={D\bibinitperiod},
+           given={Vincent},
+           giveni={V\bibinitperiod}}}%
+        {{hash=6b5929470a8840e4c6f9b8836bd55286}{%
+           family={Visin},
+           familyi={V\bibinitperiod},
+           given={Francesco},
+           giveni={F\bibinitperiod}}}%
+      }
+      \strng{namehash}{ac3e7f97a270527500aed940113f1070}
+      \strng{fullhash}{ac3e7f97a270527500aed940113f1070}
+      \strng{authornamehash}{ac3e7f97a270527500aed940113f1070}
+      \strng{authorfullhash}{ac3e7f97a270527500aed940113f1070}
+      \field{labelalpha}{DV16}
+      \field{sortinit}{D}
+      \field{sortinithash}{78f7c4753a2004675f316a80bdb31742}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{abstract}{We introduce a guide to help deep learning practitioners understand and manipulate convolutional neural network architectures. The guide clarifies the relationship between various properties (input shape, kernel shape, zero padding, strides and output shape) of convolutional, pooling and transposed convolutional layers, as well as the relationship between convolutional and transposed convolutional layers. Relationships are derived for various cases, and are illustrated in order to make them intuitive.}
+      \field{eprintclass}{cs, stat}
+      \field{eprinttype}{arxiv}
+      \field{journaltitle}{arXiv:1603.07285 [cs, stat]}
+      \field{month}{3}
+      \field{title}{A Guide to Convolution Arithmetic for Deep Learning}
+      \field{urlday}{25}
+      \field{urlmonth}{10}
+      \field{urlyear}{2016}
+      \field{year}{2016}
+      \field{urldateera}{ce}
+      \verb{eprint}
+      \verb 1603.07285
+      \endverb
+      \verb{file}
+      \verb arXiv\:1603.07285 PDF:/home/morris/var/zotero/storage/89TE4QWZ/Dumoulin und Visin - 2016 - A guide to convolution arithmetic for deep learnin.pdf:application/pdf;arXiv\:1603.07285 PDF:/home/morris/var/zotero/storage/QWJQDGH2/Dumoulin und Visin - 2016 - A guide to convolution arithmetic for deep learnin.pdf:application/pdf;arXiv.org Snapshot:/home/morris/var/zotero/storage/27INIP6D/1603.html:text/html;arXiv.org Snapshot:/home/morris/var/zotero/storage/JGIMWEVD/1603.html:text/html
+      \endverb
+      \keyw{Computer Science - Learning,Computer Science - Neural and Evolutionary Computing,Statistics - Machine Learning}
+    \endentry
     \entry{pascal-voc-2010}{article}{}
       \name{author}{5}{}{%
         {{hash=6f9d5e1141ddaa8c4ca535a774d3b287}{%
@@ -1403,6 +1444,38 @@
       \field{urldateera}{ce}
       \verb{file}
       \verb Snapshot:/home/morris/var/zotero/storage/U9QTFWA4/deconv-checkerboard.html:text/html
+      \endverb
+    \endentry
+    \entry{qian_momentum_1999}{article}{}
+      \name{author}{1}{}{%
+        {{hash=ea12a5aa5be72e296f6e28e632bf5b66}{%
+           family={Qian},
+           familyi={Q\bibinitperiod},
+           given={Ning},
+           giveni={N\bibinitperiod}}}%
+      }
+      \strng{namehash}{ea12a5aa5be72e296f6e28e632bf5b66}
+      \strng{fullhash}{ea12a5aa5be72e296f6e28e632bf5b66}
+      \strng{authornamehash}{ea12a5aa5be72e296f6e28e632bf5b66}
+      \strng{authorfullhash}{ea12a5aa5be72e296f6e28e632bf5b66}
+      \field{labelalpha}{Qia99}
+      \field{sortinit}{Q}
+      \field{sortinithash}{15867262911a166ca2270ec58a0e3fe9}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{journaltitle}{Neural networks}
+      \field{number}{1}
+      \field{title}{On the Momentum Term in Gradient Descent Learning Algorithms}
+      \field{urlday}{17}
+      \field{urlmonth}{5}
+      \field{urlyear}{2017}
+      \field{volume}{12}
+      \field{year}{1999}
+      \field{urldateera}{ce}
+      \field{pages}{145\bibrangedash 151}
+      \range{pages}{7}
+      \verb{file}
+      \verb [PDF] semanticscholar.org:/home/morris/var/zotero/storage/SE9ASFS7/Qian - 1999 - On the momentum term in gradient descent learning .pdf:application/pdf;Snapshot:/home/morris/var/zotero/storage/ZV64WVDW/S0893608098001166.html:text/html
       \endverb
     \endentry
     \entry{redmon_you_2016}{inproceedings}{}

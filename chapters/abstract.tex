@@ -4,9 +4,15 @@
 \chapter*{Abstract}
 \label{sec:abstract}
 \vspace*{-15mm}
-This thesis introduces a one-shot object detector that was developed with the objective to retrieve similar objects from images given a single reference object. We show that using a, for image classification pretrained, neural network, it is possible to train a object detector from small numbers of examples in very little time. Our results show the connection and correllation between the number of examples and the quality of the detector. Furthermore we show how, using intensive preprocessing, a single example can be enough to extract similar instances.\TODO{finish}
+This thesis introduces a one-shot object detector that was developed with the objective to retrieve similar objects from images given a single reference object. We show that using a, for image classification pretrained, neural network, it is possible to train a object detector from small numbers of examples in very little time. Our results show the connection and correlation between the number of examples and the quality of the detector. Furthermore we show how, using intensive preprocessing, a single example can be enough to extract similar instances.
 
-\vspace*{20mm}
+We outperform a simple classical object detector on the \textsc{Pascal}-VOC dataset detecting parts of different objects with each a two-class Fully Convolutional network detector.\\
+Lastly we show qualitatively how this method can be applied in the humanities specifically art history to automatically discover other depictions of the same object.
+
+\vspace*{0mm}
 
 {\usekomafont{chapter}Zusammenfassung}\label{sec:abstract-diff} \vspace*{5mm}\\
-Diese Abschlussarbeit führt einen Objektdetektor ein, der mit dem Ziel entwickelt wurde ähnliche Objekte in Bildern zu finden mit einer einzelnen vorgegebenen Referenz. Wir zeigen, dass es unter der Verwendung eines für Bildklassifikation trainierten Neuronalen Netzwerks möglich ist, einen Detekor auf Basis weniger Beispiele in kürzester Zeit zu trainiern. Unsere Resultate verdeutlichen den Zusammenhang, zwischen der Anzahl der verschiedenen Beispiele und der Qualität des Detektors. Weiterhin wird gezeigt, wie mit umfangreicher Vorverarbeitung der Referenz, schon ein einzelnes Bild reichen kann, um ähnliche Instanzen zu finden.
+Diese Abschlussarbeit führt einen Objektdetektor ein, der mit dem Ziel entwickelt wurde ähnliche Objekte in Bildern zu finden mit einer einzelnen vorgegebenen Referenz. Wir zeigen, dass es unter der Verwendung eines für Bildklassifikation trainierten Neuronalen Netzwerks möglich ist, einen Detekor auf Basis weniger Beispiele in kürzester Zeit zu trainiern. Unsere Resultate verdeutlichen den Zusammenhang, zwischen der Anzahl der verschiedenen Beispiele und der Qualität des Detektors. Weiterhin wird gezeigt, wie mit umfangreicher Vorverarbeitung der Referenzbeispiele schon ein einzelnes Bild reichen kann, um ähnliche Instanzen zu finden.
+
+Unsere Method liefert bessere Ergebnisse auf dem \textsc{Pascal}-VOC Datenset als ein einfacher klassicher Objektdetektor unter der Aufgabe verschiedene Teile von verschiedenen Objekten zu detektieren. Wir erreichen dies jeweils mit einem zwei-Klassen Fully Convolutional Network.
+Zuletzt zeigen wir qualitativ, wie unsere Methode in den Geisteswissenschaften, speziell der Kunstgeschichte, verwendet werden kann, um automatisch Darstellungen eines bestimmten Objektes in Bilddatenbanken zu finden.

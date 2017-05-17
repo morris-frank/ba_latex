@@ -78,25 +78,28 @@ Second we apply a distance transform to the mask $M'$ that resulted from the thr
 \begin{equation}
     L_\infty = \max(|x_2 - x_1|, |y_2 - y_1|)
 \end{equation}
-The transformed image is normalized and substracted from the original probability map. This additional step increases mean \gls{auc} on the \textsc{Pascal}-Part by 2\% for sets with $< 25$ images.
+The transformed image is normalized and substracted from the original probability map. This additional step increases mean \gls{auc} on the \textsc{Pascal}-Part by 2\% for sets with $< 25$ images.\\
+Nevertheless does this additional computation slow down the image processing and with only a marginal improvement this step probably can be omitted in live applications.
 
 \clearpage
 \subsection{Calculating the score densities}
 \label{sec:pipeline:eval:density}
-For each processed image we generate a set of boxes to calculate the score densities for. At three scales we take boxes $\{b_1,\dotsc, b_i = (x_0, y_0, x_1, y_1)_i,\dotsc, b_k\}$ with three different aspect ratios for $k=9$ \citep{ren_faster_2015} proposals at each position. We slide these anchor boxes  with overlapping stride over the image and collect the resulting slices. Also we save the areas $\{A_1,\dotsc, A_i,\dotsc\}$ of all rectangles.\\
-Density is calculated by summing up all the probabilities from the score map inside each window and dividing those by the area of the box. To achieve that as efficiently as possible we use the integral image $M_\Sigma$ of our score map $M$. A value in the integral image is the sum of all values in the source image lying left and above the anchor coordinates:
+For each processed image we generate a set of boxes to calculate the score densities for. At three scales we take boxes $B = \{b_1,\dotsc, b_i = (x_0, y_0, x_1, y_1)_i,\dotsc, b_k\}$ with three different aspect ratios for $k=9$ \citep{ren_faster_2015} proposals at each position. We slide these anchor boxes  with overlapping stride over the image and collect the resulting slices. Also we save the areas $\{A_1,\dotsc, A_i,\dotsc\}$ for all rectangles.\\
+Density is calculated by summing up all the probabilities from the score map inside each window and dividing those by the area of the box. To achieve that as efficiently as possible we use the integral image $M_\Sigma$ of our score map $M\in \mathbb{R}^{w\times h}$. A value $M_\Sigma(x,y)$ in the integral image is the sum of all values in the source image lying left and above the anchor coordinates $(x,y)$:
 \begin{equation}
     M_\Sigma(x, y) = \sum_{\substack{x' \le x\\ y' \le y}} M(x', y')
 \end{equation}
-With the integral image the sum inside any rectangle of the image $I$ can then be yielded efficiently with:
+Computing $M_\Sigma$ has only \bigO{w\cdot h} complexity and with the integral image the sum inside any rectangle of $M$ can then be yielded efficiently with:
 \begin{equation}
     \sum_{\substack{x_0 < x \le x_1\\ y_0 < y \le y_1}}M(x,y) = M_\Sigma(x_1, y_1) + M_\Sigma(x_0, y_0) - M_\Sigma(x_1, y_0) - M_\Sigma(x_0, y_1)
 \end{equation}
 
 Next the probability density of each box is computed through:
 \begin{equation}
-    \rho_i = \frac{\sum_{b_i}I(x,y)}{A_i}
+    \rho_i = \frac{\sum_{b_i}M(x,y)}{A_i}
 \end{equation}
+
+Using the density to rank the boxes $B$ the ranking will favor flat regions of high scores. While this will probably be a region of a positive detection we can expect the top scoring regions to be inside the object because including the boundaries would lower their densities. In \treft{sec:results:results} we will indeed recognize this effect.
 
 \clearpage
 \subsection{Non maximum suppression}
