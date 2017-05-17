@@ -58,7 +58,7 @@ To compare our results we additionally solve the task with a baseline method. We
 \gls{hog} features encode the shape of an object assuming that its shape can be described by the distribution of edge directions. As the name already states we want to look at the gradients of the image at different orientations. We compute the horizontal and vertical gradients from the relative luminance of the original image, using the standard weighted channel contributions. To get the spatial localization we split the image into small regions called cells. For each cell we compute the histogram, which is just an $1d$ vector containing the gradients over a fixed set of angles in that cell. Next we group these cells into larger overlapping blocks. The blocks are used to normalize the contained histograms. This introduces better invariance to illumination and edge contrast. As the blocks are overlapping, each cell will appear multiple times in the output but under different normalization. For normalization we use the L2-norm followed by clipping \citep{lowe_distinctive_2004}.
 
 \subsection{Training}
-We collect $1000$ samples of augmented samples, using the same method as described in \treft{sec:pipeline:training:augment}. For all samples we compute the \gls{hog} features using the settings as in \citep{dalal_histograms_2005}. In \citet{felzenszwalb_object_2010} their model consists of multiple parts each described by its own \gls{hog} features. Because we will only train for small parts we describe each sample by only one \gls{hog} descriptor at one scale. Using the set of balanced positive and negative samples we train a linear \gls{svm}.
+We collect 1000 samples of augmented samples, using the same method as described in \treft{sec:pipeline:training:augment}. For all samples we compute the \gls{hog} features using the settings as in \citep{dalal_histograms_2005}. In \citet{felzenszwalb_object_2010} their model consists of multiple parts each described by its own \gls{hog} features. Because we will only train for small parts we describe each sample by only one \gls{hog} descriptor at one scale. Using the set of balanced positive and negative samples we train a linear \gls{svm}.
 \clearpage
 \subsection{Testing}
 The testing pipeline should be as similar as possible to the novel method. To use the same box generation, density calculation and \gls{nms} as in \treft{sec:pipeline:eval}, we need a map of class probability predictions as input. Sliding a window over the images and computing the \gls{hog} features for all positions in the image is rather inefficient. Instead we compute the \gls{hog} descriptors for the whole image and classify a window that is slided over the feature map. The \gls{svm} returns the predicted class (background \textit{vs} foreground), and the scores are aggregated for all windows to build the needed probability map. Although it is not useful to train a multi-scale classifier for our small training samples, we have to take differently scaled test objects into account. Thus we test on multiple scales. Because the \gls{svm} needs a fixed shape, the same number of \gls{hog} blocks, as input to predict their class, we change the \gls{hog} parameters for the different scales. For windows half the size we also halve the width of each \gls{hog} cell, thus resulting in the same number of blocks per window.
@@ -70,39 +70,39 @@ The testing pipeline should be as similar as possible to the novel method. To us
     \setlength\tabcolsep{0pt}
     \renewcommand{\arraystretch}{0}
     \begin{tabular}{ccccccc}
-      \includegraphics[height=1.8cm]{figures/hm_examples/1s_2008_002067} &
-      \includegraphics[height=1.8cm]{figures/hm_examples/1s_2009_004323} &
-      \includegraphics[height=1.8cm]{figures/hm_examples/1s_2009_004784} &
-      \includegraphics[height=1.8cm]{figures/hm_examples/1s_2009_005222} &
-      \includegraphics[height=1.8cm]{figures/hm_examples/1s_2009_002715} &
-      \includegraphics[height=1.8cm]{figures/hm_examples/1s_2010_005967} \\
-      \includegraphics[height=1.8cm]{figures/hm_examples/1s_bbox_2008_002067} &
-      \includegraphics[height=1.8cm]{figures/hm_examples/1s_bbox_2009_004323} &
-      \includegraphics[height=1.8cm]{figures/hm_examples/1s_bbox_2009_004784} &
-      \includegraphics[height=1.8cm]{figures/hm_examples/1s_bbox_2009_005222} &
-      \includegraphics[height=1.8cm]{figures/hm_examples/1s_bbox_2009_002715} &
-      \includegraphics[height=1.8cm]{figures/hm_examples/1s_bbox_2010_005967} \\[3pt]
+      \hmim{1s_2008_002067} &
+      \hmim{1s_2009_004323} &
+      \hmim{1s_2009_004784} &
+      \hmim{1s_2009_005222} &
+      \hmim{1s_2009_002715} &
+      \hmim{1s_2010_005967} \\
+      \hmim{1s_bbox_2008_002067} &
+      \hmim{1s_bbox_2009_004323} &
+      \hmim{1s_bbox_2009_004784} &
+      \hmim{1s_bbox_2009_005222} &
+      \hmim{1s_bbox_2009_002715} &
+      \hmim{1s_bbox_2010_005967} \\[3pt]
 
-      \includegraphics[height=1.8cm]{figures/hm_examples/50s_2008_002067} &
-      \includegraphics[height=1.8cm]{figures/hm_examples/50s_2009_004323} &
-      \includegraphics[height=1.8cm]{figures/hm_examples/50s_2009_004784} &
-      \includegraphics[height=1.8cm]{figures/hm_examples/50s_2009_005222} &
-      \includegraphics[height=1.8cm]{figures/hm_examples/50s_2009_002715} &
-      \includegraphics[height=1.8cm]{figures/hm_examples/50s_2010_005967} \\
-      \includegraphics[height=1.8cm]{figures/hm_examples/50s_bbox_2008_002067} &
-      \includegraphics[height=1.8cm]{figures/hm_examples/50s_bbox_2009_004323} &
-      \includegraphics[height=1.8cm]{figures/hm_examples/50s_bbox_2009_004784} &
-      \includegraphics[height=1.8cm]{figures/hm_examples/50s_bbox_2009_005222} &
-      \includegraphics[height=1.8cm]{figures/hm_examples/50s_bbox_2009_002715} &
-      \includegraphics[height=1.8cm]{figures/hm_examples/50s_bbox_2010_005967}
-
+      \hmim{50s_2008_002067} &
+      \hmim{50s_2009_004323} &
+      \hmim{50s_2009_004784} &
+      \hmim{50s_2009_005222} &
+      \hmim{50s_2009_002715} &
+      \hmim{50s_2010_005967} \\
+      \hmim{50s_bbox_2008_002067} &
+      \hmim{50s_bbox_2009_004323} &
+      \hmim{50s_bbox_2009_004784} &
+      \hmim{50s_bbox_2009_005222} &
+      \hmim{50s_bbox_2009_002715} &
+      \hmim{50s_bbox_2010_005967}
     \end{tabular}
 	\caption{Examples from \code{person\_hair}: Top detections are from a run with 1 sample, bottom detections are from a run with 50 samples. Note how the 50 sampled network detects more variations of the parts while the other one does not. Also note how both networks miss-detect the cats head as human hair.}
   \label{fig:hm_examples}
 \end{figure}
-We test the pipeline for the class-parts combinations $(c,p)$ listed in appendix \ref{sec:appendix:combos}, using the cascade scheme described in \treft{sec:results:repeat}. To evaluate the detection we collect all predicted bounding boxes for all images and their scores.
+We test the pipeline for the class-parts combinations $(c,p)$ listed in appendix \ref{sec:appendix:combos}, using the cascade scheme described in \treft{sec:results:repeat}. To evaluate the detection we collect all predicted bounding boxes for all images and their scores.\\
+Refer to \figreft{fig:auc_heatmap} for summary of the test results. We clearly see the correlation between set size and the success in testing. Training with only one sample returns the worst results, by distance, with a mean \gls{auc} over all parts and all runs of 0.72. With increasing set size the test results saturate quickly. The mean \gls{auc} for all larger set sizes lie inside a range of only 0.03. That may be explainable with our training settings, which are designed for fast training and has no time to incorporate a high number of examples into the representation learning. All evaluations can be found in appendix \ref{sec:appendix:pr_roc}.
 
-For a summary of test results see \figreft{fig:auc_heatmap}. We clearly see the correlation between set size and the success in testing. Training with only one sample returns the worst results, by distance, with a mean \gls{auc} over all parts and all runs of 0.72. With increasing set size the test results saturate quickly. The mean \gls{auc} for all larger set sizes lie inside a range of only 0.03. That may be explainable with our training settings, which are designed for fast training and has no time to incorporate a high number of examples into the representation learning.\TODO{add baseline comparsion}
+For a subset of the evaluations we report the performance evaluation of the baseline. The detector using \gls{hog} features returns poor detections independently of training set size. To simplify the comparison to our approach we only report the best results of the baseline, achieved using the biggest set size ($k = 100$). While the baseline provides evidence for the success of our method, we can not use the overperformance to disqualify any classical object detector as we compare to a highly simplified model.
 
 Besides the anticipated correlation between set size and test success, we also show the correlation between different object parts and the success in quickly learning their representation. An example for this difference is given in \figreft{fig:pr_example}. Training on human hair was one of the more successful experiments while training on human necks does not return a useful classifier. The difference can be explained by the amount of discriminating structure a part has to offer. While necks most of the time are very small mostly contrast-less and structure-less patches, hair has a distinguishable surface and therefore more recognizable visual features.
 

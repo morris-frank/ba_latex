@@ -10,10 +10,25 @@
     \caption{Two screenshots of the provided online app using our method. Left shows the selection screen previous to a new search. Right shows the result screen displaying live results.}
     \label{fig:application}
 \end{figure}
-We bring the described method to application as a semantic image search machine. For this we build a small exemplar web application using the Flask microframework.
+We bring the described method to application as a semantic image search machine. For this we build a small exemplar web application using the Flask microframework.\\
+After configuring the program for a new image database, the web application enables users to search for similar objects given a query image patch. In the main view the user can sift through the image dataset to pick an image which contains the object of interest. For a single image the \gls{gui}\fref{fig:application} provides a intuitive way to select a rectangular part of an image. Alternatively the user may upload an image to the web page, to search the database with an external image. Next the user can start the search with the provided patch. The backend quickly fine-tunes the \gls{resnet} under the same conditions as described in \treft{sec:results}. Because we do not have any semantic information about the images or the objects seen in them we can not yield guaranteed negative samples given a query patch. Thereby we resort to random patches that we randomly sample at different sizes from the whole dataset. In training we pick 500 seed patches from the query image so that we can set those against a equal number of random chosen negatives. We assume that even with some actual positive under the negatives, the high number of samples lowers their influence in training.\\
+Following the training, the network is instantly reshaped into the \gls{fcn} and set up for normal image forwarding. The images from the database are all forwarded through the detection pipeline. While the network is still running the program collects the best results and presents the patches with the highest score to the user, in descending order by their scores.
 
-After configuring the program for a new image database, the web application enables users to search for similar objects given a query image patch. In the main view the user can sift through the image dataset to pick an image which contains the object of interest. For a single image the \gls{gui}\fref{fig:application} provides a simple graphical way to select a rectangular part of an image. Alternatively the user may upload an image to the web page, to search the database with an external image. Next the user can start the search with the provided patch. The backend quickly fine-tunes the \gls{resnet} under the same conditions as described in \treft{sec:results}.
-
-Following the training, the network is instantly reshaped into the \gls{fcn} and set up for normal image forwarding. The images from the database are all forwarded through the detection pipeline. While the network is still running the program collects the best results and presents the patches with the highest score to the user, in descending order by their scores. \citet{von_repgow_heidelberger_????}
-
-\TODO{examples of retrieval}
+\section{Retrieval examples}
+\label{sec:application:examples}
+\begin{figure}[htb]
+    \setlength\tabcolsep{3pt}
+    \renewcommand{\arraystretch}{0}
+    \begin{tabular}{c|ccccc}
+      \appim{000308_165_232_552_637} &
+      \appim{000005_200_450_300_550_pick} &
+      \appim{000036_300_500_400_600_pick} &
+      \appim{000055_250_450_350_550_pick} &
+      \appim{000053_400_350_500_450_pick} &
+      \appim{000033_300_396_400_529_pick} \\
+    \end{tabular}
+	\caption{The first patch on the left is the query image. Right are the five highest scoring retrievals cutted to show the whole faces. The actual proposed patches are drawn sharp on the blurred source images.}
+  \label{fig:retrieval}
+\end{figure}
+Returning to the objective domain of this thesis we set up our application with two dataset of art historical images. The first is a collection of drawn or printed portrait illustrations containing 923 images. The second consists of 567 scans of pages from the \textit{Sachsensiegel}     \citep{von_repgow_heidelberger_????}, a German law book from the 13th century.\\
+\figreft{fig:retrieval} displays some qualitative examples from those sets. Observe in the first how from the query portrait of Dante, three other portraits of Dante were retrieved (the second retrieval is from a different image depicting the same portrait).
