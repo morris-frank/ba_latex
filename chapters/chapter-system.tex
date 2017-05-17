@@ -16,17 +16,17 @@ For optimizing we use \gls{sgd} with momentum of 0.9. The weight decay is set at
 \label{sec:pipeline:training:augment}
 \begin{figure}[htb]
     \begin{tabularx}{\textwidth}{XXXXX}
-        \includegraphics[width=0.170\textwidth]{figures/build/parts_example} &
-        \includegraphics[width=0.170\textwidth]{figures/build/parts_example_2} &
-        \includegraphics[width=0.170\textwidth]{figures/build/parts_example_18} &
-        \includegraphics[width=0.170\textwidth]{figures/build/parts_example_19} &
-        \includegraphics[width=0.170\textwidth]{figures/build/parts_example_5} \\
+        \includegraphics[width=0.170\textwidth]{figures/aug/parts_example} &
+        \includegraphics[width=0.170\textwidth]{figures/aug/parts_example_2} &
+        \includegraphics[width=0.170\textwidth]{figures/aug/parts_example_18} &
+        \includegraphics[width=0.170\textwidth]{figures/aug/parts_example_19} &
+        \includegraphics[width=0.170\textwidth]{figures/aug/parts_example_5} \\
 
-        \includegraphics[width=0.170\textwidth]{figures/build/parts_example_6} &
-        \includegraphics[width=0.170\textwidth]{figures/build/parts_example_7} &
-        \includegraphics[width=0.170\textwidth]{figures/build/parts_example_8} &
-        \includegraphics[width=0.170\textwidth]{figures/build/parts_example_9} &
-        \includegraphics[width=0.170\textwidth]{figures/build/parts_example_10}
+        \includegraphics[width=0.170\textwidth]{figures/aug/parts_example_6} &
+        \includegraphics[width=0.170\textwidth]{figures/aug/parts_example_7} &
+        \includegraphics[width=0.170\textwidth]{figures/aug/parts_example_8} &
+        \includegraphics[width=0.170\textwidth]{figures/aug/parts_example_9} &
+        \includegraphics[width=0.170\textwidth]{figures/aug/parts_example_10}
     \end{tabularx}
 	\caption{Top-left is the original patch and the other ones are transformed samples. Painting sample is from the \textit{Portrait of the Procurator Giolamo Querini} by Bombelli, Sebastino \citep{bombelli_retrato_1669}.}
     \label{fig:augmentation}
@@ -65,9 +65,9 @@ In the following sections we explain each step in depth.
 \begin{figure}[htb]
     \begin{tabular}{ccc}
         A probability map & Thresholded map & Distance transform \\[3pt]
-        \includegraphics[width=0.303\textwidth]{figures/build/distance_transform_hm-img0} &
-        \includegraphics[width=0.303\textwidth]{figures/build/distance_transform_thres-img0} &
-        \includegraphics[width=0.303\textwidth]{figures/build/distance_transform_negative-img0}
+        \includegraphics[width=0.303\textwidth]{figures/distance_transform_hm} &
+        \includegraphics[width=0.303\textwidth]{figures/distance_transform_thres} &
+        \includegraphics[width=0.303\textwidth]{figures/distance_transform_negative}
     \end{tabular}
 	\caption{Computing the negative distance transform from a probability map}
     \label{fig:distance_transform}

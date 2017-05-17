@@ -1892,6 +1892,33 @@
       \endverb
       \keyw{Computer Science - Computer Vision and Pattern Recognition}
     \endentry
+    \entry{von_repgow_heidelberger_????}{book}{}
+      \name{author}{1}{}{%
+        {{hash=e540eea0c529419b1d8f999f0770ae48}{%
+           family={{von Repgow}},
+           familyi={v\bibinitperiod},
+           given={Eike},
+           giveni={E\bibinitperiod}}}%
+      }
+      \list{location}{1}{%
+        {Ostmitteldeutschland}%
+      }
+      \strng{namehash}{e540eea0c529419b1d8f999f0770ae48}
+      \strng{fullhash}{e540eea0c529419b1d8f999f0770ae48}
+      \strng{authornamehash}{e540eea0c529419b1d8f999f0770ae48}
+      \strng{authorfullhash}{e540eea0c529419b1d8f999f0770ae48}
+      \field{labelalpha}{vonnd}
+      \field{sortinit}{v}
+      \field{sortinithash}{d18f5ce25ce0b5ca7f924e3f6c04870e}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{shorttitle}
+      \field{shorttitle}{Eike von {{Repgow}}}
+      \field{title}{Heidelberger {{Bilderhandschrift}} Des {{Sachsenspiegels}} - {{Universitätsbibliothek Heidelberg}}, {{Cod}}. {{Pal}}. Germ. 164}
+      \field{year}{[Begin 14th. c. (Date according to written find)]}
+      \verb{file}
+      \verb HEIDI:/home/morris/var/zotero/storage/7FW6573P/search.html:text/html
+      \endverb
+    \endentry
     \entry{wang_learning_2014}{inproceedings}{}
       \name{author}{8}{}{%
         {{hash=d79c0a25d1b013fc9e5226b9b6d422db}{%

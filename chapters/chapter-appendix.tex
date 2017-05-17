@@ -19,7 +19,7 @@
 		\code{bird\_tail} & Bird & Tail \\ %\hline
 		\code{bottle\_body} & Bottle & Body \\ %\hline
 		\code{bus\_car\_bliplate\_fliplate} & Bus, Car & Front and back license plate \\ %\hline
-		\code{car\_door} & Car & door \\ %\hline
+		\code{car\_door} & Car & Door \\ %\hline
 		\code{cow\_sheep\_lhorn\_rhorn} & Cow, Sheep & Left horn, right horn \\ %\hline
 		\code{motorbike\_bwheel\_fwheel} & Motorbike & Front wheel, back wheel \\ %\hline
 		\code{person\_hair} & Person & Hair \\ %\hline
@@ -40,31 +40,18 @@
 \section{\textsc{Pascal}-Part test results}
 \label{sec:appendix:pr_roc}
 \begin{longtabu} to \textwidth {XX}
-    \includegraphics[width=0.47\textwidth]{figures/build/aeroplane_lwing_rwing_precs_recs.pdf} &
-    \includegraphics[width=0.47\textwidth]{figures/build/aeroplane_lwing_rwing_roc.pdf} \\
-    \includegraphics[width=0.47\textwidth]{figures/build/aeroplane_stern_precs_recs.pdf} &
-    \includegraphics[width=0.47\textwidth]{figures/build/aeroplane_stern_roc.pdf} \\
-    \includegraphics[width=0.47\textwidth]{figures/build/bird_head_precs_recs.pdf} &
-    \includegraphics[width=0.47\textwidth]{figures/build/bird_head_roc.pdf} \\
-    \includegraphics[width=0.47\textwidth]{figures/build/bird_tail_precs_recs.pdf} &
-    \includegraphics[width=0.47\textwidth]{figures/build/bird_tail_roc.pdf} \\
-    \includegraphics[width=0.47\textwidth]{figures/build/bottle_body_precs_recs.pdf} &
-    \includegraphics[width=0.47\textwidth]{figures/build/bottle_body_roc.pdf} \\
-    \includegraphics[width=0.47\textwidth]{figures/build/cow_sheep_lhorn_rhorn_precs_recs.pdf} &
-    \includegraphics[width=0.47\textwidth]{figures/build/cow_sheep_lhorn_rhorn_roc.pdf} \\
-    \includegraphics[width=0.47\textwidth]{figures/build/person_hair_precs_recs.pdf} &
-    \includegraphics[width=0.47\textwidth]{figures/build/person_hair_roc.pdf} \\
-    \includegraphics[width=0.47\textwidth]{figures/build/person_lfoot_rfoot_precs_recs.pdf} &
-    \includegraphics[width=0.47\textwidth]{figures/build/person_lfoot_rfoot_roc.pdf} \\
-    \includegraphics[width=0.47\textwidth]{figures/build/person_lhand_rhand_precs_recs.pdf} &
-    \includegraphics[width=0.47\textwidth]{figures/build/person_lhand_rhand_roc.pdf} \\
-    \includegraphics[width=0.47\textwidth]{figures/build/person_neck_precs_recs.pdf} &
-    \includegraphics[width=0.47\textwidth]{figures/build/person_neck_roc.pdf} \\
-    \includegraphics[width=0.47\textwidth]{figures/build/person_torso_precs_recs.pdf} &
-    \includegraphics[width=0.47\textwidth]{figures/build/person_torso_roc.pdf} \\
-    \includegraphics[width=0.47\textwidth]{figures/build/pottedplant_plant_precs_recs.pdf} &
-    \includegraphics[width=0.47\textwidth]{figures/build/pottedplant_plant_roc.pdf} \\
-    \includegraphics[width=0.47\textwidth]{figures/build/train_head_precs_recs.pdf} &
-    \includegraphics[width=0.47\textwidth]{figures/build/train_head_roc.pdf}
+    \prplot{aeroplane_lwing_rwing} & \rocplot{aeroplane_lwing_rwing} \\
+    \prplot{aeroplane_stern} & \rocplot{aeroplane_stern} \\
+    \prplot{bird_head} & \rocplot{bird_head} \\
+    \prplot{bird_tail} & \rocplot{bird_tail} \\
+    \prplot{bottle_body} & \rocplot{bottle_body} \\
+    \prplot{cow_sheep_lhorn_rhorn} & \rocplot{cow_sheep_lhorn_rhorn} \\
+    \prplot{person_hair} & \rocplot{person_hair} \\
+    \prplot{person_lfoot_rfoot} & \rocplot{person_lfoot_rfoot} \\
+    \prplot{person_lhand_rhand} & \rocplot{person_lhand_rhand} \\
+    \prplot{person_neck} & \rocplot{person_neck} \\
+    \prplot{person_torso} & \rocplot{person_torso} \\
+    \prplot{pottedplant_plant} & \rocplot{pottedplant_plant} \\
+    \prplot{train_head} & \rocplot{train_head}
 	\label{tab:combos}
 \end{longtabu}
