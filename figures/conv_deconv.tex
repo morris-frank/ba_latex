@@ -55,8 +55,8 @@
         \draw [->] (1,4.75) -- (0.5,4.75);
         \draw [->] (1,4.25) -- (0.5,4.25);
     \end{tikzpicture} \\[6pt]
-    (a) Convolution & (b) Deconvolution
+    (a) Convolution & (b) Transposed Convolution
     \end{tabular}
-    \caption{Convolution with stride 2 in 1D \citep{shi_is_2016} and deconvolution with stride 2. Input signals are at the top, output is to the right and the gray boxes are padding. With the arrows we note how input points contribute to the output. The convolution applies a filter of size 4 to an signal of size 8 and with the padding produces an output of size 5. The deconvolution in return takes a input of 5 and returns a signal of size 10.}
+    \caption{Convolution with stride 2 in 1D and transposed convolution with stride 2. Input signals are at the top, output is to the right and the gray boxes are padding. With the arrows we note how input points contribute to the output. The convolution applies a filter of size 4 to an signal of size 8 and with the padding produces an output of size 5. The transposed convolution in return takes a input of 5 and returns a signal of size 10. Figure is based on \citep{shi_is_2016}.}
     \label{fig:1d_strided_conv}
 \end{figure}

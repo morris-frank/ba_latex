@@ -1,7 +1,11 @@
-% !TEX root = ../thesis.tex
+% !TEX root = ../thesis.texSecondly
 %
 \chapter{Conclusion}
 \label{sec:conclusion}
-This thesis presents an image retrieval system employing a \acrlong{fcn} for efficient object detection. For this the underlying \gls{resnet} is quickly and without the objective of convergence fine-tuned with a set of heavily augmented versions of the query image. The linear classifier is converted to a convolutional operator to perform sparse class probability prediction on images of any size. Using these probability maps we predict the existence of the query object inside larger images and yield those patches.
-\TODO{finish conclusion}
-% Although the method proved successful in finding similar objects with only few or only one query image to train from, we the presented method ha
+In this thesis we present an image retrieval system employing a \acrlong{fcn} for efficient object detection. With a set of transformed samples derived from a query image we fine-tune the underlying \gls{resnet}. Training is done without a training progress dependent abort condition. The linear classifier is converted to a convolution to predict sparse class probabilities on images of varying size. Using these probability maps we predict the existence of alike objects in images. We yield these patches and thereby we retrieve object instances from image set related to the training samples.
+
+With our results on \textsc{Pascal}-Part and the application on art historical images we provide evidence that this approach can carry out image retrieval in unlabeled, context-less images using a small number of examples, ultimately only a single one. On the one hand, the tests on \textsc{Pascal}-Part verify the supposition, that providing the network with more positives image samples drastically improves its detection results, on the other hand we showed that under our test settings results quickly converged over an increasing number of examples.
+
+Although we prove the methods effectiveness we recognize multiple drawbacks. Firstly the time complexity \tref{sec:results:time} it restricts its use on small datasets of images and makes instance retrieval somewhat cumbersome. Secondly our region scoring method throughout prefers small boxes enclosed by the object we actually want to enclose.
+
+The approach could be continued and improved on multiple different ways. Of most importance is the unanswered question, how to use the image representation provided by the deep filter of a \gls{cnn} to bootstrap an approximate object detector without having to actually iteratively train the network.\TODO{1 satz hier} To fasten the approach it may be possible to formulate the complete pipeline inside the neural network, reducing time costs. Taking densities of regions is average pooling and thus can be done within the network, as well as upsampling through convolutions.

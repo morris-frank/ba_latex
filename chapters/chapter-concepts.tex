@@ -13,17 +13,20 @@
 \label{sec:concepts:tasks}
 Although the posed task for this thesis is pretty clear from its formulation, we want to quickly distinguish the similar but different image understanding tasks that are solved using these techniques.
 
-The simplest task that was tackled is \textbf{image classification}. In image classification the data are images containing a single object that fills most of the image. Hence the task is to find the class of that singular object which describes the whole image. Since 2015 \glspl{cnn} can surpass the performance of humans doing classification \citep{he_delving_2015}.
+The simplest task that was tackled is \textbf{image classification}. In image classification the input are images $I$ containing a single object that fills most of the image. Hence the task is to find the class label $c$ for the singular object $o$ which therefore labels the whole image: $f(I) = c_o$. Since 2015 \glspl{cnn} can surpass the performance of humans doing classification \citep{he_delving_2015}.
 
-Next \textbf{object localization} was addressed. Localization means that we still have only one relevant object per image but here the object fills only a part of the image. Instead of only predicting the class of this object the localizer also has to predict translation and scaling for each image.
+Next \textbf{object localization} was addressed. Localization means that we still have only one relevant object per image $I$ but here the object fills only a part of the image. Instead of only predicting the class $c$ for this object $o$ the localizer also has to predict translation $t$ and scaling $s$ for the object: $f(I) = (c, t, s)_o$
 
-Harder to solve but also way more applicable is \textbf{object detection}. Now we take complicated images, containing a variable number of overlapping objects, each of varying class. The detector has to identify all objects it was trained for, inside each image and predict their boundaries.
+Harder to solve but also way more applicable is \textbf{object detection}. Now we take complicated images $I$, containing a variable number of possibly overlapping objects $O = \{o_1,o_2,\dotsc,o_n\}$, each of varying class $c$. The detector has to identify and localize all objects inside the image: $f(I) = \{(c, t, s)_1, (c, t, s)_2,\dotsc,(c, t, s)_n\}$
 
-Lastly we have \textbf{image segmentation}. Here we aim to not only identify multiple different objects in an image but also to find their boundaries on the pixel level. As such each pixel of a found object in the image is labeled with its class label resulting in multiple binary masks each masking out one individual object.
+Lastly we have \textbf{image segmentation}. Here we aim to not only identify multiple different objects $o$ in an image $I$ but also to find their boundaries on the pixel level: f(I) =$ \{ c_i\ \forall i \in I\}$ As such each pixel of a found object in the image is labeled with its class label resulting in multiple binary masks each masking out one individual object.
 
 \section{Neural Networks}
 \label{sec:concepts:nn}
 Neural networks are a specific method to approximate a function $f(x) = y$ that yields some desired output from input data. For example this could be the task to return the name of the breed given images of dogs as input. They are called networks because they are a composite of chained functions, each computing some output from some input. Data flows from the top, the first computation, to the end getting further processed: $f(x) = f_n(f_{n-1}(\dots f_1(x))) = y$. When the network is connected on a acyclic graph, meaning the flowing data does not go through any loops, we call the network a \textbf{feedforward network}.
+\TODO{glue}
+
+Working on raw pixel values of images, it will, in the most cases, not be possible to find a linear decision function which separates inputs according to the task \citep{lecun_deep_2015}. To discriminate such representation we need a non-linear decision boundary and thus a neural network should be a composite of linear and non-linear operations, so that it, at least in theory, can approximate the non-linear representation.
 
 \subsection{Gradient descent}
 \label{sub:concepts:nn:gd}
@@ -78,23 +81,17 @@ Inside \glspl{cnn} we use convolutions to map, how much a specific small structu
 
 Formerly common to use as an activation function was the sigmoid. The sigmoid $\sigma(x) = 1/(1+e^{-x})$ \fref{fig:sigmoid_relu} takes an unbounded input range and squashes it into the range $[0, 1]$. Today sigmoids are mostly avoided as they hold multiple drawbacks. First as the function values saturate in both directions its gradient can approximate zero, which with backpropagation can lead to zeroed gradients or exploding gradients while training. Secondly the gradient computation is slow due to its non-linear form.
 
-It has been shown before that convolutions are linear operations. A chain of convolutions would still return a linear classifier but we know, that working on raw pixel values from our images, it will, in the most cases, be impossible to linearly separate the different classes \citep{lecun_deep_2015}. To discriminate such representation we need a non-linear division boundary and thus a \gls{cnn} should be a composite of linear and non-linear operations, so that it, at least in theory, can approximate the non-linear representation. Therefore a non-linear activation function is important in most network architectures.
-
-One popular function to hold those properties is the rectifier
+One popular function to hold those properties is the rectifier \fref{fig:sigmoid_relu}
 \begin{equation}
     \rho(x) = max(0, x)
 \end{equation}
-\fref{fig:sigmoid_relu} employed in \glspl{relu}. While being piecewise linear, and therefore computationally efficient, the rectifier is a non-linear function and can fold the decision space into a non-linear form.  As it is saturating it avoids the problems of zeroed or exploding gradients that the sigmoid has.
+employed in \glspl{relu}. While being piecewise linear, and thus still computationally efficient, the rectifier is a non-linear function and can fold the decision space into a non-linear form. Because it does not saturate like the sigmoid it avoids the problems of zeroed or exploding gradients.
 
 \subsection{Pooling}
 \label{sub:concepts:nn:pooling}
 A typical building block for \glspl{cnn} is the triple of a \gls{conv} layer, followed by a non-linear activation function, followed by a pooling layer. The pooling layer takes its input from the previous layer and compresses it spatially into into a smaller form. Different functions can be applied to the data neighborhood from the input. Average pooling \citep{lecun_handwritten_1990} or max pooling \citep{zhou_computation_1988} are two of the most prominent ones. With average pooling we return the average of the values from the neighborhood and with max pooling we return the maximum value from the neighborhood.
 
 It is important to note that average pooling is a linear function while max pooling is not. Pooling can be used to introduce more non-linearity and that is one reason while max pooling is more popular to use. Also as downsampling of the deep filters can be done with strided convolutions alone, pooling is not necessary needed for this and more and more network architectures drop the pooling layers entirely \citep{springenberg_striving_2014}.
-
-\subsection{Regularization} % (fold)
-\label{sub:conepts:nn:regularization}
-\TODO{write section}
 
 \subsection{Batch Normalization} % (fold)
 \label{sub:conepts:nn:batchnorm}
@@ -112,10 +109,10 @@ Proposed by \citet{long_fully_2015}, \glspl{fcn} are a specific architecture of 
 
 The original authors use this architecture for image segmentation. They build their network from classic semantic object classifiers like VGG-16 \citep{simonyan_very_2014}. These take fixed sized images as inputs and produce a single label thereby classifying the whole image. Typically these networks produce high level features through a series of convolutional layers and classify them with a single or a series of \gls{fc} layers. To label an image pixel-wise with such an architecture we would have to forward the neighborhood of each pixel through the network which would introduce an \bigO{w * h} time complexity ($w$ and $h$ being the width and the height of the image).
 
-\subsection{Deconvolution} % (fold)
+\subsection{Transposed Convolution} % (fold)
 \label{sub:conepts:fcn:deconv}
 \input{figures/conv_deconv}
-Deconvolution or often called transposed convolution, first used by \citet{zeiler_deconvolutional_2010}, introduces a new operation for neural networks. Simply spoken a deconvolution takes the receptive field and produces a larger window as output, thus operating some form of upsampling. \figreft{fig:1d_strided_conv} visualizes the differences between convolution and deconvolution in $1d$.
+Transposed convolution or sometimes mistakenly called deconvolution, first used by \citet{zeiler_deconvolutional_2010}, introduces a new operation for neural networks. Simply spoken a transposed convolution takes the receptive field and produces a larger window as output, thus operating some form of upsampling. \figreft{fig:1d_strided_conv} visualizes the differences between convolution and transposed convolution in $1d$.
 \TODO{finish section}
 
 \subsection{Conversion of \gls{fc} layers}
@@ -126,7 +123,7 @@ For the former images of $224\times224$ pixels nothing changed as the output of 
 
 \subsection{Upsampling through Convolutions}
 \label{sub:concepts:fcn:upsampling}
-A \gls{fcn} as in \citep{long_fully_2015} outputs a small sparse score map. For an input image of $200\times 200$ pixels, that could be something around $10\times 10$ values. Naturally we want an output map with the same size as the input. Firstly we can use feature maps from earlier layers with their own classifiers to reduce the stride of the resulting score map but the score map from deeper layers has still to be upsampled to the input size. Upsampling can be done directly within the network using convolutions. It is possible to use deconvolutions to upsample the inputs and filter them at the same time but this often introduces artifacts \citep{odena_deconvolution_2016}. Alternatively refining e.g. bilinear kernels in training does not help much in performance \citep{shelhamer_fully_2016}. It seems successful to upsample the score maps with a normal interpolation followed by normal convolutions at the bigger size \citep{dong_image_2016}.
+A \gls{fcn} as in \citep{long_fully_2015} outputs a small sparse score map. For an input image of $200\times 200$ pixels, that could be something around $10\times 10$ values. Naturally we want an output map with the same size as the input. Firstly we can use feature maps from earlier layers with their own classifiers to reduce the stride of the resulting score map but the score map from deeper layers has still to be upsampled to the input size. Upsampling can be done directly within the network using convolutions. It is possible to use transposed convolutions to upsample the inputs and filter them at the same time but this often introduces artifacts \citep{odena_deconvolution_2016}. Alternatively refining e.g. bilinear kernels in training does not help much in performance \citep{shelhamer_fully_2016}. It seems successful to upsample the score maps with a normal interpolation followed by normal convolutions at the bigger size \citep{dong_image_2016}.
 
 \section{Residual Networks}
 \label{sec:concepts:resnet}
@@ -169,6 +166,7 @@ Here a detector that predicts only positives will receive full recall and theref
 
 Our detector returns probability scores for each positive predicted box. To reduce those to a binary decision of \textit{does belong} and \textit{does not belong} we have to select an cut-off value for accepting positives. Now we can analyze how precision and recall change while we change this threshold. This transition is plotted in the precision-recall curve in which we plot precision against recall over the changing discrimination value.
 
+\clearpage
 \subsubsection{\gls{roc}}
 Another often employed evaluation method are \gls{roc} curves and their \gls{auc}. For the \gls{roc} we pose the \gls{tpr} which tells how many of the positives we detected as positives against the \gls{fpr} which tells how many of the negatives were predicted as false positives. \gls{tpr} tells the probability that we hit a positive and \gls{fpr} tells the probability of an false alarm.
 

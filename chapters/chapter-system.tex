@@ -10,7 +10,7 @@ We use the \gls{resnet}-50 \tref{sec:concepts:resnet:design} as the basis for ou
 As we aim for fast \textit{approximate} training on a single class, it is not feasible to retrain or refine any of the \gls{conv} layers and instead we only train the weights of the single \gls{fc} layer. Additionally refining the last \gls{conv} layers in the same restricted number of iterations did not yield considerable better results.\\
 We want to use an \gls{fcn} to provide localized object predictions. This is done by the classifier to \gls{fcn} conversion described in \treft{sec:concepts:fcn}. The classifying \gls{resnet} is transformed by converting the \gls{fc} layer into a \gls{conv} layer after training and appending an upsampling operation of the sparse prediction map. Following the results of \citep{shelhamer_fully_2016}, we do not train the upsampling and use fixed bilinear weights. Again the new \gls{conv} layer could be refined on the pixel level using segmentation maps but under our self-imposed restrictions the further training did not result in considerable success.
 
-For optimizing we use \gls{sgd} with momentum of 0.9. The weight decay is set at 0.0001 and the learning rate fixed at \num{1e-6}. Employing a learning rate reduction method, like reducing after fixed steps, did not influence training results and is thus omitted. Because we want time limited training we abort training independent from training progress after 500 iterations. The fixed number of iterations was chosen after multiple test with shorter and longer training durations.
+For optimizing we use \gls{sgd} with momentum of 0.9. The weight decay is set at 0.0001 and the learning rate fixed at \num{1e-6}. Employing a learning rate reduction method, like reducing after fixed steps, did not influence training results and is thus omitted. Because we want time limited training we abort training independent from any validation measure after 500 iterations. Thereby we guarantee constant time complexity in training. The fixed number of iterations was chosen after multiple test with shorter and longer training durations.
 
 \subsection{Preprocessing and augmentation}
 \label{sec:pipeline:training:augment}
@@ -46,7 +46,7 @@ Some examples of transformed images under those boundaries are seen in \figreft{
 
 Because the generation of new augmented samples severely slows down training if done on demand we generate new samples in parallel to the network training on the CPU.
 
-For good training performance we need a balanced set of positive samples and negative background samples. Therefore we want to feed the image augmenter a balanced set of seed patches. We enlarge the set of positive seed samples by initial randomly translated patches around each $i\in I_k$ with $t_{x'},t_{y'}\in[-\SI{25}{\percent}, \SI{25}{\percent}]$. This also has the advantage, that the image augmenter additionally receives the surroundings of the original query box. Depending on the set size $k$ we get $ppI$ number of samples from each $i$ and take the same number of negative samples. Thereby we have at last $n = 2\cdot k \cdot ppI$ input samples for the generator.
+For good training performance we need a balanced set of positive samples and negative background samples. Therefore we want to feed the image augmenter a balanced set of seed patches. We enlarge the set of positive seed samples by initial randomly translated patches around each $i\in I_k$ with $t_{x'},t_{y'}\in[-\SI{25}{\percent}, \SI{25}{\percent}]$. This also has the advantage, that the image augmenter additionally receives the surroundings of the original query box. Depending on the set size $k$ we get $ppI$ number of seed samples from each image $i$ and take the same number of negative seed samples. Thereby we have at last $n = 2\cdot k \cdot ppI$ input samples for the generator.
 
 \section{Generating detections}
 \label{sec:pipeline:eval}
@@ -80,6 +80,7 @@ Second we apply a distance transform to the mask that resulted from the threshol
 \end{equation}
 The transformed image is normalized and substracted from the original probability map. This additional step showed to increases mean \gls{auc} on the \textsc{Pascal}-Part by 2\% for sets with $< 25$ images.
 
+\clearpage
 \subsection{Calculating the score densities}
 \label{sec:pipeline:eval:density}
 For each processed image we generate a set of boxes to calculate the score densities for. At three scales we take boxes $\{B_1,\dotsc, B_i = (x_0, y_0, x_1, y_1)_i,\dotsc, B_k\}$ with three different aspect ratios for $k=9$ \citep{ren_faster_2015} proposals at each position. We slide these anchor boxes  with overlapping stride over the image and collect the resulting slices. Also we save the areas $\{A_1,\dotsc, A_i,\dotsc\}$ of all rectangles.\\
@@ -97,6 +98,7 @@ Next the probability density of each box is computed through:
     \rho_i = \frac{\sum_{B_i}I(x,y)}{A_i}
 \end{equation}
 
+\clearpage
 \subsection{Non maximum suppression}
 \label{sec:pipeline:eval:nms}
 \begin{figure}[htb]
