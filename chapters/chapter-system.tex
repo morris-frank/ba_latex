@@ -50,7 +50,7 @@ For good training performance we need a balanced set of positive samples and neg
 
 \section{Generating detections}
 \label{sec:pipeline:eval}
-Our desired output of the algorithm is one or are multiple boxes enclosing each a section of the image, which are predicted to contain the object that was searched for. The \gls{fcn} returns a score map as output. Each score predicts the probability of this pixel to belong to the class we trained for. Therefore we need a method to return high scoring bounding boxes from a probability map. The way of doing this used here consists of multiple steps:\\
+Our desired output of the algorithm is one or are multiple boxes $B=\{b_0,\dotsc,b_n\}$ enclosing each a section of the image $I$, which are predicted to contain the object that was searched for. The \gls{fcn} returns a score map $M$ as output. Each score $m_{i,j}\in M$ predicts the probability of this pixel $(i,j)$ to belong to the class $c$ we trained for. Therefore we need a method $g(M) = B$ to return high scoring bounding boxes from a probability map. The way of doing this used here consists of multiple steps:\\
 \begin{my_list_num}
     \item We penalize (near-) empty regions inside the probability map with a negative distance transform
     \item We generate a set of boxes on a regular grid over the image shape
@@ -72,30 +72,30 @@ In the following sections we explain each step in depth.
 	\caption{Computing the negative distance transform from a probability map}
     \label{fig:distance_transform}
 \end{figure}
-Many images produce probability maps, that are sparsely filled. Positive regions receive a positive score from the network, while non-positive regions are at-most zero. Thus the maps contain flat regions of constant values. We want to score the inner values of flat regions negatively, compared to boundary values. Here we introduce a distance transform to, sort of, impress those regions. \fref{fig:distance_transform}.\\
-First we threshold the score map with a near-zero value, to set all values, that can safely assumed to be negatives, to zero.\\
-Second we apply a distance transform to the mask that resulted from the thresholding. A distance transform fills each zero pixel of the mask with its distance to the nearest one valued pixel. The distances are calculated with some metric, like the Euclidean distance or the $L_1$ distance. As the specific metric is not important for our vague penalizer and as we aim for good time performance we use the $L_\infty$ distance, also known as the chessboard distance. For our 2-dimensional image space the metric is defined as follows:
+Many images produce probability maps $M$, that are sparsely filled. Positive regions receive a positive score from the network, while non-positive regions are at-most zero. Thus the maps contain flat regions of constant value. We want to score the inner lying values of flat regions negatively, compared to boundary values. Here we introduce a distance transform to, sort of, impress those regions \fref{fig:distance_transform}.\\
+First we threshold the score map with a near-zero value to set all values, that can safely assumed to be negatives, to zero.\\
+Second we apply a distance transform to the mask $M'$ that resulted from the thresholding. A distance transform fills each zero pixel of the mask with its distance to the nearest one valued pixel. The distances are calculated with some metric, like the Euclidean distance or the $L_1$ distance. As the specific metric is not important for our vague penalizer and as we aim for good time performance we use the $L_\infty$ distance, also known as the chessboard distance. For our 2-dimensional image space the metric defines the distance between two points $(x_1, y_1)$ and $(x_2, y_2)$ as follows:
 \begin{equation}
     L_\infty = \max(|x_2 - x_1|, |y_2 - y_1|)
 \end{equation}
-The transformed image is normalized and substracted from the original probability map. This additional step showed to increases mean \gls{auc} on the \textsc{Pascal}-Part by 2\% for sets with $< 25$ images.
+The transformed image is normalized and substracted from the original probability map. This additional step increases mean \gls{auc} on the \textsc{Pascal}-Part by 2\% for sets with $< 25$ images.
 
 \clearpage
 \subsection{Calculating the score densities}
 \label{sec:pipeline:eval:density}
-For each processed image we generate a set of boxes to calculate the score densities for. At three scales we take boxes $\{B_1,\dotsc, B_i = (x_0, y_0, x_1, y_1)_i,\dotsc, B_k\}$ with three different aspect ratios for $k=9$ \citep{ren_faster_2015} proposals at each position. We slide these anchor boxes  with overlapping stride over the image and collect the resulting slices. Also we save the areas $\{A_1,\dotsc, A_i,\dotsc\}$ of all rectangles.\\
-Density is calculated by summing up all the probabilities from the score map inside each window and dividing those by the area of the box. To achieve that as efficiently as possible we use the integral image $I_\Sigma$ of our score map $I$. A value in the integral image is the sum of all values in the source image lying left and above the anchor coordinates:
+For each processed image we generate a set of boxes to calculate the score densities for. At three scales we take boxes $\{b_1,\dotsc, b_i = (x_0, y_0, x_1, y_1)_i,\dotsc, b_k\}$ with three different aspect ratios for $k=9$ \citep{ren_faster_2015} proposals at each position. We slide these anchor boxes  with overlapping stride over the image and collect the resulting slices. Also we save the areas $\{A_1,\dotsc, A_i,\dotsc\}$ of all rectangles.\\
+Density is calculated by summing up all the probabilities from the score map inside each window and dividing those by the area of the box. To achieve that as efficiently as possible we use the integral image $M_\Sigma$ of our score map $M$. A value in the integral image is the sum of all values in the source image lying left and above the anchor coordinates:
 \begin{equation}
-    I_\Sigma(x, y) = \sum_{\substack{x' \le x\\ y' \le y}} I(x', y')
+    M_\Sigma(x, y) = \sum_{\substack{x' \le x\\ y' \le y}} M(x', y')
 \end{equation}
 With the integral image the sum inside any rectangle of the image $I$ can then be yielded efficiently with:
 \begin{equation}
-    \sum_{\substack{x_0 < x \le x_1\\ y_0 < y \le y_1}}I(x,y) = I_\Sigma(x_1, y_1) + I_\Sigma(x_0, y_0) - I_\Sigma(x_1, y_0) - I_\Sigma(x_0, y_1)
+    \sum_{\substack{x_0 < x \le x_1\\ y_0 < y \le y_1}}M(x,y) = M_\Sigma(x_1, y_1) + M_\Sigma(x_0, y_0) - M_\Sigma(x_1, y_0) - M_\Sigma(x_0, y_1)
 \end{equation}
 
 Next the probability density of each box is computed through:
 \begin{equation}
-    \rho_i = \frac{\sum_{B_i}I(x,y)}{A_i}
+    \rho_i = \frac{\sum_{b_i}I(x,y)}{A_i}
 \end{equation}
 
 \clearpage
@@ -110,5 +110,5 @@ Next the probability density of each box is computed through:
 	\caption{The effect of \acrfull{nms}.}
     \label{fig:nms}
 \end{figure}
-Depending on the number of scales, we generate hundreds or even thousands of boxes per image. We want to eliminate boxes that are overlapping with another box, which has a higher density. Firstly we drop the worst boxes $B_i: \rho_i < \rho_{min}$ with a low set threshold. While this is not necessary, it improves time performance and does not affect testing performance.\\
-To the remaining boxes we apply \gls{nms}, as described by \citet{felzenszwalb_discriminatively_2008}. In the \gls{nms} we first sort all boxes by their descending scores, which in our case are the probability densities. We mark the strongest box as picked. Then we calculate the overlap in area between the new picked box and all remaining boxes. All boxes of which the area overlaps the picked box with 50\% or more are dropped. We pick the next strongest score of the remaining set and continue this process until all boxes are either dropped or picked. The strongest not-overlapping boxes remain picked and are returned. \figreft{fig:nms} shows the condensing effect of \gls{nms}.\\For minimal computational cost of this step we use the improved implementation from \citet{malisiewicz_ensemble_2011}.
+Depending on the number of scales, we generate hundreds or even thousands of boxes per image. We want to eliminate boxes that are overlapping with another box, which has a higher density. Firstly we drop the worst boxes $\{b_i: \rho_i < \rho_{min}\}$ with a low set threshold. While this is not necessary, it improves time performance and does not affect testing performance.\\
+To the remaining boxes we apply \gls{nms}, as described by \citet{felzenszwalb_discriminatively_2008}. In the \gls{nms} we first sort all boxes by their scores $\rho_i$ in descending order, which in our case are the probability densities. We mark the strongest box as picked. Then we calculate the overlap in area between the new picked box and all remaining boxes. All boxes of which the area overlaps the picked box with 50\% or more are dropped. We pick the next strongest score of the remaining set and continue this process until all boxes are either dropped or picked. The strongest not-overlapping boxes remain picked and are returned. \figreft{fig:nms} shows the condensing effect of \gls{nms}.\\For minimal computational cost of this step we use the improved implementation from \citet{malisiewicz_ensemble_2011}.

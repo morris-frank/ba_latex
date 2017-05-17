@@ -5,25 +5,21 @@
 
 \cleanchapterquote{Q: What's the difference between machine learning and statistics?\\A: ConvNets}{Bored Yann LeCun}{via Twitter}
 
-\section{Machine learning}
-\label{sec:concepts:ml}
-\TODO{write section}
-
 \section{Task definitions}
 \label{sec:concepts:tasks}
 Although the posed task for this thesis is pretty clear from its formulation, we want to quickly distinguish the similar but different image understanding tasks that are solved using these techniques.
 
 The simplest task that was tackled is \textbf{image classification}. In image classification the input are images $I$ containing a single object that fills most of the image. Hence the task is to find the class label $c$ for the singular object $o$ which therefore labels the whole image: $f(I) = c_o$. Since 2015 \glspl{cnn} can surpass the performance of humans doing classification \citep{he_delving_2015}.
 
-Next \textbf{object localization} was addressed. Localization means that we still have only one relevant object per image $I$ but here the object fills only a part of the image. Instead of only predicting the class $c$ for this object $o$ the localizer also has to predict translation $t$ and scaling $s$ for the object: $f(I) = (c, t, s)_o$
+Next \textbf{object localization} was addressed. Localization means that we still have only one relevant object per image $I$ but here the object fills only a part of the image. Instead of only predicting the class $c$ for this object $o$ the localizer also has to predict translation $t$ and scaling $s$ for the object: $f(I) = (c, t, s)_o$.
 
-Harder to solve but also way more applicable is \textbf{object detection}. Now we take complicated images $I$, containing a variable number of possibly overlapping objects $O = \{o_1,o_2,\dotsc,o_n\}$, each of varying class $c$. The detector has to identify and localize all objects inside the image: $f(I) = \{(c, t, s)_1, (c, t, s)_2,\dotsc,(c, t, s)_n\}$
+Harder to solve but also way more applicable is \textbf{object detection}. Now we take complicated images $I$, containing a variable number of possibly overlapping objects $O = \{o_1,o_2,\dotsc,o_n\}$, each of varying class $c$. The detector has to identify and localize all objects inside the image: $f(I) = \{(c, t, s)_1, (c, t, s)_2,\dotsc,(c, t, s)_n\}$.
 
-Lastly we have \textbf{image segmentation}. Here we aim to not only identify multiple different objects $o$ in an image $I$ but also to find their boundaries on the pixel level: f(I) =$ \{ c_i\ \forall i \in I\}$ As such each pixel of a found object in the image is labeled with its class label resulting in multiple binary masks each masking out one individual object.
+Lastly we have \textbf{image segmentation}. Here we aim to not only identify multiple different objects $o$ in an image $I$ but also to find their boundaries on the pixel level: f(I) =$ \{ c_i\ \forall i \in I\}$. As such each pixel of a found object in the image is labeled with its class label resulting in multiple binary masks each masking out one individual object.
 
 \section{Neural Networks}
 \label{sec:concepts:nn}
-Neural networks are a specific method to approximate a function $f(x) = y$ that yields some desired output from input data. For example this could be the task to return the name of the breed given images of dogs as input. They are called networks because they are a composite of chained functions, each computing some output from some input. Data flows from the top, the first computation, to the end getting further processed: $f(x) = f_n(f_{n-1}(\dots f_1(x))) = y$. When the network is connected on a acyclic graph, meaning the flowing data does not go through any loops, we call the network a \textbf{feedforward network}.
+Neural networks are a specific method to approximate a function $f(x) = y$, which yields some desired output from input data. For example this could be the task to return the name of the breed given images of dogs as input. They are called networks because they are a composite of chained functions, each computing one step of the overall function. Data flows from the top, the first computation, to the end getting further processed: $f(x) = f_n(f_{n-1}(\dots f_1(x))) = y$. When the network is connected on a acyclic graph, meaning the flowing data does not go through any loops, it is called a \textbf{feedforward network}.\\
 \TODO{glue}
 
 Working on raw pixel values of images, it will, in the most cases, not be possible to find a linear decision function which separates inputs according to the task \citep{lecun_deep_2015}. To discriminate such representation we need a non-linear decision boundary and thus a neural network should be a composite of linear and non-linear operations, so that it, at least in theory, can approximate the non-linear representation.
@@ -156,19 +152,19 @@ The result of this work is a binary object detector. Therefore a test run of the
 \subsubsection{Precision and Recall}
 One way to evaluate a binary detector is to plot the precision-recall curves. Precision is defined as the proportion of the predicted positives that are actual positives:
 \begin{equation}
-    \textit{precision} = \frac{|B_p \cap B_g|}{|B_g|}
+    \textit{precision} = \frac{|B_p \cap B_g|}{|B_p|}
 \end{equation}
-Therefore a detector which does not predict any positives would have perfect precision even though it is obviously bad. The counteracting measure to use is the recall. Recall or also called \gls{tpr} gives the proportion of all ground truth positives that are predicted positives:
+Therefore a detector which does not predict any positives would have perfect precision even though it is obviously bad. The counteracting measure to use is the recall. Recall or also called \gls{tpr} is defined as the proportion of all ground truth positives that we predicted as positives:
 \begin{equation}
-    \textit{recall} = \textit{tpr} = \frac{|B_p \cap B_g|}{|B_p|}
+    \textit{recall} = \textit{tpr} = \frac{|B_p \cap B_g|}{|B_g|}
 \end{equation}
 Here a detector that predicts only positives will receive full recall and therefore we want a model with high precision \textbf{and} high recall.
 
-Our detector returns probability scores for each positive predicted box. To reduce those to a binary decision of \textit{does belong} and \textit{does not belong} we have to select an cut-off value for accepting positives. Now we can analyze how precision and recall change while we change this threshold. This transition is plotted in the precision-recall curve in which we plot precision against recall over the changing discrimination value.
+Our detector returns probability scores for each positive predicted box. To reduce those to a binary decision of \textit{does belong} and \textit{does not belong} we have to select an cut-off value for accepting positives. We can look at how precision and recall change while we change this threshold. This transition is plotted in the precision-recall curve in which we plot precision against recall over the changing discrimination value.
 
 \clearpage
 \subsubsection{\gls{roc}}
-Another often employed evaluation method are \gls{roc} curves and their \gls{auc}. For the \gls{roc} we pose the \gls{tpr} which tells how many of the positives we detected as positives against the \gls{fpr} which tells how many of the negatives were predicted as false positives. \gls{tpr} tells the probability that we hit a positive and \gls{fpr} tells the probability of an false alarm.
+Another often employed evaluation method are \gls{roc} curves and the \gls{auc} of those. For the \gls{roc} we pose the \gls{tpr} which tells how many of the positives we detected as positives against the \gls{fpr} which tells how many of the negatives were predicted as false positives. \gls{tpr} tells the probability that we hit a positive and \gls{fpr} tells the probability of an false alarm.
 
 Plotting \gls{tpr} against \gls{fpr} over the changing discrimination threshold the same way as the precision-recall curve returns the \gls{roc} curve. The perfect detector would have a \gls{tpr} of 1 and a \gls{fpr} of 0, therefore we want a detector approaching this point of perfect classification. The \gls{roc} space reaches from 0 to 1 over both axes. A randomly guessing detector maps to the diagonal in this plot which is then discriminator between good and bad models.
 
