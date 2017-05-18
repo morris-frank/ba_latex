@@ -140,6 +140,6 @@ Furthermore we want to check that the cascade testing scheme was intensive enoug
   \label{fig:timings}
 \end{figure}
 For the application of this method in a live production setting, speed is from huge importance. Therefore we measure and report the duration for training and deployment of the network \fref{fig:timings}. Training takes around 3.5 minutes on a single Titan X and testing runs at around 55ms per image. With therefore approximately 18 images / second we are reaching real-time search in image databases.\\
-Although this is a short time for a train and test run of a neural network it  nevertheless does reduce the applicability of this approach. If we assume an art image database of 10.000 images, a query and complete search through the database would take $t \approx \SI{210}{\second} + \sfrac{10000}{18}s = \SI{12.8}{\minute}$.
+Although this is a short time for a train and test run of a neural network it  nevertheless does reduce the applicability of this approach. If we assume an art image database of 10.000 images, a query and complete search through the database would take $t \approx \SI{210}{\second} + \frac{10000}{18}s = \SI{12.8}{\minute}$.
 
 There might be options to improve the time performance. One idea is to precompute the last feature maps for all images, so that, while searching through the images, we only have to compute a single convolution and the bounding box retrieval. This might drastically improve retrieval speed but training the network still causes a practical barrier.

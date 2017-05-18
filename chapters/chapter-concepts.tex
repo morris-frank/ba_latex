@@ -36,25 +36,26 @@ can simply be expressed as a matrix multiplication with a weight matrix $W$ and 
 
 \subsection{Optimization with Stochastic Gradient descent}
 \label{sub:concepts:nn:gd}
-We give a real quick overview how neural networks are trained.\\
-At the end of a neural network in training are normally a score function $S$ and a loss function $L$. The score function assigns the input to semantic label, defined for a specific task. The loss function tells how good these assignments are thus rating the current data pass through the network. We want to modify the parameters of our network to a point where the loss is minimal. The process of finding these parameters is called optimization.\\
-The basic idea for optimization is to gradually, step by step, approach this parameter set. While the optimizer does that it moves over the function space of the loss function $L$ to find one of its minimums. To reach the local minimum of $L$ we search the steepest direction at the current point and follow it done. One method to iteratively update parameters according to their loss is \acrfull{sgd}. Each parameter $\theta$ follows the negative direction of the gradient $\Delta\theta = \sfrac{\delta L}{\delta \theta}$ of the loss function:
+We give a quick overview how neural networks are trained.\\
+At the end of a neural network, in training, are normally a score function $S$ and a loss function $L$. The score function assigns the input to a semantic label, defined for a specific task. The loss function tells how good these assignments are, thus rating the current data pass through the network. We want to modify the parameters of our network to a point where the loss is minimal. The process of finding these parameters is called optimization.\\
+The basic idea for optimization is to gradually, step by step, approach this optimal parameter set. While the optimizer does that, it moves over the function space of the loss function $L$ to find one of its minimums. To reach a local minimum of $L$ we search for the steepest direction at the current point and follow it done. One method to iteratively update parameters according to their loss is \acrfull{sgd}. Each parameter $\theta$ follows the negative direction of the gradient $\Delta\theta = \sfrac{\delta L}{\delta \theta}$ of the loss function:
 \begin{equation}
     \theta = \theta - \lambda \cdot \Delta \theta
 \end{equation}
-The factor $\lambda$ setting the length of each step down the gradient is called the learning rate. It has to been set beforehand and strongly influences training success.
+The factor $\lambda$ setting the length of each step down the gradient is called the learning rate. It has to been set before training and can strongly influences training results.
 
-A popular extension for \gls{sgd} is momentum \citep{qian_momentum_1999}. The momentum remembers a proportion $m$ of the last update vector $v_t$ and uses this memory to push the \gls{sgd} faster into a minimum.
+A popular extension for \gls{sgd} is momentum \citep{qian_momentum_1999}. With this method we remember a proportion $m$ of the last update vector $v_t$ and uses this memory to push the \gls{sgd} faster into a minimum.
 \begin{equation}
-    v_t = m\cdot v_{t-1} + \lambda \cdot \Delta \theta
-\end{equation}
-\begin{equation}
-    \theta = \theta - v_t
+    \begin{aligned}
+        v_t = m\cdot v_{t-1} + \lambda \cdot \Delta \theta\\
+        \theta = \theta - v_t
+    \end{aligned}
 \end{equation}
 
 \subsection{Backpropagation}
 \label{sub:concepts:nn:backprob}
-To use \gls{sgd} for a neural network we need to apply the gradient to all parameters of function in our network. An efficient way of propagating errors through the network is called \textbf{backpropagation} \citep{rumelhart_learning_1988}. The basic idea is to walk the graph of the neural network backwards from the outputs until the inputs at the top and on this backward pass find for all nodes the proportion they contribute to the output error. Then we apply \gls{sgd} using the errors for all nodes.
+We want to use \gls{sgd} to optimize the many parameters inside a neural network. The standard approach for this is called \textbf{backpropagation} \citep{rumelhart_learning_1988}. The aim of backpropagation is to find the partial derivative of the error function with respect to each parameter of the network. Backpropagation repeatedly applies the chain rule to derivatives to all possible paths through our network, starting from the bottom error function. For a composite function $F(x,y) = f(g(x, y))$ we can compute the partial derivative $\frac{\delta f}{\delta x} = \frac{\delta f}{\delta g}\frac{\delta g}{\delta x}$ using the chain rule. In a feedforward network we now have our intermediate node using some operator. While a forward pass they can compute their local gradients independently of any surrounding nodes. While the backward pass all nodes send their gradients to all their inputs starting with the tailing output layer. Each node will receive the gradient from its deeper output and simply multiply it to its already computed local gradient, following the chain rule. With this propagation we can provide gradients for all parameters without having to reason about the composite function on the whole.\\
+With the propagated gradients we can perform \gls{sgd} optimization on all network parameters and thus can learn the neural network.
 
 \subsection{Convolution} % (fold)
 \label{sub:conepts:nn:conv}
@@ -121,6 +122,7 @@ If the features in training shift over time the gradient decent becomes harder a
 ($\epsilon$ is added to avoid divisions by zero) yields the output $\{\hat{x_1},\dots,\hat{x_n}\}$.\\
 To use the BatchNorm parameters while testing, we compute a moving average over the means and variances of the batches while training. The forward pass uses these averages to normalize the test inputs.
 
+\clearpage
 \section{Fully Convolutional Networks}
 \label{sec:concepts:fcn}
 Proposed by \citet{long_fully_2015}, \glspl{fcn} are a specific architecture of \glspl{cnn}. Fully convolutional states that the network consists only of convolutional layers. As these are translation invariant the networks can take arbitrarily sized inputs and produce an dependently sized coarse output.
@@ -131,7 +133,7 @@ The original authors use this architecture for image segmentation. They build th
 \label{sub:conepts:fcn:deconv}
 \input{figures/conv_deconv}
 Transposed convolution or sometimes mistakenly called deconvolution, first used by \citet{zeiler_deconvolutional_2010}, introduces a new operation for neural networks. Simply spoken a transposed convolution takes the receptive field and produces a larger window as output. \figreft{fig:1d_strided_conv} visualizes the differences between convolution and transposed convolution in $1d$. Both use a sliding kernel but the transposed convolution inverts the forward and backward passes. As such a transposed convolution is actually the gradient of some convolution \citep{dumoulin_guide_2016}.
-\clearpage
+
 \subsection{Conversion of \gls{fc} layers}
 \label{sub:concepts:fcn:fc_conversion}
 \gls{fc} layers can directly be converted into \gls{conv} layers, which makes \glspl{fcn} immensely efficient. To understand this process let us examine the VGG-16 network. After the 13 \gls{conv} layers and 5  corresponding max-pooling layers we get an output from \texttt{pool5} with $512\times7\times7$ pixels. Through pooling the original images ($224\times224$ pixels) got reduced to $7\times7$ pixels images over 512 channels. These go though 3 \gls{fc} layers. The first \gls{fc} layer returns 4096 values. We replace it with a \gls{conv} layer with kernel size 7 and 4096 channels thus also resulting in an $1\times1\times4096$ pixels output. The weights from the \gls{fc} layer can be reshaped into the size of the \gls{conv} layer. The other two \gls{fc} layers with 4096 and 1000 outputs, respectively can directly be put into convolutions with kernel size 1.
